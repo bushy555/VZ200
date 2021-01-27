@@ -1,0 +1,190 @@
+VZ / Laser EMULATORS							as at 27/Jan/2021.
+=====================
+
+
+(1) VZEM
+(2) JamesVZ200.
+(3) MAME.
+(4) JEMU
+(5) WinVZ300 / DSEVZ200 / Emulator 2001
+(6) SoundPaint - Jürgen Reuter
+(7) VZ200 Remake
+(8) ZZEMU Laser 310 Emu
+(9) ZZEMU's FPGA
+(10) VZ Emulator
+(11) VZ-Next
+(12) MISTer - Alan.
+
+
+
+
+
+
+
+(1) VZEM
+========
+Guy's Main site			Guy Thomason	http://intertek00.customer.netspace.net.au/vz200/
+VZEM v2.2 (DOS)			Guy Thomason	https://vzalive.bluebilby.com/emulators/vzem_22.zip
+VZEM (aka WinVZ)		Guy Thomason	https://vzalive.bluebilby.com/emulators/winvz4.zip
+VZEM SDL			Guy Thomason	http://intertek00.customer.netspace.net.au/vz4sdl/
+VZEM Android			Guy Thomason	http://intertek00.customer.netspace.net.au/vz4droid/
+VZEM Pocket PC			Guy Thomason	http://intertek00.customer.netspace.net.au/pocketvz/
+VZEM Raspberry PI		Guy Thomason	http://intertek00.customer.netspace.net.au/pi2vz/
+
+
+
+VZEM
+Guy Thomason sit the world with his first release of a small green screen executable in around July 1999.
+Development was quick and within a few months Guy released a full working emulator that would interpret the BASIC of a real VZ. In September 2001 his emulator supported tape, disk and 4 meg of paged memory.
+
+The formatting format of the original DOS/Command-line version of VZEM emulator (versions 1 and 2.0), dated 1999, 
+has a slight bug within. The format of the original came out as a 98k image, whilst version 2.2 and all subsequent releases of VZEM in all flavours all had 99k images.
+This small fix will change the original release to fix the 98 to 99k problem. 
+However, please note, that all of those original 98k images can not be read correctly.
+
+From Guy:
+"Disk formatting:
+Yeah it seems to work OK now. If you can't wait for the upgraded 
+version, change the byte at 1BE73H in VZEM.EXE from A0H to B0H."
+
+
+The latest release of his emulator (dated around Sep 2020) fixes a few common annoyances that have lurked within for a few years.
+After hundreds of hours of personally testing the product alongside real hardware, it is as close as you will ever get.
+Super High Res Graphics and 1-bit audio are absolutely spot on. And in some rare circumstances (1-bit audio), the emulator actually works better, whereas there is hardware limitations (think 1-bit audio and the VZ's own internal piezo speaker) for instance, where the internal speaker refuses to play. Plugging in an external amplified speaker to the piezo speaker plays the music perfectly as does the emulator.
+
+During the years, Guy has released a number of flavours of his emulator, on to Raspberry, Android, and even a Pocket Pc.
+Guy will become your best friend should you mention the words 'beer' and/or 'bacon'.
+Please do not ever mention the word 'iPhone' to him. The only Apple product he acknowledges is either the ][e or the physical fruit thing.
+
+
+
+
+(2) JamesVZ200.
+===============
+JVZ was written very early in the peace, having been the second VZ emulator released sometime in the 2001 era, and unfortunately a copy of it was not ever kept, and has been lost to the ether. 
+Version 2.0 was released in 2002 with version 2.1 being the final release.
+geocities died years ago, ocities is the archive of geocities.
+Original link was : http://www.geocities.com/emucompboy
+
+JVZ200				James Tamer	http://www.oocities.com/emucompboy
+
+
+
+
+(3) MAME.
+=========
+MAME is the biggest and largest combination of emulators on this planet. All rolled up into one heck of a single platform.
+Dirk (real name Duke) was a member of the VZ Yahoogroups list in the early years, and wrote the VZ emulator within MAME.
+This emulator is perhaps second in line to being the most 'compatiblest' with a real VZ. Disk drive and serial terminal emulation works.
+
+MAME				Duke		http://www.mess.org/doanload.html
+
+
+
+(4) JEMU
+========
+Richard Wilson's name is big within the Amstrad CPC community. He wrote WinApe. Never heard of WinApe? Do a google.
+Richard was also a member of the VZ community in the early years whilst he wrote his java emulator. Its all there within his site. Load it up, get Java working, and play a game as if you were on a real VZ. Richard lives in Tasmania.
+
+JEMU				Richard Wilson	https://jemu.winape.net
+
+
+
+(5) WinVZ300 / DSEVZ200 / Emulator 2001
+=======================================
+Gavin Turner is a highly active fellow in Christchurch in New Zealand. Loves his emulators. Has written a number of them for differing flavours of hardware over he years.
+Originally writing Emulator 2001 with a bunch of things rolled into one, he turned to the humble VZ and decided to write a full blown emulator fully, 100%, in assembler. A tough gig, but managed to do it with his first release (I believ) in 2010.
+After many many releases, some of which were not ever saved, his final release came in about 2013 which had its own 1 meg download installer --- which unfortunately to most of us we didnt like, and could not get through to Gavin that this was not a good outcome. Gavin unfortunately arguued the point.   He left our community under bad terms and I though that he had totally disappeared off the planent. Fast forward to 2019 era, and he was a new man. Putting out three more releases that fixed issues and getting rid of the installer. However, there was still some continuuing concerns within the community that a lot of anti-virus software picks up his emulator as being a virus, as had also been done in the earlier years.
+Gavin can be found on his 'VZ demo' Facebook page; and unfortunately performing a google search on his emaultor will find many many pages acknowledging his emulator, but most, if not all, go to dead download links. 
+Original website (long been dead): http://gstsoftware.co.nz/
+
+WinVZ300 / DSEVZ200 / Emulator 2001		https://web.archive.org/web/20160303181605/http://gstsoftware.co.nz/
+
+
+
+(6) SoundPaint - Jürgen Reuter
+==============================
+This popped up after performing a google one day. Sits on Github with a youtube available showing Jurgen performing a lecture about it.
+Not much is known about it. Java based.
+ 
+
+Soundpaint VZ Emu		Jürgen Reuter	https://github.com/soundpaint/VZ200-Emulator
+video #1					https://www.youtube.com/watch?v=S65sOWSTnGA
+Video #2					https://media.ccc.de/v/gpn19-114-retrocomputing-emulator-vz200-z80
+
+
+
+
+(7) VZ200 Remake
+================
+Another unknown, also sitting on github. Is a remake of James Turners VZ200, with updates.
+
+VZ200Remake			C Wahlmann	https://github.com/cwahlmann/vz200-remake
+						https://github.com/cwahlmann/vz200
+
+
+
+(8) ZZEMU Laser 310 Emu
+=======================
+"LASER310 Emulator"
+
+ZZEMU Laser 310 emu				https://github.com/zzemu-cn/LASER310EMU
+
+
+
+
+(9) ZZEMU's FPGA
+================
+
+Terrasic FPGA DE1 DE2		ZZEMU		https://github.com/zzemu-cn/LASER310_FPGA
+Terrasic FPGA DE1 DE2 Floppy	ZZEMU		https://github.com/zzemu-cn/LASER310_FPGA_DD20
+Terrasic FPGA base version 	ZZEMU		https://github.com/zzemu-cn/LASER310_FPGA_BASE
+
+
+
+
+(10) VZ Emulator
+===============
+"An emulator for the VZ200/VZ300 Z80 8-bit CPU based Computer. Written in c#"
+
+VZEmulator			Paul Anderson	https://github.com/PaulAnderson/VzEmulator
+
+
+
+
+
+(11) VZ-Next
+============
+
+"An implementation of the TX800/VZ200/Laser200 platform for ESP32/Windows/Linux/Raspi"
+
+VZ-Next				Paul Robson	https://github.com/paulscottrobson/vz-next
+
+
+
+
+
+(12) MISTer - Alan.
+===================
+
+"This is a MiSTer port of the core by: https://github.com/zzemu-cn/LASER310_FPGA_DD20"
+
+MISTer						https://github.com/alanswx/Laser310_MiSTer
+						https://github.com/MiSTer-devel/Laser310_MiSTer
+
+
+
+
+Other Github stuff:
+===================
+YuanB's 64k					https://github.com/yuanb/laser310_64k
+
+YuanB's DD20 Floppy drive emulator		https://github.com/yuanb/dd20emu
+This project is dedicated to create an Arduino UNO based Laser-200/310 DD20/DI40 Floppy drive 
+interface and drive emulator. Since at the moment this project is created, I only have a 
+Laser-200 on hand, which has relative less amount of RAM (6K) on board. The design will 
+include 16K (6264 SRAM x 2) memory expansion as well.
+
+
+Jump on to Github.com , search for 'VZ200' or 'VZ300', and keep up to date as each roll out their updates.
+Some of these VZ users are quite active.
