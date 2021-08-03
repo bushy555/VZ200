@@ -1,0 +1,18 @@
+VZ200 Demonstration Tape
+------------------------
+00.vz "DEMO TAPE"    t=f0 s=7ae9 e=7b44 l=005b   (91) sum=236d
+01.vz "DEMO TAPE"    t=f0 s=7ae9 e=7b23 l=003a   (58) sum=1ad5
+02.vz "WELCOME"      t=f0 s=7ae9 e=7c5e l=0175  (373) sum=7fc1
+03.vz "GRAPHICS 1"   t=f0 s=7ae9 e=7ccd l=01e4  (484) sum=9a89
+04.vz "COLOR DEMO"   t=f0 s=7ae9 e=7c6d l=0184  (388) sum=86f0
+05.vz "GRAPHICS 2"   t=f0 s=7ae9 e=7c2e l=0145  (325) sum=658d
+06.vz "PICTURE"      t=f0 s=7ae9 e=7d9d l=02b4  (692) sum=f0e0
+07.vz "KALEIDOSCOPE" t=f0 s=7ae9 e=7d16 l=022d  (557) sum=bfdf
+08.vz "SONG 1"       t=f0 s=7ae9 e=7c93 l=01aa  (426) sum=7044
+09.vz "SONG 2"       t=f0 s=7ae9 e=7d9c l=02b3  (691) sum=aa58
+10.vz "ST.LINES 1"   t=f0 s=7ae9 e=7d58 l=026f  (623) sum=d076
+11.vz "ST. LINES 2"  t=f0 s=7ae9 e=7d13 l=022a  (554) sum=bae7
+12.vz "DRAWING 1"    t=f0 s=7ae9 e=7c6a l=0181  (385) sum=6e22
+13.vz "DRAWING 2"    t=f0 s=7ae9 e=7f21 l=0438 (1080) sum=87f2
+14.vz "MARBLES"      t=f0 s=7ae9 e=7d2f l=0246  (582) sum=c5cb
+15.vz "END"          t=f0 s=7ae9 e=7b5f l=0076  (118) sum=30ad
