@@ -1,0 +1,1029 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=windows-1252">
+<META NAME="Generator" CONTENT="Microsoft Word 97">
+<TITLE>Instructions</TITLE>
+</HEAD>
+<BODY>
+
+<P>VZ200/300 - Extended Basic  "XB2" by Russell Harrison</P>
+
+<P>&nbsp;</P>
+<P>Contents</P>
+
+<OL>
+
+<LI>General Information</LI>
+<LI>Variables</LI>
+<LI>Programming and debugging aids</LI>
+<LI>Graphics</LI>
+<LI>Sound</LI>
+<LI>&quot;Formatted&quot; input</LI>
+<LI>String handling</LI>
+<LI>Error Trapping</LI>
+<LI>Disk commands</LI>
+<LI>Decimal-Hexadecimal-Binary conversion</LI>
+<LI>Machine language support</LI>
+<LI>Other commands</LI>
+<LI>&quot;customiseing&quot; Extended Basic</LI>
+<LI>List of Commands</LI></OL>
+
+
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>General Information</P>
+
+<P>To load Extened Basic, make sure the Extended Basic disk is in the disk drive and type:</P>
+
+<P>BRUN&quot;XB&quot;</P>
+
+<P>The drive will spin for about 15 seconds, a messgae should appear and the READY prompt and cursor will come back.</P>
+<P>Extended Basic commands are used in exactly the same way as normal commands. However, lines containing Extended Basic commands should only be typed in after Extended Basic is loade. Extended Basic can be loaded at any time, and will not destroy a Basic program that is already in memory.</P>
+
+<P>Using expressions in GOTO statements, disk commands etc.</P>
+
+<P>Extended Baisc lets you write things as:</P>
+
+<P>GOTO A*10</P>
+<P>LOAD N$</P>
+
+<P>This will work for GOTO, GOSUB and IF..THEN..ELSE statements, and all disk commands. In the RUN&quot;&lt;filename&gt;&quot; command, the expression must stat with a double-quote, for example:</P>
+
+<P>RUN&quot;FILE&quot;+STR$(N)&#9;is permitted</P>
+<P>RUN N$&#9;&#9;&#9;is not permitted but</P>
+<P>RUN&quot;&quot;+N$&#9;&#9;is PERMITTED.</P>
+
+<P>Similiary, expressions in IF..THEN..ELE statements must start with a number.</P>
+
+<P>Note: Throughout this manual, angle brackets -&lt;and&gt;- have been used to show parts of a statement that should not be typed directly, but replaced with a number, variable, or whatever.</P>
+
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>VARIABLES</P>
+<P>Double Precision Arithmetic</P>
+
+<P>Extended Basic allows the use of 15 diget &quot;double precision&quot; numbers. Any normal numbers with more than six significant digits will be treated as double-precision. A # symbol after the number can also be used to indicate double-precision. In double precision scientific-notation, a &quot;D&quot; should be used instead of the &quot;E&quot; used to indicate the exponent.</P>
+
+<P>Example</P>
+
+<P>1.513&#9;&#9;&#9;is single-precision</P>
+<P>1.513236578&#9;&#9;is double-precision</P>
+<P>1.92567-10&#9;&#9;is single-precision</P>
+<P>1.925674523d-10&#9;is double-precision</P>
+<P>35#&#9;&#9;&#9;is double-precision</P>
+
+<P>Double-precision arithmetric will only be used if at least one of the operands is in double precision, for example:</P>
+
+<P>PRINT 1/3</P>
+<P>0.333333</P>
+
+<P>PRINT 1#/3</P>
+<P>0.333333333333333</P>
+
+<P>Warning: SIN, COS, LOG, and most other functions only have 5-6 digit precision, even with double-precision numbers.</P>
+
+<P>Double-precision variables</P>
+<P>Even if an epression is worked out in double-precision, it will be reduced to single-precision if you attempt to store it in a normal variable. To solve this, double-precision variables are also allowed. A double-precision variable is indicated by a # after its name, eg:</P>
+
+<P>A#</P>
+<P>DH#</P>
+<P>GAINS#</P>
+<P>Double precision variable are used in the same way as other variables except they can not be used in FOR statements.</P>
+
+<P>CINT((arg)) / CSNG((arg)) / CDBL((arg))</P>
+
+<P>These functions convert a number to either integer, single precision or double-precision format, respectively, for example:</P>
+
+<P>A=6:b=1</P>
+<P>PRINT A/B</P>
+<P>0.166667</P>
+<P>PRINT CINT(A)/B</P>
+<P>0.166666666666667</P>
+<P>Remembe that double-precision arithmetic is only used if one operand is already in double-precision, so</P>
+
+<P>PRINT CDBL(A/B)</P>
+<P>Will not return the same value as the second example above.</P>
+
+<P>DEFINT&lt;var&gt; / DEFSNG&lt;var&gt; / DEFDBL &lt;var&gt; / DEFSTR &lt;var&gt;</P>
+<P>It can become tedious typing in %,$ and # signs for integer, string and double precision variables. The DEFINT, DEFSNG, DEFDBL, and DEFSTR commands let you permantly define certain variables as integer string or whatever. Variables are redefined according to which letter they start with. For instance,</P>
+<P>DEFINT I</P>
+<P>Will define as integer the variable I, and also any two letter variables starting with I, such as I5, Ia, Ik, etc. More than one letter can be defined in one statement, and ranges of letters can be specified by using a dash to represent ‘to’.</P>
+
+<P>For example:</P>
+
+<P>DEFINT I-L &#9;defines as integer any variable starting with I,J,K or L.</P>
+<P>DEFDBL A,X,Y   &#9;defines as double precision variables bginning with A,X, or Y.</P>
+
+<P>DEFSTR H&#9;&#9;Defines as string variables starting with H.</P>
+<P>H=&quot;HELLO&quot;&#9;&#9;(the $ sign is no longer needed)</P>
+
+<P>DEFINT, DEFSNG, DEFDBL, DEFSTR are overridden by a symbol such as $ or #. To use the single precision form of a variable that has been defined as something else, an exclamation mark (!) should be used, for example:</P>
+
+<P>DEFINT A</P>
+<P>A!=1.5</P>
+
+<P>Basic treats A%, A!, A#, and A$ (for example) as being completely different variables. The variable A (without a type sign) will refer to one of these, depending on the current type set by DEFINT, etc</P>
+<P>This means that its value could change, for example:</P>
+<P>A=1:A#=1.234</P>
+<P>DEFDBL A:PRINT A</P>
+<P>1.234</P>
+
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>PROGRAMMING &amp; DEBUGGING AIDS</P>
+<P>AUTO &lt;starting line number&gt;,&lt;increment&gt;</P>
+<P>When typing in a program, line numbers usually go up in steps of 10, 100 etc, and typing in each one wastes time. AUTO is a commmand which prints line numbers automatically, leaving the cursor on the same line for you to type something in. If a line already exists, it will be displayed as well as the line number. Either the line increment or both parameters may be omitted.</P>
+<P>The default for both is 10.</P>
+<P>Example:</P>
+
+<P>AUTO&#9;&#9;&#9;Begins numbers at 10, increasing by 10</P>
+<P>AUTO 100&#9;&#9;Begins at 100, increasing by 10</P>
+<P>AUTO 90, 20&#9;&#9;Begins at 90, increasing by 20s.</P>
+
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>DELETE&lt;starting line&gt;-&lt;ending line&gt;</P>
+<P>This command deletes a block of lines from a program.</P>
+<P>Example:</P>
+<P>DELETE 1000-1090&#9;Removes statements between lines 1000 and 1090 (inclusive).</P>
+
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>MOVE TO &lt;line number&gt;,&lt;start&gt;-&lt;end&gt;</P>
+<P>This command copies a block of lines from one line number range to another. The lines being moved will overwrite any existing lines with the same line nmbers.</P>
+<P>Example:</P>
+
+<P>MOVE TO 1000, 60-700</P>
+
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>RENUM &lt;starting line number&gt;,&lt;increment&gt;</P>
+<P>Often, after modifying a basic program, you are left with a messy arrangement of line numbers which, besides looking bad, makes further modification difficult. RENUM can be used to renumber the program, back to a more orderly arrangement. Line numbers in GOTO, GOSUB etc statements will also be adjusted.</P>
+<P>In the same way as with AUTO, one or both parameters may be left out.</P>
+<P>For example:</P>
+<P>RENUM&#9;&#9;Results in line nmbers 10,20,30…</P>
+<P>RENUM 100&#9;&#9;Results in line numbers 100,110,120…</P>
+<P>RENUM 100,40&#9;Results in line numbers 100,140,180…</P>
+
+<P>A ‘$’ sign within the program can be used to mark line numbers which should not be changed. (important subroutines etc). It should come between the line number and the rest of the line. The ‘$’ sign will be ignored while the program is running.</P>
+<P>Example:</P>
+<P>(before)</P>
+<P>1 CLS</P>
+<P>5 PRINT &quot;HELLO&quot;</P>
+<P>6 GOSUB 1000</P>
+<P>10 END</P>
+<P>1000$ A=100:S=75:G=2</P>
+<P>1005 N$=&quot;ABCDEFGHJKLMNOPQRSTUVWXYZ&quot;</P>
+<P>1010 PRINT N$;N$;N$;N$</P>
+<P>1020 RETURN</P>
+
+<P>(after RENUM)</P>
+
+<P>10 CLS</P>
+<P>20 PRINT &quot;HELLO&quot;</P>
+<P>30 GOSUB 1000</P>
+<P>40 END</P>
+<P>1000$ A=100:S=75:G=2</P>
+<P>1010 N$=&quot;ABCDEFGHJKLMNOPQRSTUVWXYZ&quot;</P>
+<P>1020 PRINT N$;N$;N$;N$</P>
+<P>1030 RETURN</P>
+
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>FIND&quot;&lt;string&gt;&quot;</P>
+<P>This command searches thorugh a program unitl it finds a line which contains the string required. This line will then be displayed, and the computer will wait for you to press [SPACE]. It will then do the same for the next occurrence, and so on.</P>
+
+<P>Example:</P>
+<P>FIND &quot;IF A=1 THEN&quot;</P>
+<P>130 IF A=1 THEN PRINT &quot;YES&quot;&#9;&#9;(press [SPACE])</P>
+<P>410 IF A=1 THEN J=J+1&#9;&#9;&#9;(press [SPACE])</P>
+<P>READY</P>
+
+<P>FIND &quot;&lt;string&gt;&quot;,&lt;start line&gt;-&lt;end line&gt;</P>
+<P>FIND can be told to search only a particular range of line numbers </P>
+<P>Examples:</P>
+<P>FIND &quot;BYE&quot;,1000-2000&#9;Searches lines 1000 to 2000</P>
+<P>FIND &quot;BYE&quot;,500-&#9;&#9;Searches lines from 500 onwards</P>
+<P>FIND &quot;BYE&quot;,-3000&#9;&#9;Searches up to line 3000</P>
+
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>TRON and TROFF</P>
+<P>To aid debugging, Extended Basic can display a &quot;trace&quot; – the line numbers of each statement as they are executed. This feature is turned on and off by the TRON and TROFF commands.</P>
+
+<P>Example:</P>
+
+<P>TRON</P>
+<P>READY</P>
+<P>RUN</P>
+<P>&lt;10&gt;&lt;20&gt;&lt;30&gt;&lt;40&gt;&lt;20&gt;…..</P>
+<P>READY</P>
+
+<P>The SPEED command (see &quot;Other commands&quot;) may be used to slow down the screen output.</P>
+
+<P>&nbsp;</P>
+<P>COMPRESS</P>
+<P>This command removes all spaces and comments (in REM statements) from a program, to save memory and speed up execution. The &quot;stub&quot; of a REM statement is left, in case it is referred to by a GOTO command.</P>
+
+<P>Example:</P>
+
+<P>10 REM RANDOM BEEPS</P>
+<P>20 BEEP RAND(255,5,RND(2))</P>
+<P>30 GOTO 20</P>
+
+<P>COMPRESS</P>
+<P>READY</P>
+<P>LIST</P>
+<P>10 REM</P>
+<P>20 BEEP RAND(255,5,RND(2))</P>
+<P>30 GOTO 20</P>
+
+<P>OLD</P>
+<P>This command reverses the action of a new statement. It can only be used if a new program has not been loaded or typed in – if OLD is typed with a program still in memory, it will be left as it is.</P>
+<P>Example:</P>
+
+<P>10 PRINT &quot;VZ EXTENDED BASIC&quot;</P>
+<P>20 GOTO 10</P>
+
+<P>NEW</P>
+
+<P>LIST</P>
+<P>READY </P>
+<P>OLD</P>
+<P>READY</P>
+<P>LIST</P>
+<P>10 PRINT &quot;VZ EXTENDED BASIC&quot;</P>
+<P>20 GOTO 10</P>
+
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>GRAPHICS</P>
+
+<P>PLOT (&lt;x1&gt;,&lt;y1&gt;) TO (&lt;x2&gt;,&lt;y2&gt;)…</P>
+
+<P>This command line draws a line, in MODE(1), between two or more points.</P>
+<P>For example:</P>
+<P>PLOT (0,0)TO(127,63)&#9;Draws a diagonal line across the screen.</P>
+<P>PLOT (10,10) TO (10,54) TO (118,54) TO (118,10) TO (10,10)&#9;Draws a rectangle</P>
+
+<P>FILL (&lt;x&gt;,&lt;y&gt;)</P>
+<P>This command fills enclosed space on the screen, starting from a particular point.</P>
+
+<P>For example:</P>
+<P>10 MODE(1)</P>
+<P>20 PLOT (0,0) TO (127,0) TO (0,63) TO (0,0)</P>
+<P>30 FILL (5,5)   : REM FILL IN TRIANGLE</P>
+<P>40 GOTO 40</P>
+
+<P>&nbsp;</P>
+<P>FILL (&lt;x&gt;,&lt;y&gt;) TO &lt;colour1&gt;,&lt;colour2&gt;….</P>
+<P>This version of FILL allows you to specify which colours form the border, and which colours to cover over.</P>
+
+<P>Example:</P>
+<P>FILL (5,5) TO 3&#9;&#9;Only stops at blue lines</P>
+<P>FILL (5,5) TO 3,4&#9;&#9;Stops at blue or red lines</P>
+
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>DRAW &lt;str array&gt;,(&lt;x&gt;,&lt;y&gt;)</P>
+<P>This command allows you to define graphic shapes, and display them faster and more easily than with SET. The shape should be held in a one-dimentional string array, with each individual string representing one line on the display. Each character in each string represents on epixel. The characters which may be used, and their meanings are listed below:</P>
+<P>1,2,3,4 &#9;- colours green, yellow, blue, red</P>
+<P>#&#9;&#9;- current colour set by COLOR command</P>
+<P>[SPACE]&#9;&quot;transplarent&quot; (leaves the colour of that pixel the same</P>
+
+<P>Example:</P>
+
+<P>100 REM ROCKET</P>
+<P>110 DIM S$(8)</P>
+<P>120 S#(0)=&quot;   #&quot;</P>
+<P>130 S#(1)=&quot;  ###&quot;</P>
+<P>140 S#(2)=&quot;  333&quot;</P>
+<P>150 S#(3)=&quot;  ###&quot;</P>
+<P>160 S#(4)=&quot;  ###&quot;</P>
+<P>170 S#(5)=&quot; #####&quot;</P>
+<P>180 S#(6)=&quot; 33333&quot;</P>
+<P>190 S#(7)=&quot; #####&quot;</P>
+<P>200 S#(8)=&quot; 44 44&quot;</P>
+<P>210 MODE(1)</P>
+<P>220 FOR C=2 TO 4</P>
+<P>230 COLOR C</P>
+<P>240 DRAW S$,(C*10,52)</P>
+<P>250 NEXT</P>
+<P>260 GOTO 260</P>
+
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>ERASE &lt;str array&gt;,(&lt;x&gt;,&lt;y&gt;)</P>
+<P>This command is used to remove a shape, drawn by DRAW, from the screen. Whenever DRAW would have plotted a point, ERASE will reset it to the background color.</P>
+
+<P>For examplw, adding this line to the program above will remove the middle rocket:</P>
+<P>255 ERASE S$,(30,52)</P>
+
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>XDRAW &lt;str array&gt;,(&lt;x&gt;,&lt;y&gt;)</P>
+<P>This command is similar to DRAW, except that it does not overwrite the background, but alters its colours so that </P>
+<OL TYPE="a">
+
+<LI>If no colours other than background colour are present beforehand, the resulting picture will be the same as with DRAW, and</LI>
+<LI>If the same shape is XRAWn in the sample place again, the original background will be left as it is was before the first XDRAW.</LI></OL>
+
+
+<P>Example</P>
+<P>100 DIM D$(4)</P>
+<P>110 D$(0)=&quot;  #&quot;</P>
+<P>120 D$(1)=&quot; # #&quot;</P>
+<P>130 D$(2)=&quot;#   #&quot;</P>
+<P>140 D$(3)=&quot; # #&quot;</P>
+<P>150 D$(4)=&quot;  #&quot;</P>
+<P>160 MODE(1):COLOR 3</P>
+<P>170 FOR I=1 TO 4</P>
+<P>180 FOR X=0 TO 120 STEP 6</P>
+<P>190 XDRAW D$, (X,0)</P>
+<P>200 NEXT:NEXT</P>
+<P>210 GOTO 210</P>
+
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>CIRCLE (&lt;x&gt;,&lt;y&gt;),&lt;diameter&gt;</P>
+<P>This command draws a circle with its center at (&lt;x&gt;,&lt;y&gt;). The program compensates for the VZ’s rectangular pixels. The diameter should be a number of pixels from top to bottom, not from side to side.</P>
+
+<P>Example:</P>
+<P>CIRCLE (63,31),20</P>
+
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>BACKGR &lt;color&gt;</P>
+<P>This command is used to change the background color of the sceen (in MODE(1)). BACKGR would normally be used immediately after a MODE(1) command, but if a picture already exists, then its shape will be preserved but its colors modified in the same way as with XDRAW.</P>
+
+<P>For example</P>
+
+<P>10 MODE(1)</P>
+<P>20 PLOT(10,10) TO (120,60) TO (10,10)</P>
+<P>30 FILL (15,30)</P>
+<P>40 BACKGR RND(4)</P>
+<P>50 FOR I = 0 TO 300:NEXT</P>
+<P>60 GOTO 10</P>
+
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>SOUND</P>
+
+<P>BEEP &lt;pitch&gt;,&lt;duration&gt;</P>
+<P>This command is a more flexible version of Basics SOUND command. &lt;Pitch&gt; and &lt;duration&gt; may be any number between 1 and 255.</P>
+
+<P>Example:</P>
+<P>BEEP 255,10&#9;&#9;High pitched, short note</P>
+<P>BEEP 50,255&#9;&#9;Long, fairly low pitch</P>
+
+<P>BEEP &lt;pitch1&gt; TO &lt;pitch2&gt;,&lt;duration&gt;</P>
+<P>This version of BEEP command varies the note to give a &quot;sliding effect&quot;</P>
+<P>Example</P>
+<P>BEEP 100 TO 200,255  &quot;slides&quot; the pitch of the note from 100 to 200</P>
+
+<P>&nbsp;</P>
+<P>BEEP &lt;Pitch&gt;,&lt;duration&gt;,&lt;volume&gt;</P>
+<P>A third parameter may be included in a BEEP statement – volume. This may be either 1 or 2 (the default is 2)</P>
+
+<P>Examples</P>
+<P>BEEP 40,20,1</P>
+<P>BEEP 10 TO 200,255,1</P>
+
+<P>NOISE &lt;intensity&gt;,&lt;duration&gt;,&lt;volume&gt;</P>
+<P>This command is used to produce a &quot;rushing&quot; or scraping sound, depending on the intensity. It has the same format as BEEP command.</P>
+
+<P>Example:</P>
+<P>NOISE 100,20</P>
+<P>NOISE 150,40,1</P>
+<P>NOISE 1 TO 250,70</P>
+<P>NOISE 1 TO 250,70,1</P>
+
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>FORMATTED INPUT</P>
+<P>INPUT ! ….</P>
+<P>Putting an exclamation mark (!) in an INPUT statement will stop the computer from printing the ? propmpt.</P>
+
+<P>For example:</P>
+
+<P>10 INPUT ! &quot;ENTER FILE NAME: &quot;;F$</P>
+<P>RUN</P>
+<P>ENTER FILE NAME: </P>
+
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>INPUT @ &lt;position&gt;; …</P>
+<P>Extended Basic lets you use the @ command (as in PRINT @) in an INPUT statement.</P>
+
+<P>Example:      INPUT @64;&quot;NAME&quot;;N$</P>
+
+<P>INPUT USING &lt;characters&gt;; …</P>
+<P>This command lets you control which characters can be typed in an INPUT statement. These characters may be specified in three ways:</P>
+
+<UL>
+<LI>as a string eg. INPUT USING &quot;ghjk&quot; (more than one character can be included in the string)</LI>
+<LI>as an ASCII code, eg. INPUT USING 65,66,67</LI>
+<LI>as a range of characters or codes, eg. INPUT USING &quot;a&quot; to &quot;z&quot;</LI></UL>
+
+
+<P>These three formats may be present in the same statement, eg</P>
+<P>INPUT USING 8.9.10.13.&quot;0  TO  9 )&quot;,&quot;ABCDFEG&quot;; … Note that control codes (backspace, etc – this includes [RETURN] are not automatically included. ASCII codes for these are as follows:</P>
+
+<P>Key&#9;&#9;&#9;Code</P>
+<P>Backspace&#9;&#9;8</P>
+<P>Forward space&#9;&#9;9</P>
+<P>Up-arrow&#9;&#9;27</P>
+<P>Down arrow&#9;&#9;10</P>
+<P>Insert&#9;&#9;&#9;21</P>
+<P>Rubout&#9;&#9;&#9;127</P>
+<P>Return&#9;&#9;&#9;13</P>
+
+<P>This statement will include all of them:</P>
+<P>INPUT USING 1 TO 27, 127, ….</P>
+
+<P>USING, ! and @ commands may all be included on the same line. Note that they may be in any order, but a prompt must always come at the end line.</P>
+
+<P>Example:</P>
+
+<P>INPUT ! @0; USING 1-31,127,&quot;YN&quot;; &quot;CONTINUE (Y/N) &quot;;Q$</P>
+
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>STR INPUT &lt;str variable&gt;</P>
+
+<P>A normal INPUT statement scans through the line typed in and breaks it up according to the commas in it. This allows more than one item per line, but it is annoying in that a comma cannot be treated like other characters. STR INPUT is a version of the INPUT statement which only ever accepts one string, but ignores commas. It can be used with !,@, and USING as well as with a prompt.</P>
+
+<P>Example:</P>
+
+<P>10 STR INPUT &quot;CATEGORIES REQUIRED&quot;;C$</P>
+
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>GET &lt;string variable&gt;</P>
+<P>This command accepts one character from the keyboard. The cursor flashes while the computer is waiting, and the usual key-beep will sound as it is typed. GET can be used with USING, @, etc</P>
+
+<P>Example:</P>
+
+<P>10 GET USING &quot;S&quot;; &quot;HIT &lt;S&gt; TO START&quot;;Q$</P>
+
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>USER DEFINED FUNCTIONS</P>
+<P>Exteneded Basic allows you to create your own functions. (A function is something which when given one or more values, returns an answer SIN, LOG, etc are functions). The name of each function mus begin with FN, followed by a latter and then any number of alphanumeric characters. Only the first two characters are significant.</P>
+
+<P>DEF</P>
+<P>The DEF statement is used to define a function. DEF statements must be in program, not typed directly.</P>
+
+<P>Example:</P>
+<P>10 DEF FNC(F) = (F+32)*5/9 : REM FARENHEIT TO CELCIUS</P>
+<P>20 DEF FNAVM5(A,B,C,D,E)=(A+B+C+D+E)/5</P>
+
+<P>Functions are used just like SIN, COS, etc.</P>
+
+<P>For example:</P>
+
+<P>PRINT FNC(100)</P>
+<P>37.7778</P>
+
+<P>The variables used to hold a functions parameters normally do not affect other variables of the same name, if an error occurs while the function is being evaluated, however, the tempory value will be left in each variable.</P>
+
+<P>For example:</P>
+
+<P>F=1.57</P>
+<P>PRINT FNC(100)</P>
+<P>37.7778</P>
+<P>PRINT F</P>
+<P>1.57</P>
+
+<P>A function may return a string instead of a number. Parameters may also be integers, strings, or double precision.</P>
+
+<P>Example:</P>
+
+<P>10 DEF FNRJ(T,N$) = RIGHT$(REP$(T&lt;&quot; &quot;)+N$T)</P>
+<P>20 PRINT FNRJ(10,&quot;HELLO&quot;)</P>
+<P>RUN</P>
+<P>     HELLO READY</P>
+
+<P>External variables can also be used in a function.</P>
+<P>For example:</P>
+
+<P>10 PI = 3.1415926536</P>
+<P>20 DEF FNAREA(R#)=PI*R#*R#</P>
+
+<P>&nbsp;</P>
+<P>Finally, a function may have any number of parameters, although it does not necessarily have to have any.</P>
+
+<P>For example:</P>
+
+<P>10 DEF FNMEM = FREE + SFREE</P>
+<P>20 DEF FNDIST(X1,Y1,X2,Y2) = SQR((X2-X1)^2+(Y2-Y1)^2)</P>
+
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>STRING HANDLING</P>
+<P>INSTR (&lt;string1&gt;,&lt;string2&gt;)</P>
+
+<P>This function searches through &lt;string 1&gt; for the first occurrence of &lt;string 2&gt;. If it is found, it’s position in &lt;string 1&gt; will be output, otherwise zero will be the result.</P>
+
+<P>Example:</P>
+
+<P>PRINT INSTR(&quot;HELLO THERE&quot;,&quot;TH&quot;)</P>
+<P>7</P>
+
+<P>PRINT INSTR(&quot;HELLO THERE&quot;,&quot;IN&quot;)</P>
+<P>0</P>
+
+<P>Using MID$ on the left hand side of an equation: </P>
+<P>A small part of a string variable can be changed by using a MID$ command, on the left side of an assignment statement. The length of the sub string is determined by the right hand side of the equation, and a third parameter (the length in normal MID$ function) does not need to be included. (If it is it  will be ignored)</P>
+
+<P>Example:</P>
+
+<P>MID$(A$,%)=&quot;FROG&quot;</P>
+<P>MID$(T$,2,3)=&quot;QUE&quot;</P>
+
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>ERROR TRAPPING</P>
+<P>Normally errors in a program generate an error message and stop the program from going further. Extended Basic allows you to write your own error handling subroutines, which does not necessarily have to stop the program.</P>
+
+<P>ON ERR GOTO &lt;line number&gt;</P>
+
+<P>This is the statement which tells the computer where your error handling routine is. To disable that subroutine use ONERR GOTO without a line number. More than one ONERR GOTO may be used if different subroutines must be used for differenet sections.</P>
+
+<P>RESUME</P>
+<P>or</P>
+<P>RESUME &lt;line number&gt;</P>
+<P>or</P>
+<P>RESUME NEXT</P>
+<P>This statement should be placed at the end of your error handling subroutine to transfer execution back to the main program. RESUME returns to the statement that generated the error; RESUME NEXT goes back to the statement after the error, RESUME &lt;line number&gt; goes back to the line you specify. If a RESUME is not included a &quot;NO RESUME ERROR&quot; will result.</P>
+
+<P>Example</P>
+<P>10 ONERR GOTO 1000</P>
+<P>20 INPUT &quot;PITCH&quot;;P\</P>
+<P>30 BEEP P,30 : REM GENERATES AN ERROR IF P&gt;255 OR P&lt;1</P>
+<P>40 ONERR GOTO</P>
+<P>1000 PRINT &quot;THAT NUMBER IS OUT OF RANGE&quot;.</P>
+<P>1010 PRINT &quot;PLEASE ENTER ANOTHER ONE&quot;</P>
+<P>1020 RESUME 20</P>
+
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>ERL and ERR</P>
+<P>When an error occurs, the computer stores the line number and the type of error in two variables, ERL and ERR. These can be used in your error subroutine. ERL returns the number of the line with the error in it, while ERR returns a code representing the type of error. These codes are as follows:</P>
+
+<P>CODE&#9;&#9;&#9;&#9;Error Message</P>
+<OL START=0>
+
+<LI>&#9;&#9;&#9;Next without for error</LI></OL>
+
+<P>2&#9;&#9;&#9;&#9;Syntax Error</P>
+<P>4&#9;&#9;&#9;&#9;Return without gosub error</P>
+<P>6&#9;&#9;&#9;&#9;Out of data error</P>
+<P>8&#9;&#9;&#9;&#9;Function code error</P>
+<P>10&#9;&#9;&#9;&#9;Overflow error</P>
+<P>12&#9;&#9;&#9;&#9;Out of memory error</P>
+<P>14&#9;&#9;&#9;&#9;Undef'd statement error</P>
+<P>16&#9;&#9;&#9;&#9;Dad subscript error</P>
+<P>18&#9;&#9;&#9;&#9;Redim'd array error</P>
+<P>20&#9;&#9;&#9;&#9;Division by zero error</P>
+<P>22&#9;&#9;&#9;&#9;Illegal direct error</P>
+<P>24&#9;&#9;&#9;&#9;Type missmatch error</P>
+<P>26&#9;&#9;&#9;&#9;Out of space error</P>
+<P>28&#9;&#9;&#9;&#9;String to long error</P>
+<P>30&#9;&#9;&#9;&#9;Formula too complex error</P>
+<P>32&#9;&#9;&#9;&#9;Can't cont error</P>
+<P>34&#9;&#9;&#9;&#9;No resume error</P>
+<P>36&#9;&#9;&#9;&#9;Resume without error</P>
+<P>38&#9;&#9;&#9;&#9;-</P>
+<P>40&#9;&#9;&#9;&#9;Missing operand error</P>
+<P>42&#9;&#9;&#9;&#9;Bad file data error</P>
+<P>44&#9;&#9;&#9;&#9;Illegal command error</P>
+<P>46&#9;&#9;&#9;&#9;File already exists</P>
+<P>48&#9;&#9;&#9;&#9;Directory Full</P>
+<P>50&#9;&#9;&#9;&#9;Disk write protected</P>
+<P>52&#9;&#9;&#9;&#9;File not open</P>
+<P>54&#9;&#9;&#9;&#9;Disk I/O error</P>
+<P>56&#9;&#9;&#9;&#9;Disk fukk </P>
+<P>58&#9;&#9;&#9;&#9;File already open</P>
+<P>60&#9;&#9;&#9;&#9;-</P>
+<P>62&#9;&#9;&#9;&#9;-</P>
+<P>64&#9;&#9;&#9;&#9;Unsupported device</P>
+<P>66&#9;&#9;&#9;&#9;File type mismatch</P>
+<P>68&#9;&#9;&#9;&#9;File not found</P>
+<P>70&#9;&#9;&#9;&#9;Disk buffer full</P>
+<P>72&#9;&#9;&#9;&#9;Illegal read</P>
+<P>74&#9;&#9;&#9;&#9;Illegal write</P>
+
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>DISK COMANDS </P>
+
+<P>UNERA "&lt;type&gt;","&lt;filename&gt;"</P>
+<P>This command allows you to bring back accidently errased files. If a file has been overwritten since it was erased, a "FILE </P>
+<P>NOT FOUND" message will appear. The file type (T,B, or D) of the file must be included, since this is always removed by the </P>
+<P>ERA command.</P>
+<P>Examples: </P>
+<P>UNERA "T", "PICTURE"</P>
+<P>UNERA "D", "CODE"</P>
+
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>The names of the files which have been errased can be obtained useing the XDIR % command. (see below) </P>
+<P>XDIR</P>
+<P>This command does the same as DOS's DIR command, except that files on the disk are listed in three columns, so more will fit on one screen. If more than one screenful exists, the computer will wait for you to press [SPACE] before continuing.</P>
+<P>Example XDIR</P>
+<P>T:FISH&#9;B:ROCKET  &#9;&#9;B:TEST </P>
+<P>T:FIRST  &#9;T:ANlMALS&#9;&#9;T:SHIP </P>
+<P>D:WORDS&#9;D:WORDS2&#9;&#9;T:PRINT </P>
+<P>B:MOUSE </P>
+
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>LDIR</P>
+<P>This command is similar to XDIR, except that the listing will be printed on the printer, and in seven column is about the'width of an 80 column printer.) </P>
+
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>XDIR"&lt;filename" / LDIR"&lt;filename"</P>
+<P>These two commands will list particular groups of files, whose names match the file you typed in. Two "wild cards" are permitted.</P>
+<P>[SHIFT]-[Z] (black rectangle) this character is revelant</P>
+<P>[SHIFT]-[J] (coloured rectangle) the rest of the filename is irrevelent.</P>
+<P>Example XDIR "FIREZ" </P>
+<P>T:FIRE11 T:FIRE12 T:FIRE13</P>
+<P>B:FIRE G</P>
+<P>READY</P>
+<P>XDIR "FOGJ"</P>
+<P>T:FOG&#9;&#9;T:FOGLIGHT&#9;&#9;T:FOG6.19</P>
+<P>READY </P>
+
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>XDIR% / LDIR %</P>
+<P>These two commands list to screen or printer, files that have been erased, but whose names still exist. The file types will appear as question marks(?). The files listed will not necessarily UNERAse succesfully, but a file which is not listed will always generate a "FILE NOT FOUND" message if this is attempted.</P>
+<P>Example </P>
+<P>XDIR% </P>
+<P>?:HELLO &#9;?:NEXT &#9;?ABCDE</P>
+<P>?:TEMP &#9;?:USELESS </P>
+
+<P>&nbsp;</P>
+<P>ERALL"&lt;filename"</P>
+<P>This command deletes groups of files from a disk. The method of selecting files is the same as with XDIR"&lt;filename&gt;", and this fact can be used to check that the files YOu are about to erase are the ones you think they are. </P>
+<P>ERALL "AB&lt;SHIFT&gt;Z". ERASES ALL FILES WHICH BEGIN WITH [AB]</P>
+
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>MERGE"&lt;filename&gt;</P>
+<P>This command combines two programes, one in memory and one on disk, into a single program, Lines will be automatically be arranged in the right order, and where the same line number exists in both original programs, the line originally held in memory willbe deleted.</P>
+
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>LENGTH"&lt;filename&gt;"</P>
+<P>This file function returns the length (in bytes) of any Basic or binary file.</P>
+<P>Example:</P>
+<P>PRINT LENGTH ("picture")</P>
+<P>2903 </P>
+<P>PRINT LENGTH("answers")</P>
+<P>152</P>
+
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>TYPE$("&lt;filename&gt;")</P>
+<P>This function returns the file type of the file&lt;filename&gt;.</P>
+<P>For example:</P>
+<P>PRINT TYPE$("CIRCUS") </P>
+<P>B FILE$(«arg»)</P>
+<P>The directory of a disk consists of 120 entries, each of which can contain a file name and the pointers to where it is </P>
+<P>stored. FILE$ lets a program access these entries.</P>
+<P>The value in brackets should be a number between O and 119 (inclusive) representing one directory entry. If a file name is stored in that cell, it will be returned, padded out to eight characters with spaces. If the entry contains the name of a file which has been deleted, then a string consisting of eight spaces will be returned. FinallY, if no file is stored there (that is, if the cell is past the last entry used), a null string ("") will be the result. </P>
+
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>NEWDISK </P>
+<P>To speed up access, LENGTH, TYPE$ and DILE$ load eight directory entries at once, and store these so the next seven entries </P>
+<P>can be used without disk access. However, this also means a new disk will not necessarily be recognised. To avoid this, a NEWDISK statement should be placed before any use of these three functions, after a possible change of disks.</P>
+<P>Note: This is only necessary in programs, not after LENGTH, FILE$, or TYPE$ statements typed directly from the keyboard. </P>
+<P>NEWDISK, LENGTH, TYPE$. and FILE$ can be used to create customised directory listings. menues. ect. </P>
+<P>For example: </P>
+<P>10 PRINT "TYPE; TAB(6); "NAME"; TAB(17);"length":PRINT </P>
+<P>20 NEWDISK </P>
+<P>30 F=0 </P>
+<P>40 D$=FILE(F) </P>
+<P>50 F=F+1 60 IFD$=22THEN END </P>
+<P>70 IF D$"        "THEN100 </P>
+<P>80 PRINT TYPE$(D);TAB(6);D$; TAB(;17); </P>
+<P>90 IF TYPE(D$)&lt;&gt;"D"THENPRINT LENGTH(D$) ELSE PRINT "=" </P>
+<P>100 IF F&lt;120THEN 40 </P>
+
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>DECIMAL HEXADECIMAL BINARY CONVERSION </P>
+
+<P>&amp;H&lt;hex number&gt;</P>
+<P>Hexadecimal numbers of up to four hex digits can be used in Extended Basic by placing &amp;H in front of them. </P>
+<P>example: </P>
+<P>PRINT &amp;H1A </P>
+<P>26 </P>
+<P>PRINT &amp;H7000+&amp;H15F </P>
+<P>29023 </P>
+
+<P>Hexadecimal numbers greater than &amp;h7FFF will come out negative so they can be used directly in PEEK statements. ect. </P>
+
+<P>&nbsp;</P>
+<P>&amp;B&lt;binary number&gt;</P>
+<P>Binary numbers of UP to 16 bits can also be used, by using &amp;B instead of &amp;H. </P>
+<P>EXAMPLE </P>
+<P>PRINT &amp;B10001011 </P>
+<P>139 </P>
+
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>HEX$(&lt;arq&gt;)</P>
+<P>This function converts numbers into four digit hexadecimal format. If, for example only two digits are required then they can </P>
+<P>be extracted using the RIGHT$ function. </P>
+<P>Example: </P>
+<P>PRINT HEX$(31465) </P>
+<P>7AE9 </P>
+<P>A$=HEX$(F+G) </P>
+<P>PRINT RIGHT$(HEX$ (255),2)</P>
+<P>FF </P>
+
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>BIN$(&lt;arg&gt;)</P>
+<P>BIN$ is the same as the HEX$ function, except that it outputs a sixteen digit binary number.</P>
+<P>Example: </P>
+<P>PRINT BIN$(28674) </P>
+<P>0111000000000010 </P>
+
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>HDEC(&lt;hex string&gt;) / BDEC(&lt;binary string&gt;)</P>
+<P>These two functios convert hexadecimal and binary strings to decimal.</P>
+<P>Example: </P>
+<P>PRINT BDEC("10101010") </P>
+<P>170 </P>
+<P>A$="6800" </P>
+<P>PRINT HDEC(A$) </P>
+<P>26624 </P>
+
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>MACHINE LANGUAGE SUPPORT</P>
+
+<P>WPEEK(&lt;address&gt;)</P>
+<P>This function is similiar to peek, except that it fetches two bytes of memory at a time, to form one two bit integer.</P>
+<P>Example: </P>
+<P>PRINT WPEEK(&amp;H7820) </P>
+<P>29152 </P>
+
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>WPOKE&lt;address&gt;,&lt;data&gt;</P>
+<P>This command is the equivalent of POKE. except that it handles two bytes at a time.</P>
+<P>Example:</P>
+<P>WPOKE &amp;H7820, &amp;H7000</P>
+
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>CALL &lt;address&gt;</P>
+<P>This command is used for calling machine code subroutines from Basic.</P>
+<P>Example: </P>
+<P>CALL &amp;H3450:   REM USE ROM KEY BEEP ROUTINE </P>
+
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>DEF USR&lt;name&gt;=&lt;address&gt; </P>
+<P>This command can be used to set up several different machine code functions, which can be called at any time. The name of the subroutime may have any number of letters, but only the first two will count. The first character in the name must be a letter, and the other characters should be either alphabetic or numeric. </P>
+<P>Example: </P>
+<P>DEF USRA = &amp;H1547: REM 'SIN FUNCTION </P>
+
+<P>Functions are called like this: </P>
+<P>PRINT USRA(1,2) </P>
+<P>0.93203 </P>
+
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>N=USRA(2) </P>
+<P>Standard USR functions can still be used in Extended Basic, but the address pointer in 30862-3 will be changed if an Extended </P>
+<P>Basic USR call is used.</P>
+
+<P>&nbsp;</P>
+<P>VAPTR(&lt;var&gt;)</P>
+<P>This function returns the address where a particular variable is stored, for example:</P>
+<P>PRINT VARPTR(Y%) </P>
+<P>31470 </P>
+
+<P>Variables are stored in a variety of ways, depending on their type. Strings are stored as a length byte, followed by a two </P>
+<P>byte pointer to the address of the actual string. If the string is the product of a string opperation, it will be stored in the string area near the top of memory. If it is a piece of 'raw' piece of data in a program, the pointer will refer to its location in the program. Strings can be used to hold short, relocatable machine code subroutines, for example:</P>
+
+<P>10 A$="abcdefghi" +"":REM DON'T WANT A MESSY LISTING </P>
+<P>20 DEF FNAD=WPEEK(VARPTR(A$)+1) </P>
+<P>30 FOR I=0TO8</P>
+<P>40 READ H$:P=HDEC(H$) </P>
+<P>50 POKE FNAD+I,P </P>
+<P>60 NEXT 70 CALL FNAD </P>
+<P>80 DATA 21,80,00,01,40,02,C3,5C,34 </P>
+
+<P>Warning: Basic may move a string during execution of a program, so it is best to use VARPTR every time you access a string, </P>
+<P>or use a FN statement as I have here. </P>
+<P>INteger variables are stored in two byte, signed integer format. (lsb-msb order)</P>
+<P>Single precision variables are stored in the following formats: </P>
+<P>POSITIVE NUMBERS: </P>
+<P>BYTE &#9;1....... &#9;2....... &#9;3.......&#9;4.......</P>
+<P>bit  &#9;0......7 &#9;0......7&#9;0......7&#9;0......7</P>
+
+<P>NEGATIVE NUMBERS:</P>
+<P>BYTE&#9;1.......&#9;2.......&#9;3.......&#9;4.......</P>
+<P>&lt;-lsb---mantissa msb-&gt;0 exponent </P>
+<P>bit  &#9;0......7&#9;0......7&#9;0......7&#9;0......7</P>
+<P>&lt;-lsb---mantissa msb-&gt;1 exponent </P>
+
+<P>ZERO:</P>
+<P>BYTE&#9;1.......&#9;2.......&#9;3.......&#9;4.......</P>
+<P>bit  &#9;0......7&#9;0......7&#9;0......7&#9;0......7</P>
+<P>&lt;----not used------------&gt; 00000000</P>
+
+<P>Note that the exponent is in base two, and has had an offset of 8OH added to it.</P>
+<P>Double precision numbers are stored in the same way as single precision numbers, but with 7 bites mantissa instead of three.</P>
+
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>OTHER COMMANDS</P>
+
+<P>RANDOMISE</P>
+<P>The random nuber generator in your computer will always generate the same sequence of numbers after you switch on the computer. Placing RANDOMISE at the start of a program will ensure that the same sequence of numbers will not occur whenever the program is run.</P>
+
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>ON &lt;exp&gt; GOTO &lt;line1&gt;,&lt;line2&gt;,&lt;line3&gt;,&lt;line4&gt;,.....</P>
+<P>Many programs include blocks of IF THEN statements like this:</P>
+<P>100 IF A=1 THEN 1200 </P>
+<P>110 IF A=2 THEN 1350 </P>
+<P>120 IF A=3 THEN 1600 </P>
+<P>In Extended Basic that can be shortened to a statement like this:</P>
+<P>100 ONA GOTO 1200,1350,1600</P>
+
+<P>Any number of line numbers may be included. These will be used with the values 1,2,3,4,5,6,..... If there is no branch for a </P>
+<P>number, the ON..GOTO statement will be ignored. </P>
+<P>A GOSUB also may be used instead of the GOTO. </P>
+<P>Examples: </P>
+<P>ON X GOTO 100,200,300,400,500,600 </P>
+<P>ON F+G+1 GOSUB 90,130,170 ON INSTR("ECPLSVQ",C$) GOTO 1000,2000,3000,4000,5000,6000...</P>
+
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>REP$(&lt;number&gt;,&lt;character&gt;)</P>
+<P>This function can be used to produce long strings containing one character repeated over and over. The character can either be supplied as a one byte string or an ASCII code. </P>
+<P>For example: </P>
+<P>PRINT REP$(20,".") </P>
+<P>....................</P>
+<P>PRINT REP$(10,64) </P>
+<P>@@@@@@@@@@ </P>
+
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>FREE</P>
+<P>This function returns the amount of unused memory you have left. </P>
+<P>Example: </P>
+<P>PRINT FREE </P>
+<P>9431 </P>
+
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>SFREE </P>
+<P>This function tells you the amount of string space that is not used. </P>
+<P>Example: </P>
+<P>A$="HELLO" </P>
+<P>PRINT SFREE </P>
+<P>45 </P>
+
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>FIX(&lt;arg&gt;)</P>
+<P>This function truncates the fraction part of a number. (INT does much the same thing, except that it always returns the largest integer less than the number, even on negative numbers.) </P>
+
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>SPEED&lt;speed&gt; </P>
+<P>This command allows you to slow down the rate that items are printed on the screen. The value of &lt;speed&gt; should range from 0 </P>
+<P>(normal display speed) to 255 (slowest).</P>
+<P>Example:</P>
+<P>10 SPEED 150: REM SLOW DOWN PRINTING RATE </P>
+<P>20 PRINT"O..1..2..3..4..5..6..7" </P>
+<P>30 SPEED 0: REM RETURN TO NORMAL </P>
+
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>CSCR &lt;character&gt; </P>
+<P>This command fills the screen with a particular character.</P>
+<P>Examples: </P>
+<P>CSCR "&lt;shift&gt;J" turns the screen black </P>
+<P>COLOR 4: CSCR "&lt;shift&gt;Z" Turns the screen red </P>
+<P>CSCR "A" covers the screen with As </P>
+
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>RESTORE &lt;line&gt; </P>
+<P>This version of Basic's RESTORE command lets you specify the starting line of a block of data.</P>
+<P>For example: </P>
+<P>10 DATA 1,5,9,19 </P>
+<P>20 DATA "HELLO","BYE","SORRY" </P>
+<P>30 RESTORE 20 </P>
+<P>40 READ A$,B$: PRINT A$,B$ </P>
+<P>RUN </P>
+<P>HELLO BYE </P>
+<P>READY</P>
+
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>&nbsp;</P>
+<P>CUSTOMISING EXTENDED BASIC</P>
+<P>Extended Basic is made up of segments. To save memory, one or more segments may be left out when Extended Basic is loaded. </P>
+<P>This is done using the ONLY and NOT statements for example: </P>
+<P>BRUN"XB": NOT"DEFINE","SOUND"</P>
+<P>BRUN"XB": ONLY"HIRES"</P>
+<P>These commands will only work when Extended basic is being loaded. To save space, only the first two characters of each name </P>
+<P>need be typed, for example: </P>
+<P>BRUN"XB":NOT"HI","HE","DI"</P>
+<P>The name length and function of each segmant is listed below.</P>
+
+<P>NAME&#9;&#9;BYTES USED&#9;FUNCTION </P>
+<P>Message&#9;O &#9;&#9;Prints opening message on the screen. </P>
+<P>TEXT &#9;&#9;497 &#9;&#9;Provides GET, STR, INPUT, INPUT USEING, CSCR </P><DIR>
+<DIR>
+<DIR>
+<DIR>
+<DIR>
+<DIR>
+
+<P>statements. </P></DIR>
+</DIR>
+</DIR>
+</DIR>
+</DIR>
+</DIR>
+
+<P>HIRES &#9;936 &#9;&#9;Provides PLOT, FILL, DRAW, X DRAW, ERASE. </P><DIR>
+<DIR>
+<DIR>
+<DIR>
+<DIR>
+<DIR>
+
+<P>BACKGR, CIRCLE. </P></DIR>
+</DIR>
+</DIR>
+</DIR>
+</DIR>
+</DIR>
+
+<P>MC &#9;&#9;43 &#9;&#9;Provides CALL, WPOKE, WPEEK. </P>
+<P>HELP &#9;&#9;1193 &#9;&#9;Provides MOVE, RENUM, FIND, MERGE, OLD,</P><DIR>
+<DIR>
+<DIR>
+<DIR>
+<DIR>
+<DIR>
+
+<P>COMPRESS. </P></DIR>
+</DIR>
+</DIR>
+</DIR>
+</DIR>
+</DIR>
+
+<P>DEFINE &#9;541 &#9;&#9;Provides DEF, FN, DEF USR. </P>
+<P>CONVERT &#9;193 &#9;&#9;Provides &amp;H, &amp;B, HEX$, BIN$, HDEC, BDEC. </P>
+<P>DISK &#9;&#9;1271 &#9;&#9;Provides XDIR, LDIR, UNERA, ERALL, NEWDISK,</P><DIR>
+<DIR>
+<DIR>
+<DIR>
+<DIR>
+<DIR>
+
+<P> LENGTH. TYPE$, FILE$, and the use of string &#9;&#9;expressions as filenames </P></DIR>
+</DIR>
+</DIR>
+</DIR>
+</DIR>
+</DIR>
+
+<P>STRING &#9;221 &#9;&#9;Provides INST, MID$, (on LHS of statement.) </P>
+<P>SOUND &#9;237 &#9;&#9;Provides BEEP, NOISE. </P>
+
+<P>First of all BRUN "wp" and go to the disk directory and load "eb". After printing out "eb" load "eb2" and print that. That will be all the instructions except the index. I have printed the index in basic to be able to control the horizontal tabs. You may have to alter the printer controls to suit your printer. If your printer is EPSON compatiable it should print out OK. The LPRINTS after the horizontal tab settings are necessary on my printer. You may not require them. I have not included a front cover. </P>
+
+<P>Jack Shearsmith. </P>
+
+<P>&nbsp;</P></BODY>
+</HTML>
