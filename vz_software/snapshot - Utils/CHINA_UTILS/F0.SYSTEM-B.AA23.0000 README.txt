@@ -1,0 +1,97 @@
+LASER310 machine B file processing system - Luo Zhangshou Luo Ya
+Software reported August 16, 1987
+
+    Analysis and ripping of LASER310 machine B files (ie machine language programs) is a tricky business. 
+Use the BLOAD command to transfer the B file from the disk, which can be "stationary" in the memory, so 
+there is a way to analyze it; but since you can't directly find the first and last addresses, it is very 
+troublesome to use the BSAVE command to rip. In addition, the LASER machine does not have the command to 
+record and check the B file on the tape. Therefore, it is difficult to transcribe the disk B file on the 
+tape. As for the analysis and ripping of the tape B file, it is more difficult. Such files are automatically 
+run as soon as they are loaded. Game B files are often difficult to interrupt (unless they are turned off); 
+monitoring B files are often self-locking and encrypted during operation, even if they can be returned to 
+the system, the memory remains. The true appearance of Mount Lushan; to analyze and rip, there is no means, 
+and no correct information target can be found.
+
+    Many monitoring programs provide the means to record tape B files, but they all have limitations, such 
+as occupying a long user space; they can only process files in specific areas, and the calling program often 
+conflicts with monitoring methods because of "super boundary"; Some can prevent the tape B file from running 
+but cannot exit the monitoring. It cannot introduce other means for analysis; some can't be compatible with 
+DOS... and it does not solve the problem that the disk B file is ripped to the tape and the disk and the B 
+file are mutually transcribed.
+
+    In the 20th issue of the "Software News" in 1986, "a method to prevent the program from running automatically" 
+was published, only the tape B file. This method is also not ideal, not only is the operation tedious, it is 
+easy to conflict with the target program, and the ripping and dragging water is recorded from the effect area 
+to the end of the program. For example, a target program is in B600-B6FF, which has only 255 bytes, has to be 
+recorded from 7800 to B800, up to 15.5K! In addition, because the CSAVE command is used, the B file is recorded 
+as a T file, but it cannot be checked with the VERIFY command.
+
+
+    Here, we are dedicated to the B file processing tool program we have compiled, which can solve all the 
+above problems more satisfactorily. The source code written in machine code is only 190 bytes, and the 
+equivalent source program written in BASIC language is also provided. In order to facilitate the masses and 
+promote the application, it is intentionally not encrypted. When the source program is loaded with BRUN or CRUN 
+and the source program is used for RUN operation, a B file processing system (hereinafter referred to as B system) 
+will be set at the end of the high resolution display area, and the prompt is "?". The system has five instructions, 
+namely:
+
+R (or R "file name") ? --- transferred to the tape B file
+L "file name" ? --- transferred to disk B file
+W "file name" (or W) ? --- record B file on the tape
+V (or V "file name") ? --- check tape B file
+E?————Exit B system, clear screen returns to the original system.
+
+
+The R, L, W, and V commands are executed or the errors and interruptions are all left in the B system. 
+After the E command is exited, you can type "PRINT&" at any time and press Enter to enter the B system.
+
+    The features and functions of the B system are:
+1. Set at the end of the high-resolution display area, completely does not crowd the user program area, is not 
+affected by the NEW command, and is compatible with the disk DOS and the monitoring means such as "MONITOR" which 
+won the first prize of the national competition. From the 7AE9 --- B7FF (basic system) and 7200 --- 76FF range of 
+all disk, with B files can be handled, there is no conflict.
+
+2. The disk B file loaded by the R command can prevent the operation and accurately "stationary" in the original state. 
+Then use the E command to exit, you can introduce monitoring means to observe and analyze its true face.
+
+3. The L command does not work for a diskless system. In a reel system, it has the same functionality as the BLOAD 
+command, and it is ready to use the W command to rip a disk B file onto a tape. After exiting the B system, the 
+transfer file can also be analyzed and studied.
+
+4.W command can cleanly transfer the disk B file transferred by the R command with the B file or the L command to 
+the tape. The length and content are exactly the same as the parent, and once it is transferred outside the B system, 
+automatic running.
+
+The 5.V command can check the B file ripbed on the tape with the parent that is still in memory, just as the VERIFY 
+command can check the tape T file.
+
+6.B system stores the first and last addresses of the file transferred by the R or L command at 77BB————77BE 
+(decimal 30651————30654). After exiting with E command, the PRINT PEEK (address) can be used to find the tone. 
+Enter the low, high and low end of the file's first address, high, for the area to be determined during analysis 
+and save with BSAVE.
+
+7. Any disk B file and its own DOS compatible tape B file can be transcribed to disk. That is, use the L or R command 
+to call in, the E command to exit, and find the first and last addresses as described in the 6th, you can use the BASVE 
+command to save. The L, W command can be used to rip all disk B files to tape. This solves the problem of the 
+transcription of the disk and the B file.
+
+8. To transfer the B file into a split, you should choose a tool that does not conflict with the call-in procedure. 
+In order to protect the transferred information, after changing the E command, the first address pointer of the text 
+area is 30884. 30885 and the last address pointers 30969, 30970 will be changed to the back of the call-in procedure. 
+When the loaded file is at the very high end of the memory, there will not be enough space to type the program or 
+execute the direct command after the E command exits. At this time, if you call a disk or tape file (such as a monitor 
+program) that does not conflict with the memory B file, the problem will be solved. If you do not intend to adjust the 
+file, you should key the person POKE 30884, 233: POKE 30885, 122: NEW ? (if you can not type, you should first execute 
+NEW), then you can type, run the program or direct command.
+
+9. After exiting the B system with the E command, all commands and functions of the resident BASIC can be executed 
+correctly. However, the T file loaded by the CLOAD command (including CRUN) must first be typed into 
+POKE 30884, 233: POKE 30885. After 122, you can use the LIST command list and run with the RUN command.
+
+In summary, the B system, combined with the various monitoring means, can realize the decryption, analysis and ripping 
+of the existing game and monitoring B files of the LASER310 machine (including disk and tape recording). There are only 
+two exceptions that it can't handle: one is the MODE(1) display on the disk with the BSAVE command, and the other is the
+machine code program that happens to occupy the end of the high-resolution area.
+
+Finally, the user should be reminded that the MODE(1) command should be disabled during operation to avoid damage to the system.
+

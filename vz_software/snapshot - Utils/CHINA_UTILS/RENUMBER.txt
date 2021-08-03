@@ -1,0 +1,100 @@
+Lecturer "Laser 310 micropower softening system anatomy" pale chicken
+
+LASER RENUMBER
+Function:
+GOTO, IF ... THEN ... ELSE, GOSUB, RUN, LIST, LLIST, ON ... GOTO, ON ... GOSUB, ONERR, RESUME, GOSUB, ONERR, RESUME, DEL, POP, direct line number production for reference Participating RST phrase;
+
+(2) Priority Use Usage Scheme Distribution Existing Number of Dispensing, Processing 300 Pieces Subordinate Phrase Line Participation Number Available for Occupancy Introduction District;
+
+(3) General Progress Introduction Final Mistake Number of Participants Number of Participating Characters of Adopted Characters (A to J Substitution 0 to 9), Submission for Presentation;
+
+(4) During the processing process ?? ? ? Present time ___ ___ 0 ___ ___ 0 ___ ___ 0
+
+(5) ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ?
+
+(6) Production excessive line (=60000) time instant self - regulation adjustment;
+
+(7) Speedy and safe.
+
+For the method of making ?? production: ___ ___ 0 ___ ___ 0 ___ ___ 0 ___ ___ 1 ___ ___ 1 ___ ___ 1 ___ ___ 0 . For CLOAD for post - installation iv followed by NEW ___ ___ 0 ___ ___ 1 Introduction Guidelines for Introductory Guidelines (Forbidden BASIC Scheme, Reusable PRINT & PST ? ReciOn).
+
+Tuning method:
+
+(L) Proceedings Introduction Pl. 5 D Strain Supporting Downward Ability Processing Functional Phrase; P1.5 D General Prop. P1.5 C Bibliographic 7 D 2 FH - 7 D 39 H Contents revised "F 5 E 5 21 12 75 CD A 4 06 C 3 4 A 1 E", Future 7B9FH content revision 44H Foundation. Mandatory command: RENUN Nomination line, line increase amount;
+
+(2) Supported V2.0 Supported, available USR Function Tuning, Entrance Location Register 74D6H, Executive POKE 30862, 214: POKE 30863, 116, afterwards TACHINE ACCOMPANY: A = USR (0) 'GROUP OF LINE Increase (caution # 'impossible omission); number of participants Used same P1.5.
+
+Note:
+(1) Introduction Usage ? ? RAM, running ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ? ?,,,,,,,
+(2) MODE used (1) salvation procedure Introduction, USR preparation before use Introductory existence;
+(3) Overhaul progression Length change, procurement intention middle stage USR, POKE etc. Related sites Regular change approval;
+(4) ? REM, PRINT etc. Phrase cheating treatment,
+
+Warrant Initiation Yes Yes Yes Yes Yes Yes Yes Yes Presentation Presentation N / A N / A Exact Use, Preferred Use & ERL (Outgoing Line Function) Contents of the phrase.
+
+
+------------------------------------------------------------------------------------------------------------------------
+
+The two programs in the directory are from "Laser310 Microcomputer Software and Hardware System Analysis" Peng Xinyi
+
+Created two files based on the code in the book
+LASER_BASIC_P1.5C.txt
+LASER_RENUMBER.txt
+
+Then generate it with the command php hex_txt2bin.php
+BASIC_P1.5C.vz
+BASIC_P1.5C.7B04.bin
+
+RENUMBER.vz
+RENUMBER.74D3.bin
+
+Bin contains only data and can be used to disassemble learning.
+
+Due to errors in the recognition of program characters in the original book, there is no guarantee that the generated program will be consistent with the original code.
+
+Hex_txt2bin.php is the source of the conversion script.
+
+-----------------------------------------------------------------------------------------------------------------------
+
+
+
+Extracted from "Laser310 Microcomputer Software and Hardware System Analysis" Peng Xinyi
+
+LASER RENUMBER
+Features:
+
+(1) Reprogram the BASIC program line number and modify the target line number parameters in the following statements: GOTO, IF...THEN...ELSE, GOSUB, RUN, LIST, LLIST, ON...GOTO, ON...GOSUB, ONERR, RESUME, DEL, POP, and RST statements with direct line numbers as arguments;
+
+(2) It is preferred to use the display text area to store data, and the processing of 300 or less sentence line number parameters may not occupy the user program area;
+
+(3) The first character of the line number parameter with error in the program can be changed into a letter (with A~J instead of 0~9), prompting the user to modify;
+
+(4) When the memory is insufficient during processing, the current processed line number can be reported, so that it can be re-edited after the abridgement;
+
+(5) After the two or more programs are spliced ??(the line numbers are not in ascending order), the re-editing can ensure that the respective target line numbers are not confusing;
+
+(6) It can be automatically adjusted when a large line number (=60000) is generated;
+
+(7) Fast speed and good security.
+
+Software production method: After the machine code is sent into the memory according to the address, the first and last addresses are placed in the user program first and last address pointer units, and the disk or tape is stored; later, the memory is loaded into the memory by BLOAD (disk) and CLOAD (tape). . After loading with CLOAD, NEW should be executed to correct the program area pointer (if there is a BASIC program, you can use PRINT&PST to restore it).
+
+Call method:
+(l) This program must be able to process extended function statements under the support of Pl.5D system; P1.5D is to change the content of 7D2FH~7D39H in P1.5C text to "F5 E5 21 12 75 CD A4 06 C3 4A 1E", Change the content of 7B9FH to 44H. The command invoked is: RENUN first line number, line number increment; grammar rules are unchanged.
+
+(2) Under the support of V2.0, the USR function can be called. The entry address is 74D6H. After executing POKE 30862, 214: POKE 30863, 116, the calling format is: A=USR(0)' first line number, line number Increment (note number 'cannot be omitted'); parameter usage is the same as P1.5.
+
+note:
+(1) This program is a normal phenomenon due to the use of display RAM, dot line interference and pattern characters on the screen during operation;
+
+(2) Using MODE(1) will clear the program, and confirm the existence of the program before calling with USR;
+
+(3) The length of the program changes after re-editing, please pay attention to whether the address related to USR, POKE, etc. in the program changes;
+
+(4) No handling of REM, PRINT and other statements,
+
+Note that the comments and screen prompts about the line number are still correct, and the contents of the statement using &ERL (error line number function).
+
+
+------------------------------------------------------------------------------------------------------------------------
+

@@ -1,0 +1,29 @@
+
+Magnum Quest (Magnum_Quest_walkthrough_vz200.txt)
+Taken from: http://solutionarchive.com/file/id%2C10389/
+
+Magnum Quest
+Walkthrough by Alex Dijkstra for the vz200.
+
+EXAMINE BED (you find a newspaper), GET NEWSPAPER, READ NEWSPAPER (you learn you are searching for
+the kidnapped author Robin M.), DROP NEWSPAPER, EXAMINE FIREPLACE (you find ashes), GET ASHES,
+EXAMINE ASHES (you find a nail), GET NAIL, OPEN DOOR (with nail), DROP ASHES, DROP NAIL, GO DOOR, GO
+SHED, GET TOOLBOX, GET LANTERN, GET ROPE, GET SHOVEL, GO DOOR, CLIMB LADDER, DROP TOOLBOX (the
+toolbox breaks open), CLIMB LADDER, GET HAMMER, GO HUT, EXAMINE FLOOR (it is rotten), OPEN FLOOR
+(with hammer), EXAMINE FLOOR (you find a map), GET MAP, GO DOOR, FOLLOW MAP, GO BOAT, LOOK, LOOK
+(you hear a powerful roar), ROW (with shovel),  DROP MAP, DROP SHOVEL, THROW ROPE (the rope has
+caught fast on the cliff), EXAMINE BUSH (you find some berries), GET BERRIES, EXAMINE BERRIES (a
+strange type wit immunizing effects), EAT BERRIES, MOVE STONE (the berries protect you against the
+snake bite and you find a compass), GET COMPASS, CLIMB ROPE, EXAMINE SIGN, GO SOUTH (you have to
+carry the compass to walk around), GO SOUTH, EXAMINE BOX (you find a bottle, a lighter and a bomb),
+GET BOMB, GET LIGHTER, GO NORTH, GO NORTH, GO EAST, GO EAST, OPEN MINE (with hammer), DROP HAMMER,
+GO EAST, GET DYNAMITE, THROW DYNAMITE (the entrance caves in), LIGHT LANTERN (with lighter), GO
+SOUTH (without a lit lantern you die), GO SOUTH (I hear a strange hum), LIGHT DYNAMITE (you light
+the bomb with the lighter and a wall collapses), GO EAST, GO EAST , GO NORTH, GO EAST, GO EAST,
+EXTINGUISH LAMP, GO OPENING, CLIMB CLIFF, GO SOUTH, GO SOUTH, GET BOTTLE, THROW BOTTLE (it
+shatters),GET FRAGMENTS,  GO NORTH, GO NORTH, GO EAST, GO EAST, LIGHT LANTERN, GO NORTH, SWITCH
+DOWN, GO EAST, GO NORTH, GO NORTH, EXAMINE ROBIN, CUT TIES (with fragments), GO SOUTH, GO SOUTH, GO
+WEST, SWITCH ON, SWITCH ON, GO EAST, GO EAST. 
+
+You have solved the adventure
+

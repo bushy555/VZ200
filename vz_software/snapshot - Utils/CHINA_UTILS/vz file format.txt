@@ -1,0 +1,31 @@
+First, the format of the audio tape
+See the waveform diagram
+Data tape drive.png
+LASER310_cas_0xAA_Figure.png
+
+The bytes read in are:
+Synchronization and preamble: 128 0x80 5 0xFE
+Program type: 1 byte TYPE
+Program file name: up to 17 bytes FILENAME, empty file is 1 0x00
+Mute: about 0.003s. The program displays the file name during this time
+Program start: 2 bytes START
+End of program: 2 bytes END
+Program data:
+Sum check value:
+
+After reading the file name, there is about 0.003 seconds of mute. This time should be left to the program to display the file name.
+Length about 555us x 5.5
+
+
+The end of the recording is the sum check value
+The calculation method is 0xFF00 or 0x0000, the beginning of the file (high and low byte), the end of the file (high and low byte), data, and the lower 16 bits after the summation.
+LASER310 is 0x0000
+In addition, LASER310 adds 20 0x00 at the end.
+The tail 0x00 does not read correctly.
+
+Second, vz file format
+VZF_MAGIC : 4 bytes 0x20 0x20 0x00 0x00 or 0x56 0x5A 0x46 0x30
+Vzf_filename : 17 bytes The last byte must be zero, and the missing characters at the end are replaced with spaces 0x20
+Vzf_type : 1 byte with tape
+Vzf_startaddr : 2 bytes program start address
+Followed by the data

@@ -1,0 +1,246 @@
+Excerpted from "Laser310 Microcomputer Software and Hardware System Analysis" Peng Xinyi
+
+Extended function of P1.5
+
+Based on V2.0, this system reports all the functions of Level II, simulates some functions of APPLESOFT and PC-1500 BASIC, and also has some unique functions that are not available in the above systems. There are a total of forty-three extended statement commands and functions. The words, usage and functions are now described as follows.
+
+
+
+System functions
+(1) BYE
+Drop out
+Exit P1.5 and restart V2.0.
+
+
+
+BASIC program management function
+(1) AUTO first line number, line number increment
+Automatically generate line numbers
+The line number is automatically generated according to the given parameters, and the input program line is accepted. After the carriage return, the descending line number is generated in increments... until the line number > 65529 or BREAK is pressed. If a parameter is default, it is automatically set to 0. When the program area has the same program line as the generated line number, the line is displayed and the cursor is at the end of the line.
+
+
+(2) RENUN first line number, line number increment
+Renumber line number
+Program line numbers can be reprogrammed according to the specified series. A parameter is automatically set to 10 by default. Due to the limitation of the system size, this function is only a simple type. It does not process the target line number in the statement and needs to be modified by the user. If you want to use all the programs, please use the "LASER RENUMBER" program developed by the author.
+
+
+
+(3) DEL starting line number - ending line number
+Delete
+Delete all program lines of the specified range; if the starting line number defaults, the specified line number and all lines before it are deleted.
+
+
+
+(4) PLOAD "file name"
+Splicing band
+While saving the existing files in memory, load a BASIC file from the tape so that the two are spliced.
+
+
+
+(5) MERGE
+Program stitching
+After loading the program for splicing with the PLOAD command, this command can splice it into a program with the original program of the memory. After the program is placed in the front, the original program is followed; not in the order of the line number. If the order of the line numbers is reversed after splicing, they can still be executed in the order of arrangement, but the statements such as GOTO may be wrong, so the line number should be renumbered.
+
+
+
+(6) MERGE 0
+Undo stitching
+This command clears the contents of the load and restores the original program when the spliced ??file is misaligned, the load is loaded, or the intent is changed.
+
+
+(7) PRINT&PST
+Restore cleared program
+    The BASIC program cleared by the NEW command can be restored. If you type a new program line after NEW, as long as the length of the original program has not been reached, the display may be partially restored (the first line may be incorrect), but the first address of the program has become the current address. If you use the Pl.5 extension command after NEW, or use the variable in the direct command, you can only recover the part that is not covered by the new variable area. In both cases, the LOMEM 0 command can be used to reset the residual block to the beginning of the program area.
+
+
+
+Machine language program management function
+(1) LOMEW low-end address
+Low-end memory protection
+
+——84——
+
+
+Set the starting address of the BASIC program area, from 7B04H (31492) to the previous unit of the set address, which is not controlled by the system and is owned by the user. After the BASIC program has been entered, this command can still be used to open the reserved area; the reserved area can be changed and its address can be changed again. The BASIC program will automatically move in memory without being corrupted. The address parameter takes a positive decimal value (31492~65535). The lowest address that the user can use to store data in the reserved area is 31492. The front is the preset BASIC startup program.
+
+
+(2) LOMEM 0
+Revocation reserve
+Clear the reserved area data, BASIC first address moved to 7AE9H, the program is not affected.
+
+
+(3) CALL entry address
+Calling a machine language subroutine
+The machine program is executed from the specified address, and the breakpoint that returns to the BASIC program when the return instruction is encountered continues to run. The address parameter takes a positive decimal value (0~65535).
+
+
+(4) SAVEB "file name"
+Binary file to tape
+The entire contents of the low-end user reserved area 7B04H are stored in a binary format on the tape. Press BREAK during the tape.
+
+
+(5) SAVEA "file name"
+Binary/BASIC composite files are written to tape
+The BASIC program is recorded on the tape together with all the information in the reserved area in the form of a BASlC text file. Later loading into the memory automatically adjusts the pointer and starts the BASIC program.
+
+
+
+Display function
+(1) SPEED delay value
+Display, print speed control
+Set to display the delay value between each line. Take 0 for normal speed, take 1~256 time interval for the first time, and SPEED 256 for about one minute between lines. The delay is valid for display, print data, and program listings. Press the “.” button halfway to resume normal speed.
+
+
+(2) & P0S (0)
+Take the line position of the cursor
+Its value is the position of the cursor in the current line (0~31)
+
+
+
+Data processing function
+(1) DEFDBL letter or letter range
+Defining double precision variables
+Define variables starting with the specified letter as double-precision variables, enabling 16-bit significant digits; with type flags $, %, and ! Except for those. The value assigned to the double precision variable should be double precision, otherwise the numbers after the six digits are meaningless. The precision constant is marked with a #. The result of a calculation between variables or values ??of different precision is a higher precision type. The letters can be specified separately, separated by commas, or in the order of the English alphabet, such as DEFDBL N, M, D-G.
+
+
+(2) DEFINT letter or letter range
+Defining integer variables
+All variables starting with the specified letter are defined as integers (except those with the $, ! flag), and integers (32767 = N = -32768) are stored. Usage is the same as above.
+
+
+(3) DERSTR letters or letter ranges
+Defining string variables
+Variables that begin with the specified letter are defined as string (except for the %, ! flags). Usage is the same as above.
+
+
+(4) DEFSNG letter or letter range
+Defining single precision variables
+Variables that begin with the specified letter are defined as single precision (except for the % and $ flags). Since all variables have been defined as single-precision at system initialization, it is generally only used when redefining. Usage is the same as above. After the variable is redefined, the original value is lost.
+
+
+(5) &CDBL (expression) takes a double value
+
+——85——
+
+The function is the double value of the argument.
+
+
+(6) & CSNG (expression)
+Single precision value
+The function is a single-precision value of the argument. If the argument is double precision, the extra digits are rounded off.
+
+
+(7) & CINT (expression)
+Integer value
+The function is the integer value of the argument (not greater than the largest integer of the argument). The range of independent variables is: 32767 = N = -32768.
+
+
+(8) & FIX (expression)
+Numerical truncation
+Taken from the integer part of the variable. When the argument is negative, the function value will be greater than the argument. For example: &FIX(-3.14)=-3, and INT(-3.14)=-4.
+
+
+(9) &STRING$ (length, character)
+String of the same character
+The function value is a string of the specified length consisting of the same character specified. The argument can be an expression. The length is limited by the capacity of the string area; you must first use CLEAR to open up enough space. When the string argument is more than one character, only the first character is taken.
+
+
+(10) RANDOM
+Open random number generator
+Since the seed value of the generated RND function is constant and is calculated by the same subroutine, it is only a pseudo random number.
+Use this statement before calling RND, you can change the seed value with the value of the CPU refresh register at that time, and increase the randomness of the RND function.
+
+
+
+Monitoring function
+(1)TRON
+Turn on tracking
+Each line number executed will be displayed when the BASIC program is running.
+
+
+(2) TROFF
+Turn off tracking
+
+
+(3) &LAD (expression)
+Line address
+The argument is a one-line value. The function value is the first address of this line in memory.
+
+
+(4) & VARPTR (variable name)
+Variable address
+The function value is the first address of the specified variable in the variable area.
+
+
+(5) & MEM
+Take free memory bytes
+The function value is the total number of bytes remaining in the memory space that can be used by the current BASIC program.
+
+(6) & FRE (string variable name)
+Take the number of bytes in the free string area
+The function value is the total number of bytes that are still available in the current string area. The argument can be a string variable name such as any word.
+
+
+
+BASIC program control function
+
+(1) RST expression
+Reset read data pointer
+The argument is a one-line value; the read data pointer points to the line, and the READ statement will read the data from the BATA statement from this line.
+
+(2) ON expression GOTO line number 1, line number 2...
+The control transfer is transferred to the line of the Nth line number according to the value N of the expression to continue the operation. If N is greater than the number of line numbers, or N < 1, then no transfer, the next statement is executed sequentially.
+
+
+(3) ON expression GOSUB line number 1, line number 2, ...
+Control call subroutine
+According to the expression value N, it is decided to call the BASIC subroutine whose Nth line number is the entry. The rules are the same as above.
+
+
+(4) POP line number
+Clear stack transfer
+
+——86——
+
+After transferring to the subroutine with GOSUB, if you do not need to return to the original breakpoint, this statement can continue to run after the RETURN clear stack function is executed.
+
+
+
+Error handling function
+(1) ONERR GOTO line number
+Enter error transfer status
+After the program error, the operation is no longer interrupted and the error message is displayed. Instead, the line number specified by this statement (usually a subroutine entry that handles the error) is used to continue the operation.
+
+
+(2) ONERR GOTO 0
+Terminate the error transfer status
+Cancel the effect of the last ONERR statement. If this statement is executed after an error has occurred and is transferred, it stops running and displays the original error message.
+
+
+(3) & ERR take the error code
+The function value is the current error code and can be used to identify the nature of the error.
+
+
+(4) &ERL take the error line number
+The function value is the line number at which the error occurred at the time. When the direct command fails, its value is 65535.
+
+
+(5) RESUM 0
+Return to the wrong statement
+Since the error of the ONERR statement captures the error and goes to the error handling subroutine, the RESUE statement must be used to end the return. Otherwise, the error will still be captured and the system will refuse to process the next error. This statement is to return the error statement to re-execute, before taking measures to make the error no longer occurs, otherwise it will fall into an infinite loop.
+
+
+(6) RESTME NEXT
+Return the next statement of the error statement
+Can be used to skip statements that produce errors.
+
+
+(7) RESEME line number
+Return and transfer
+    Return from the error state and transfer to the specified line number to continue running.
+
+
+(8) ERROR error number
+Simulation error
+The effect of executing this statement is equivalent to the "error" in which the numbering occurred. Can be used in a tuning error handling subroutine. Error number = error code/2+1. The error number ranges from 0 to 23. If the parameter value is exceeded, it is an error in itself (the error number is out of bounds, &ERR=38).
+

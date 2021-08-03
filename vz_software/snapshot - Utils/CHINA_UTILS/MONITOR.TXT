@@ -1,0 +1,82 @@
+LASER 310 monitor application instructions
+Zhang Hao
+
+Command: MON enters MONITOR by BASIC
+
+
+1 Assembly command A
+Function: Compile the Z-80 instruction and store the machine instruction code in the memory.
+Format: As After typing the command, the screen will display the address s and the assembly prompt "ASM...", waiting for the user to enter the Z80 command machine code. After the user completes the input, press Enter and the mnemonic will be changed to the command machine code and stored in the memory unit starting at address s.
+
+
+2 Disassembly list command D
+Format: Ds, e
+Starting at address s and ending at address e, the list shows the Z80 mnemonic. If e is omitted, Ds starts at address s and the list shows 10 rows of mnemonics.
+
+
+3 Tape input command I
+Format: I
+Starting from the current position of the tape, the first tape file encountered is loaded into memory and the start and end addresses are displayed.
+Format: I:f
+Load a file with "f" as the file name into memory.
+
+
+4 Tape output command O
+Format: Os, e, f
+The binary file whose start address is s and whose end address is e is stored in the tape with f as the file name.
+
+
+5 Write command W (hex)
+Format: Ws After typing this command, the screen will display the contents of the addresses s and s. When the user types in the data and presses Enter, the new data is written to the s unit. If you type a quotation mark after the user name, type the character directly, and the ASCII of the character is written to s. Press "." to exit the write command.
+
+
+6 Display the command F (hexadecimal)
+Format: Fs,e
+Displays data from address s to e. If e is omitted, Fs displays 8x10 bytes of data starting from s.
+
+
+7 Display ASCII code command L
+Function: Display the characters represented by ASCII code and ASCII code in the memory.
+Format: Ls, e
+Same as Fs,e
+
+
+8 Data block move M
+Format: Ms, e, d
+Move a piece of data from address s to e, move to the memory space starting with d, and the content of the source address does not change.
+
+
+9. set breakpoint B
+Format: Bs
+Set a breakpoint in the program address s. When the program runs to a breakpoint, it automatically displays the current contents of all registers and returns MONITOR.
+
+
+10. Eliminate the breakpoint set by the B command.
+Format: C
+
+
+11. The program run command E
+Format: Es
+Run the Z-80 program from the address s
+Format: E
+Exit MONITOR and return to BASIC
+
+
+12. Register operation command R
+Format: R
+Display the contents of all registers after the program is interrupted
+Format: Rr, d
+Change the contents of register r to d
+
+
+13. Decimal and hexadecimal interchange X
+Function: decimal range is 0 - 32767, -32768 -1, hex 0H - FFFFH
+Format: XDd
+Convert decimal number d to hexadecimal number
+Format: XHh
+Convert hexadecimal number h to decimal
+
+
+14. Print order D
+Format: Dm
+The monitoring command is completed in the form of printing, and m is D, F, L, and the like.
