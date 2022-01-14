@@ -1,0 +1,8 @@
+
+IF !DEFINED_graphics
+	defc	DEFINED_graphics = 1
+	defc graphics = 0
+	IFNDEF graphics
+	ENDIF
+ENDIF
+
