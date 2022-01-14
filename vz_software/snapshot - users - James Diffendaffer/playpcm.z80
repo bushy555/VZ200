@@ -1,0 +1,127 @@
+;
+;PSG sample replay routine
+;
+;hl = sample start address
+;de = sample length
+;
+#define	DB	.byte
+#define	end	.end
+#define	org	.org
+
+#define	VZExit	1A19h			; Address to jump to when exiting a snapshot file
+#define	AYBASE	128			; base address of AY chip
+
+	org	8000h
+
+	push	hl
+	push	bc
+	push	af
+
+	ld	hl,SAMPLE		; point to PSG_SAMPLE_TABLE with HL
+	ld	de,END_SAMPLE-SAMPLE	; load table size
+
+	exx
+	ld	c,AYBASE+1		; address of AY DATA port is AYBASE+1
+	ld	d,0			; clear D
+	exx
+
+Loop:
+	ld	a,(hl)			; byte from sample
+	inc	hl			; point to next
+	exx
+	ld	e,a			; put the byte in E
+	ld	hl,PSG_SAMPLE_TABLE	; point to PSG_SAMPLE_TABLE with HL
+	add	hl,de			; point to PSG_SAMPLE_TABLE entry for sample in E
+
+	;pre-load 3 bytes to output
+	ld	b,(hl)			; load 1st output byte
+	inc	h			; point to next byte
+	ld	e,(hl)			; load 2nd output byte
+	inc	h			; point to next byte
+	ld	h,(hl)			; load 3rd output byte
+	
+	;output them as close together as possible to prevent noise
+	;first inc a moved up to reduce noise
+	ld	a,8			; AY register 8
+	out	(AYBASE),a		; output register #
+	inc	a			; AY register 9 (moved up here to reduce noise)
+	out	(c),b			; output sound data
+
+	;;inc	a			; AY register 9 (moved up to reduce noise)
+	out	(AYBASE),a		; output register #	
+	out	(c),e			; output sound data
+
+	inc	a			; AY register 10
+	out	(AYBASE),a		; output register #
+	out	(c),h			; output sound data
+
+	ld	b,8			; timing wait loop
+WaitLoop:
+	djnz WaitLoop
+
+	exx
+	dec	de			; we have output 1 byte, decrement remaining length
+	ld	a,d			; are we done
+	or	e
+	jp	nz,Loop			; branch if more bytes remain
+
+	pop	af
+	pop	bc
+	pop	hl
+	
+	jp	VZExit			; exit snapshot
+	ret
+	
+PSG_SAMPLE_TABLE:
+	DB  00,01,02,03,04,03,05,03,04,05,06,06,05,06,06,06
+	DB  06,06,07,06,07,08,08,08,07,07,09,07,09,09,08,08
+	DB  09,09,08,09,09,09,09,09,10,10,10,10,09,09,10,10
+	DB  10,10,09,10,11,11,11,11,11,11,11,11,10,10,10,11
+	DB  11,11,11,11,11,11,11,12,11,11,12,12,11,12,11,12
+	DB  12,12,12,11,12,11,12,12,12,12,11,12,12,12,12,11
+	DB  12,13,12,13,11,13,13,13,13,13,13,11,13,13,13,13
+	DB  13,13,13,12,13,13,13,12,12,13,12,13,13,13,13,13
+	DB  13,12,13,13,13,13,13,13,13,14,13,13,14,14,14,14
+	DB  14,14,13,14,14,13,14,14,14,14,14,14,13,14,14,14
+	DB  14,14,14,13,14,14,13,14,14,13,13,14,14,14,14,14
+	DB  14,14,14,14,13,14,14,13,14,14,14,14,14,14,13,14
+	DB  14,14,15,14,15,15,15,15,15,15,15,15,15,15,15,15
+	DB  14,15,15,15,15,15,15,14,15,15,15,15,15,15,15,15
+	DB  15,15,15,15,15,15,15,15,15,15,15,14,15,14,14,14
+	DB  14,14,15,15,14,15,15,14,15,15,15,15,15,15,15,14
+
+	DB  00,00,00,00,00,02,00,02,02,03,01,02,04,04,03,04
+	DB  04,05,04,05,05,02,03,04,06,06,01,06,02,03,06,07
+	DB  05,06,07,06,06,06,07,06,04,04,05,06,08,07,06,06
+	DB  07,06,08,07,03,04,03,04,04,05,05,05,08,09,09,07
+	DB  07,07,08,07,08,08,08,02,08,09,03,05,09,05,08,06
+	DB  06,07,06,10,07,09,08,07,08,08,09,08,08,09,08,10
+	DB  09,00,08,01,10,02,03,04,04,05,06,10,06,06,06,07
+	DB  06,07,07,10,08,08,07,11,11,08,11,08,09,09,09,08
+	DB  09,11,09,09,10,10,10,10,10,00,10,09,02,02,04,03
+	DB  04,04,11,05,05,11,07,07,07,07,07,08,10,08,08,08
+	DB  08,08,09,11,09,09,12,08,09,12,11,09,10,10,09,10
+	DB  10,10,10,09,11,10,10,12,10,10,11,11,11,10,12,11
+	DB  11,11,00,11,01,02,03,04,03,04,04,05,05,05,06,07
+	DB  12,07,07,07,08,07,08,12,08,08,08,09,08,09,09,09
+	DB  08,09,09,09,09,10,10,09,10,10,10,13,09,13,13,13
+	DB  13,13,10,11,13,11,10,13,11,11,11,11,11,10,10,12
+
+	DB  00,00,00,00,00,00,00,01,01,00,00,00,01,00,02,02
+	DB  03,02,01,04,01,01,01,01,03,04,00,05,01,01,04,01
+	DB  01,00,04,02,03,04,01,05,01,02,01,00,02,06,03,04
+	DB  01,05,06,04,00,00,02,02,03,02,03,04,06,02,03,02
+	DB  03,04,00,05,02,03,04,00,05,00,02,00,03,02,07,01
+	DB  02,00,04,00,03,07,00,05,02,03,08,04,05,00,06,07
+	DB  03,00,07,00,08,01,01,01,02,01,00,09,02,03,04,01
+	DB  05,03,04,07,01,02,06,01,02,05,04,06,02,03,04,07
+	DB  05,07,06,06,00,01,02,03,04,00,05,08,00,01,00,02
+	DB  02,03,00,03,04,03,00,01,02,03,04,00,09,02,03,04
+	DB  04,05,00,08,02,03,00,07,05,03,09,06,00,01,07,03
+	DB  04,04,05,08,10,06,06,08,07,07,00,00,01,08,09,04
+	DB  05,05,00,06,00,00,00,00,02,02,03,02,03,04,03,00
+	DB  01,02,03,04,00,05,02,06,04,04,05,00,06,02,03,04
+	DB  07,05,05,06,06,00,01,07,03,04,04,00,08,02,03,04
+	DB  04,05,07,00,06,01,08,07,04,05,05,06,06,09,09,11
+END_TABLE
+	end

@@ -1,0 +1,359 @@
+;*********************************************
+;* WilliamTell.z80
+;*********************************************
+;* Description:
+;*  William Tell Overture through a DAC
+;*  a direct translation from the 6809 code
+;*  Published in Color Computer News
+;*
+;*  This could use some optimization and the
+;*  current version is untested
+;*  Assembles with tasm3.1 assembler
+;*
+;* Author:  James Diffendaffer (z80 version)
+;* Date: 10/2/2010
+;* Version History:
+;*  0.1 - Initial Build
+;*  0.2 - Fixed Note Playing loops which were hanging due to status bits not being set with instructions used
+;*********************************************
+#define	DB	.DB
+#define	end	.end
+#define	org	.org
+#define	TEMPO	$68
+#define	PORT	$0
+
+#define	VZExit	1A19h			; Address to jump to when exiting a snapshot file
+
+	org	$8000
+
+;	NAM	WILLTEL1
+
+
+
+START	jp	MUSIC		;GO TO MAIN PRG
+
+; variables are stored here
+MUWORK	DB	0,0
+DUR		DB	0
+VOICE1	DB	0,0,0
+VOICE2	DB	0,0,0
+VOICE3	DB	0,0,0
+VOICE4	DB	0,0,0
+INC1	DB	0,0
+INC2	DB	0,0
+INC3	DB	0,0
+INC4	DB	0,0
+
+;*
+;* WAVEFORM TABLE FOR ORGAN SOUND (256 DBs)
+;*
+WFT
+	DB	$0D,$0E,$0F,$11,$12,$14,$15,$16 
+	DB	$18,$19,$1B,$1C,$1D,$1F,$20,$22 
+	DB	$23,$26,$27,$29,$2A,$2B,$2D,$2E 
+	DB	$30,$31,$32,$34,$35,$37,$38,$38 
+	DB	$39,$3B,$3B,$3C,$3C,$3E,$3E,$3E 
+	DB	$3F,$3F,$3F,$3F,$3F,$3F,$3F,$3E 
+	DB	$3E,$3E,$3C,$3C,$3B,$3B,$39,$38 
+	DB	$37,$37,$35,$34,$32,$31,$30,$2E 
+	DB	$2E,$2D,$2B,$2A,$29,$27,$26,$24 
+	DB	$23,$22,$20,$1F,$1F,$1D,$1C,$1B 
+	DB	$1B,$19,$19,$18,$18,$16,$16,$15 
+	DB	$15,$15,$15,$15,$15,$15,$15,$15 
+	DB	$15,$15,$15,$15,$16,$16,$16,$18 
+	DB	$18,$18,$19,$19,$1B,$1B,$1C,$1C 
+	DB	$1C,$1D,$1D,$1F,$1F,$1F,$20,$20 
+	DB	$22,$22,$22,$22,$22,$23,$23,$23 
+	DB	$23,$23,$23,$23,$22,$22,$22,$22 
+	DB	$20,$20,$20,$1F,$1F,$1D,$1D,$1C 
+	DB	$1C,$1B,$19,$19,$18,$16,$15,$15
+	DB	$14,$12,$12,$11,$0F,$0E,$0E,$0D 
+	DB	$0B,$0B,$0A,$08,$08,$07,$07,$06 
+	DB	$06,$04,$04,$03,$03,$03,$01,$01
+	DB	$01,$01,$01,$01,$00,$00,$00,$00
+	DB	$00,$01,$01,$01,$01,$01,$01,$01
+	DB	$03,$03,$03,$03,$03,$04,$04,$04
+	DB	$04,$04,$06,$06,$06,$06,$06,$06 
+	DB	$06,$06,$07,$07,$07,$07,$07,$07 
+	DB	$07,$06,$06,$06,$06,$06,$06,$06 
+	DB	$06,$06,$04,$04,$04,$04,$04,$04 
+	DB	$04,$04,$04,$04,$03,$03,$03,$04 
+	DB	$04,$04,$04,$04,$04,$06,$06,$06 
+	DB	$07,$07,$07,$08,$0A,$0A,$0B,$0D
+
+;*
+;* NOTE TABLE
+;*
+TABL
+	DB	$00,$00,$02,$6F,$02,$94,$02,$E8 
+	DB	$02,$E4,$03,$10,$03,$3F,$03,$71
+	DB	$03,$A5,$03,$DC,$04,$17,$04,$56 
+	DB	$04,$98,$04,$0D,$05,$28,$05,$76 
+	DB	$05,$C9,$06,$21,$06,$7F,$06,$E2 
+	DB	$07,$4A,$07,$89,$08,$2F,$08,$AC 
+	DB	$09,$30,$09,$BB,$0A,$50,$0A,$ED 
+	DB	$0B,$93,$0C,$43,$0C,$FE,$00,$C4 
+	DB	$0E,$95,$0F,$73				; A ABOVE MIDDLE C (440 HERTZ)?
+	DB	$10,$5F,$11,$58,$12,$60,$13,$77
+	DB	$14,$A0,$15,$DA,$17,$26,$18,$87
+	DB	$19,$FC,$1B,$88,$1D,$2B,$1E,$E7
+	DB	$20,$BE,$22,$B0,$24,$C0,$26,$EF
+	DB	$29,$40,$2B,$B4,$2E,$4D,$31,$0E
+	DB	$33,$F9,$37,$10,$3A,$57,$3D,$CF
+	DB	$41,$7C,$45,$60,$49,$81,$4D,$DF
+	DB	$52,$81,$57,$69,$5C,$9B,$62,$1D
+
+;*
+;* INITIALIZATION PROCEDURE
+;*
+INIT
+	ld	hl,WFT		; point to waveform table with HL
+	ld	(VOICE1),hl	; all using same waveform (organ) for demo
+	ld	(VOICE2),hl
+	ld	(VOICE3),hl
+	ld	(VOICE4),hl
+
+	ld	hl,MSTRT	; get music start
+	ld	(MUWORK),hl	; init music work pointer
+	ret				; end init
+
+	
+;*
+;* PROCEDURE TO READ NEW
+;* DURATION
+;*
+READ
+	ld	ix,(MUWORK)	; get current pointer to sample table
+	ld	a,(ix)		; get DB from sample
+	inc	ix			; point to next DB
+	ret				; end read
+
+;*
+;* PROCEDURE TO GET THE NEXT 
+;* NOTES FOR THE FOUR VOICES
+;*
+
+NOTE
+	ld		b,0		; clear b
+	
+	ld		c,(ix)		;get note voice 1
+	inc		ix			; increment note 1 pointer
+	ld		iy,TABL		; point to note table
+	add		iy,bc		; get increment
+	ld		h,(iy)
+	ld		l,(iy+1)
+	ld		(INC1),hl	; store it
+
+	ld		c,(ix)		;get note voice 2
+	inc		ix			; increment note 2 pointer
+	ld		iy,TABL		; point to note table
+	add		iy,bc		; get pointer to note 2
+	ld		h,(iy)
+	ld		l,(iy+1)
+	ld		(INC2),hl	; store it
+
+	ld		c,(ix)		;get note voice 3
+	inc		ix			; increment note 3 pointer
+	ld		iy,TABL		; point to note table
+	add		iy,bc		; get pointer to note 3
+	ld		h,(iy)
+	ld		l,(iy+1)
+	ld		(INC3),hl	; store it
+
+	ld		c,(ix)		;get note voice 4
+	inc		ix			; increment note 4 pointer
+	ld		iy,TABL		; point to note table
+	add		iy,bc		; get pointer to note 4
+	ld		h,(iy)
+	ld		l,(iy+1)
+	ld		(INC4),hl	; store it
+
+	ld		(MUWORK),ix	;save pointer
+
+	ret					;end note
+
+	
+;*
+;* PROCEDURE TO PLAY THE MUSIC
+;*
+PLAY
+;	ld		iy,TEMPO
+	ld		b,TEMPO
+PLAY1
+	ld		a,(VOICE1)		;add 4 voice samples
+	ld		hl,VOICE2
+	add		a,(hl)
+	ld		hl,VOICE3
+	adc		a,(hl)
+	ld		hl,VOICE4
+	adc		a,(hl)
+
+	out		(PORT),a		; to D/A converter (parallel port)
+	
+
+	;ADD INCREMENTS TO POINTERS FOR THE 4 VOICES
+	ld		hl,(VOICE1+1)	; voice 1 pointer
+	ld		de,(INC1)		; increment for voice 1 pointer
+	add		hl,de			; add them
+	ld		(VOICE1+1),hl	; save it
+	
+	ld		hl,(VOICE2+1)
+	ld		de,(INC2)
+	add		hl,de
+	ld		(VOICE2+1),hl
+
+	ld		hl,(VOICE3+1)
+	ld		de,(INC3)
+	add		hl,de
+	ld		(VOICE3+1),hl
+
+	ld		hl,(VOICE4+1)
+	ld		de,(INC4)
+	add		hl,de
+	ld		(VOICE4+1),hl
+
+;	dec		iy			; dec & check tempo
+;	jp		nz,TIMEWAS	;jp if not out
+	djnz	TIMEWAS
+;	ld		hl,(DUR)	; dec & check duration
+;	dec		hl
+;	ld		(DUR),hl
+	ld		hl,DUR
+	dec		(hl)
+	jp		z,ENDNOT	;jp if note end
+	jp		PLAY
+TIMEWAS
+	ld		a,(ix)			;padding to make
+	jp		WASTE1
+WASTE1
+		jp	WASTE2
+WASTE2
+		jp	WASTE3
+WASTE3
+		jp	PLAY1	;continue playing
+ENDNOT
+		ret			;end play
+
+
+
+;*
+;* MAIN PROGRAM STARTS HERE
+;*
+MUSIC
+	push	hl					; save registers we modify
+	push	bc
+	push	af
+	push	ix
+	push	iy
+	
+	call	INIT	; initialize
+LOOP
+	call	READ	; get duration
+	CP		0
+
+	jr	nz,OVER
+
+	pop		iy
+	pop		ix
+	pop		iy
+	pop		bc
+	pop		hl
+	jp	VZExit					; exit snapshot
+	
+OVER
+	call	NOTE	; get notes
+	call	PLAY	; play it
+	jp		LOOP	; continue looping
+
+MSTRT	;music... only part of the William Tell data
+	DB	24,0,0,0,10
+
+	DB	00h, 00h, 00h, 0Ah, 06h, 00h, 00h, 00h, 08h, 06h, 00h, 00h
+	DB	00h, 0Ah, 06h, 00h, 00h, 00h, 10h, 06h, 00h, 00h, 00h, 18h
+	DB	06h, 00h, 00h, 00h, 22h, 06h, 00h, 00h, 00h, 28h, 06h, 00h
+	DB	00h, 00h, 30h, 06h, 00h, 00h, 00h, 3Ah, 0Ch, 40h, 00h, 00h
+	DB	00h, 09h, 00h, 00h, 00h, 00h, 03h, 40h, 00h, 00h, 00h, 30h
+	DB	48h, 00h, 00h, 00h, 18h, 48h, 3Ah, 28h, 22h, 18h, 48h, 38h
+	DB	2Ch, 26h, 18h, 48h, 3Ah, 28h, 22h, 12h, 48h, 40h, 38h, 18h
+	DB	04h, 48h, 3Eh, 38h, 18h, 01h, 00h, 00h, 00h, 00h, 0Ch, 48h
+	DB	3Eh, 38h, 18h, 0Ch, 48h, 00h, 00h, 00h, 12h, 4Ah, 00h, 00h
+	DB	00h, 04h, 48h, 00h, 00h, 00h, 01h, 00h, 00h, 00h, 00h, 24h
+	DB	48h, 00h, 00h, 00h, 24h, 00h, 00h, 00h, 00h, 1Bh, 0Eh, 00h
+	DB	00h, 00h, 06h, 0Ch, 00h, 00h, 00h, 06h, 0Eh, 00h, 00h, 00h
+	DB	06h, 14h, 00h, 00h, 00h, 06h, 18h, 00h, 00h, 00h, 06h, 20h
+	DB	00h, 00h, 00h, 06h, 26h, 00h, 00h, 00h, 06h, 30h, 00h, 00h,
+	DB	00h, 06h, 38h, 00h, 00h, 00h, 0Ch, 3Eh, 00h, 00h, 00h, 09h
+	DB	00h, 00h, 00h, 00h, 03h, 3Eh, 00h, 00h, 00h, 30h, 48h, 00h
+	DB	00h, 00h, 18h, 48h, 3Eh, 30h, 2Ch, 18h, 48h, 3Ah, 30h, 28h
+	DB	18h, 48h, 3Eh, 30h, 20h, 12h, 48h, 44h, 30h, 22h, 04h, 48h
+	DB	40h, 30h, 22h, 01h, 00h, 00h, 00h, 00h, 0Ch, 48h, 40h, 30h
+	DB	22h, 0Ch, 48h, 00h, 00h, 00h, 12h, 4Ah, 00h, 00h, 00h, 04h
+	DB	48h, 00h, 00h, 00h, 01h, 00h, 00h, 00h, 00h, 24h, 48h, 00h
+	DB	00h, 00h, 24h, 00h, 00h, 00h, 00h, 18h, 28h, 00h, 22h, 1Ah
+	DB	0Ch, 00h, 28h, 1Eh, 18h, 06h, 00h, 2Ch, 1Eh, 18h, 06h, 00h
+	DB	30h, 1Eh, 18h, 12h, 3Ah, 32h, 1Ah, 14h, 06h, 3Eh, 32h, 1Ah
+	DB	14h, 18h, 40h, 32h, 1Eh, 10h, 0Ch, 40h, 30h, 1Eh, 10h, 0Ch
+	DB	00h, 00h, 00h, 00h, 18h, 3Ch, 32h, 24h, 14h, 0Ch, 30h, 2Ch
+	DB	20h, 18h, 0Ch, 00h, 00h, 00h, 00h, 18h, 3Ch, 00h, 00h, 00h
+	DB	18h, 3Ch, 32h, 24h, 14h, 0Ch, 30h, 2Ch, 20h, 18h, 0Ch, 00h
+	DB	00h, 00h, 00h, 18h, 3Eh, 00h, 00h, 00h, 18h, 3Eh, 32h, 24h
+	DB	14h, 0Ch, 3Eh, 38h, 24h, 18h, 0Ch, 3Ch, 00h, 00h, 00h, 0Ch
+	DB	3Eh, 00h, 00h, 00h, 0Ch, 3Ch, 00h, 00h, 00h, 0Ch, 3Eh, 00h
+	DB	00h, 00h, 0Ch, 3Ch, 00h, 00h, 00h, 0Ch, 3Eh, 00h, 00h, 00h
+	DB	0Ch, 32h, 00h, 00h, 00h, 0Ch, 34h, 00h, 00h, 00h, 0Ch, 32h
+	DB	00h, 00h, 00h, 0Ch, 34h, 00h, 00h, 00h, 0Ch, 30h, 00h, 00h
+	DB	00h, 0Ch, 42h, 30h, 3Ah, 0Ah, 0Ch, 42h, 30h, 3Ah, 22h, 0Ch
+	DB	42h, 30h, 3Ah, 0Ah, 0Ch, 42h, 30h, 3Ah, 22h, 0Ch, 42h, 30h
+	DB	3Ah, 0Ah, 0Ch, 42h, 30h, 3Ah, 22h, 0Ch, 44h, 3Ah, 04h, 00h
+	DB	06h, 44h, 3Ah, 1Ch, 00h, 06h, 42h, 3Ah, 1Ch, 00h, 0Ch, 44h
+	DB	3Ah, 04h, 00h, 06h, 44h, 3Ah, 1Ch, 00h, 06h, 48h, 3Ah, 1Ch
+	DB	00h, 0Ch, 4Ch, 44h, 34h, 14h, 0Ch, 4Ch, 44h, 34h, 14h, 0Ch
+	DB	48h, 3Eh, 38h, 18h, 0Ch, 48h, 3Eh, 38h, 18h, 08h, 48h, 3Eh
+	DB	38h, 18h, 04h, 4Ch, 3Eh, 38h, 18h, 04h, 4Ch, 3Eh, 38h, 18h
+	DB	08h, 48h, 3Eh, 38h, 18h, 08h, 44h, 36h, 30h, 18h, 08h, 42h
+	DB	36h, 30h, 18h, 08h, 3Eh, 36h, 30h, 18h, 0Ch, 3Ah, 2Ah, 0Ah
+	DB	00h, 0Ch, 3Ah, 2Ah, 22h, 00h, 0Ch, 3Ah, 30h, 12h, 00h, 06h
+	DB	3Eh, 30h, 12h, 00h, 06h, 42h, 30h, 12h, 00h, 0Ch, 3Eh, 38h
+	DB	30h, 18h, 0Ch, 3Eh, 38h, 30h, 18h, 0Ch, 42h, 36h, 0Ah, 00h
+	DB	0Ch, 42h, 36h, 22h, 00h, 0Ch, 42h, 30h, 0Ah, 00h, 0Ch, 42h
+	DB	30h, 22h, 00h, 0Ch, 42h, 3Ah, 0Ah, 00h, 0Ch, 42h, 3Ah, 22h
+	DB	00h, 0Ch, 44h, 3Ah, 04h, 00h, 06h, 44h, 3Ah, 1Ch, 00h, 06h
+	DB	48h, 3Ah, 1Ch, 00h, 0Ch, 4Ch, 3Ah, 14h, 00h, 0Ch, 4Ch, 3Ah
+	DB	14h, 00h, 03h, 22h, 16h, 00h, 00h, 03h, 3Ah, 16h, 00h, 00h
+	DB	03h, 22h, 16h, 00h, 00h, 03h, 3Ah, 16h, 00h, 00h, 03h, 22h
+	DB	16h, 00h, 00h, 03h, 3Ah, 16h, 00h, 00h, 03h, 22h, 16h, 00h
+	DB	00h, 03h, 3Ah, 16h, 00h, 00h, 24h, 22h, 00h, 00h, 00h, 24h
+	DB	3Ah, 00h, 00h, 00h, 0Ch, 30h, 2Ah, 22h, 18h, 0Ch, 3Ah, 2Ah
+	DB	22h, 18h, 0Ch, 38h, 2Ah, 22h, 18h, 0Ch, 3Ah, 2Ah, 22h, 18h
+	DB	0Ch, 3Eh, 2Ah, 22h, 18h, 0Ch, 3Ah, 2Ah, 22h, 18h, 12h, 3Ah
+	DB	2Ch, 26h, 18h, 06h, 38h, 2Ch, 26h, 18h, 0Ch, 3Eh, 2Ch, 26h
+	DB	18h, 0Ch, 48h, 2Ch, 26h, 18h, 0Ch, 4Ah, 2Ch, 26h, 18h, 0Ch
+	DB	48h, 2Ch, 26h, 18h, 0Ch, 48h, 30h, 2Ah, 18h, 0Ch, 48h, 3Ah
+	DB	2Ah, 18h, 0Ch, 48h, 38h, 2Ah, 18h, 0Ch, 00h, 3Ah, 2Ah, 18h
+	DB	0Ch, 00h, 3Eh, 2Ah, 18h, 0Ch, 00h, 3Ah, 2Ah, 18h, 0Ch, 48h
+	DB	3Ah, 26h, 18h, 06h, 4Ah, 3Ah, 26h, 18h, 06h, 4Ah, 38h, 26h
+	DB	18h, 0Ch, 4Ch, 38h, 26h, 18h, 0Ch, 48h, 38h, 26h, 18h, 0Ch
+	DB	46h, 38h, 26h, 18h, 0Ch, 44h, 38h, 26h, 18h, 0Ch, 42h, 3Ch
+	DB	34h, 04h, 0Ch, 42h, 3Ch, 34h, 1Ch, 0Ch, 42h, 3Ch, 34h, 04h
+	DB	0Ch, 42h, 3Ch, 34h, 1Ch, 0Ch, 42h, 3Ch, 34h, 04h, 0Ch, 42h
+	DB	3Ch, 34h, 1Ch, 0Ch, 44h, 3Eh, 34h, 0Eh, 06h, 44h, 3Eh, 34h
+	DB	26h, 06h, 42h, 3Eh, 34h, 26h, 0Ch, 44h, 3Eh, 34h, 0Eh, 06h
+	DB	44h, 3Eh, 34h, 0Eh, 06h, 48h, 3Eh, 34h, 0Eh, 0Ch, 4Ch, 44h
+	DB	34h, 0Eh, 0Ch, 4Ch, 44h, 34h, 26h, 0Ch, 48h, 3Eh, 38h, 18h
+	DB	0Ch, 48h, 3Eh, 38h, 18h, 08h, 48h, 3Eh, 38h, 18h, 08h, 4Ch
+	DB	3Eh, 38h, 18h, 08h, 48h, 3Eh, 38h, 18h, 08h, 44h, 38h, 30h
+	DB	18h, 08h, 42h, 38h, 30h, 18h, 08h, 3Eh, 38h, 30h, 18h, 0Ch
+	DB	3Ah, 2Ah, 04h, 00h, 0Ch, 3Ah, 2Ah, 1Ch, 00h, 0Ch, 3Ah, 2Eh
+	DB	0Eh, 00h, 06h, 3Eh, 2Eh, 0Eh, 00h, 06h, 42h, 2Eh, 0Eh, 00h
+	DB	0Ch, 3Eh, 38h, 30h, 18h, 0Ch, 3Eh, 38h, 30h, 18h, 0Ch, 42h
+
+;terminate the song	
+	DB	0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+	DB	0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+	DB	0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+	DB	0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+	DB	0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+	DB	0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+	
+	end
+	

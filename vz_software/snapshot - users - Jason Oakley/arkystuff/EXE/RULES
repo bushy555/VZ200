@@ -1,0 +1,595 @@
+	ld	a,#0
+=
+	xor	a
+
+	j	%1
+	j	%1
+=
+	j	%1
+
+	ld	hl,#%0	;%1(ix) %3
+	add	hl,sp
+	call	.gint
+=
+	ld	l,%1(ix)
+	ld	h,%1+1(ix)
+
+	ld	hl,#%0	;%1(ix) %3
+	add	hl,sp
+	call	.gchar
+=
+	ld	h,#0
+	ld	a,%1(ix)
+	or	a
+	ld	l,a
+	jp	p,.+4
+	dec	h
+
+	ld	hl,#%0	;%1(ix) %3
+	add	hl,sp
+	push	hl
+	ld	hl,#%2
+	pop	de
+	call	.pint
+=
+	ld	%1(ix),#<%2
+	ld	%1+1(ix),#>%2
+
+	ld	hl,#%0	;%1(ix) %3
+	add	hl,sp
+	push	hl
+	ld	hl,#%2
+	pop	de
+	call	.pchar
+=
+	ld	%1(ix),#%2
+
+	ld	hl,#%0	;%1(ix) %2
+	add	hl,sp
+	push	hl
+	call	.gint
+	inc	hl
+	pop	de
+	call	.pint
+=
+	inc	%1(ix)
+	jr	nz,.+5
+	inc	%1+1(ix)
+
+	ld	hl,#%0	;%1(ix) %2
+	add	hl,sp
+	push	hl
+	call	.gchar
+	%2	hl
+	pop	de
+	call	.pchar
+=
+	%2	%1(ix)
+
+	ld	hl,#%0	;%1(ix) %2
+	add	hl,sp
+	push	hl
+	call	.gint
+	dec	hl
+	pop	de
+	call	.pint
+=
+	ld	l,%1(ix)
+	ld	h,%1+1(ix)
+	dec	hl
+	ld	%1(ix),l
+	ld	%1+1(ix),h
+
+	ld	hl,#%0
+	ld	a,l
+	ld	(%1),a
+=
+	ld	a,#%0
+	ld	(%1),a
+
+	push	hl
+	ld	hl,#%0
+	pop	de
+	call	.sub
+=
+	ld	de,#%0
+	or	a
+	sbc	hl,de
+
+	push	hl
+	ld	hl,#2
+	pop	de
+	call	.mul
+=
+	add	hl,hl
+
+	push	hl
+	ld	hl,#3
+	pop	de
+	call	.mul
+=
+	ld	e,l
+	ld	d,h
+	add	hl,hl
+	add	hl,de
+
+	push	hl
+	ld	hl,#4
+	pop	de
+	call	.mul
+=
+	add	hl,hl
+	add	hl,hl
+
+	push	hl
+	ld	hl,#5
+	pop	de
+	call	.mul
+=
+	ld	e,l
+	ld	d,h
+	add	hl,hl
+	add	hl,hl
+	add	hl,de
+
+	push	hl
+	ld	hl,#6
+	pop	de
+	call	.mul
+=
+	add	hl,hl
+	ld	e,l
+	ld	d,h
+	add	hl,hl
+	add	hl,de
+
+	push	hl
+	ld	hl,#7
+	pop	de
+	call	.mul
+=
+	ld	e,l
+	ld	d,h
+	add	hl,hl
+	add	hl,hl
+	add	hl,hl
+	or	a
+	sbc	hl,de
+
+	push	hl
+	ld	hl,#8
+	pop	de
+	call	.mul
+=
+	add	hl,hl
+	add	hl,hl
+	add	hl,hl
+
+	push	hl
+	ld	hl,#9
+	pop	de
+	call	.mul
+=
+	ld	e,l
+	ld	d,h
+	add	hl,hl
+	add	hl,hl
+	add	hl,hl
+	add	hl,de
+
+	push	hl
+	ld	hl,#10
+	pop	de
+	call	.mul
+=
+	add	hl,hl
+	ld	e,l
+	ld	d,h
+	add	hl,hl
+	add	hl,hl
+	add	hl,de
+
+	push	hl
+	ld	hl,#12
+	pop	de
+	call	.mul
+=
+	add	hl,hl
+	add	hl,hl
+	ld	e,l
+	ld	d,h
+	add	hl,hl
+	add	hl,de
+
+	push	hl
+	ld	hl,#16
+	pop	de
+	call	.mul
+=
+	add	hl,hl
+	add	hl,hl
+	add	hl,hl
+	add	hl,hl
+
+	push	hl
+	ld	hl,#32
+	pop	de
+	call	.mul
+=
+	add	hl,hl
+	add	hl,hl
+	add	hl,hl
+	add	hl,hl
+	add	hl,hl
+
+	push	hl
+	ld	hl,#64
+	pop	de
+	call	.mul
+=
+	add	hl,hl
+	add	hl,hl
+	add	hl,hl
+	add	hl,hl
+	add	hl,hl
+	add	hl,hl
+
+	push	hl
+	ld	hl,#128
+	pop	de
+	call	.mul
+=
+	add	hl,hl
+	add	hl,hl
+	add	hl,hl
+	add	hl,hl
+	add	hl,hl
+	add	hl,hl
+	add	hl,hl
+
+	push	hl
+	ld	hl,#256
+	pop	de
+	call	.mul
+=
+	ld	h,l
+	ld	l,#0
+
+	push	hl
+	ld	hl,#512
+	pop	de
+	call	.mul
+=
+	ld	h,l
+	ld	l,#0
+	add	hl,hl
+
+	push	hl
+	ld	hl,#1024
+	pop	de
+	call	.mul
+=
+	ld	h,l
+	ld	l,#0
+	add	hl,hl
+	add	hl,hl
+
+	push	hl
+	ld	hl,#2048
+	pop	de
+	call	.mul
+=
+	ld	h,l
+	ld	l,#0
+	add	hl,hl
+	add	hl,hl
+	add	hl,hl
+
+	push	hl
+	ld	hl,#4096
+	pop	de
+	call	.mul
+=
+	ld	h,l
+	ld	l,#0
+	add	hl,hl
+	add	hl,hl
+	add	hl,hl
+	add	hl,hl
+
+	push	hl
+	ld	hl,#8192
+	pop	de
+	call	.mul
+=
+	ld	h,l
+	ld	l,#0
+	add	hl,hl
+	add	hl,hl
+	add	hl,hl
+	add	hl,hl
+	add	hl,hl
+
+	push	hl
+	ld	hl,#16384
+	pop	de
+	call	.mul
+=
+	ld	h,l
+	ld	l,#0
+	add	hl,hl
+	add	hl,hl
+	add	hl,hl
+	add	hl,hl
+	add	hl,hl
+	add	hl,hl
+
+	push	hl
+	ld	hl,#32768
+	pop	de
+	call	.mul
+=
+	ld	h,l
+	ld	l,#0
+	add	hl,hl
+	add	hl,hl
+	add	hl,hl
+	add	hl,hl
+	add	hl,hl
+	add	hl,hl
+
+	push	hl
+	ld	hl,#%0
+	sra	h
+	rr	l
+	pop	de
+=
+	ex	de,hl
+	ld	de,#%0/2
+
+	push	hl
+	ld	hl,#2
+	pop	de
+	call	.div
+=
+	sra	h
+	rr	l
+
+	push	hl
+	ld	hl,#4
+	pop	de
+	call	.div
+=
+	sra	h
+	rr	l
+	sra	h
+	rr	l
+
+	push	hl
+	ld	hl,#8
+	pop	de
+	call	.div
+=
+	ld	b,#3
+	sra	h
+	rr	l
+	djnz	.-4
+
+	push	hl
+	ld	hl,#16
+	pop	de
+	call	.div
+=
+	ld	b,#4
+	sra	h
+	rr	l
+	djnz	.-4
+
+	push	hl
+	ld	hl,#32
+	pop	de
+	call	.div
+=
+	ld	b,#5
+	sra	h
+	rr	l
+	djnz	.-4
+
+	push	hl
+	ld	hl,#64
+	pop	de
+	call	.div
+=
+	ld	b,#6
+	sra	h
+	rr	l
+	djnz	.-4
+
+	push	hl
+	ld	hl,#128
+	pop	de
+	call	.div
+=
+	ld	b,#7
+	sra	h
+	rr	l
+	djnz	.-4
+
+	push	hl
+	ld	hl,#256
+	pop	de
+	call	.div
+=
+	ld	l,h
+	ld	h,#0
+	bit	#7,l
+	jr	z,.+3
+	dec	h
+
+	push	hl
+	ld	hl,#512
+	pop	de
+	call	.div
+=
+	ld	l,h
+	ld	h,#0
+	bit	#7,l
+	jr	z,.+3
+	dec	h
+	sra	h
+	rr	l
+
+	push	hl
+	ld	hl,#1024
+	pop	de
+	call	.div
+=
+	ld	l,h
+	ld	h,#0
+	bit	#7,l
+	jr	z,.+3
+	dec	h
+	sra	h
+	rr	l
+	sra	h
+	rr	l
+
+	push	hl
+	ld	hl,#2
+	pop	de
+	call	.mod
+=
+	ld	a,#1
+	and	l
+	ld	l,a
+
+	push	hl
+	ld	hl,#4
+	pop	de
+	call	.mod
+=
+	ld	a,#3
+	and	l
+	ld	l,a
+	ld	h,#0
+
+	push	hl
+	ld	hl,#8
+	pop	de
+	call	.mod
+=
+	ld	a,#7
+	and	l
+	ld	l,a
+	ld	h,#0
+
+	push	hl
+	ld	hl,#16
+	pop	de
+	call	.mod
+=
+	ld	a,#15
+	and	l
+	ld	l,a
+	ld	h,#0
+
+	push	hl
+	ld	hl,#32
+	pop	de
+	call	.mod
+=
+	ld	a,#31
+	and	l
+	ld	l,a
+	ld	h,#0
+
+	push	hl
+	ld	hl,#64
+	pop	de
+	call	.mod
+=
+	ld	a,#63
+	and	l
+	ld	l,a
+	ld	h,#0
+
+	push	hl
+	ld	hl,#128
+	pop	de
+	call	.mod
+=
+	ld	a,#127
+	and	l
+	ld	l,a
+	ld	h,#0
+
+	push	hl
+	ld	hl,#256
+	pop	de
+	call	.mod
+=
+	ld	h,#0
+
+	push	hl
+	ld	hl,#512
+	pop	de
+	call	.mod
+=
+	ld	a,#1
+	and	h
+	ld	h,a
+
+	push	hl
+	ld	hl,#1024
+	pop	de
+	call	.mod
+=
+	ld	a,#3
+	and	h
+	ld	h,a
+
+	push	hl
+	ld	hl,#2048
+	pop	de
+	call	.mod
+=
+	ld	a,#7
+	and	h
+	ld	h,a
+
+	push	hl
+	ld	hl,#4096
+	pop	de
+	call	.mod
+=
+	ld	a,#15
+	and	h
+	ld	h,a
+
+	push	hl
+	ld	hl,#8192
+	pop	de
+	call	.mod
+=
+	ld	a,#31
+	and	h
+	ld	h,a
+
+	push	hl
+	ld	hl,#16384
+	pop	de
+	call	.mod
+=
+	ld	a,#63
+	and	h
+	ld	h,a
+
+	push	hl
+	ld	hl,#32768
+	pop	de
+	call	.mod
+=
+	ld	a,#127
+	and	h
+	ld	h,a
+
