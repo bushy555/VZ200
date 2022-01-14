@@ -1,0 +1,123 @@
+Here are the instructions on how to load the game on those systems where it is maybe not too obvious.
+
+
+Mattel Aquarius
+
+First load the loader contained in _htron_aquarius.caq by entering "cload". Run it, and then load the actual program contained in htron_aquarius.caq.
+Alternatively, you can use the cartridge file htron_aquarius.rom.
+
+
+Jupiter Ace
+
+Load the program from tape by entering
+0 0 bload ht.bin
+
+
+Sharp MZ
+
+Press "L" and Enter.
+The text "LOAD" appears on the screen, now load the .mzt cassette file.
+
+
+Exidy Sorcerer
+
+Insert the tape and type (using upper-case letters)
+LOADG
+to load the program, it will start automatically after loading.
+Note: The .srr tape file can be loaded by the JSorcerer emulator. z88dk also creates a .WAV tape file, which is not included in the zip archive because of its size. If you need it (either for MAME or for running the game on the real hardware), compile the game on your own.
+
+
+Mitsubishi Multi8
+
+Insert the cassette, then type...
+ MON
+ R
+ GC000
+...to load and run the program.
+
+
+Samsung SPC-1000
+
+Select "Basic" (not CP/M) on startup
+Type "load" to load the program.
+
+
+MSX and Spectravideo SVI
+
+Insert the cassette, then type...
+ bload"cas:",r
+...to load and run the program.
+
+
+Laser 500/700
+Insert the cassette and type CLOAD to load the program. When loading is finished, type RUN to start the program.
+Two different .WAV tape files are included: one that can be loaded by M.A.M.E, while the other one should be able to run on real hardware. Loading the .cas file in M.A.M.E. does not work yet.
+
+
+TRS-80 / HT-1080Z
+Instructions for loading the game from cassette:
+Type SYSTEM to exit BASIC, then at the '*?' prompt enter HTRON (or just H) and press PLAY. When the program is in memory, type / to run it.
+
+
+Camputers Lynx
+Insert the cassette and type LOAD"" to load the game.
+Among the available Lynx emulators, "Jynx" currently seems to be the best. Choose Menu "File" -> "Run TAP file" to load and run the .tap file.
+
+
+Osborne 1
+Put the CP/M system disk into the first drive and the game disk into the second drive.
+Boot the machine until you get to the CP/M prompt "A>".
+Type
+b:
+to change to the second drive (if you want, you can now list the disk contents by typing "dir").
+Now type
+htron
+to run the game.
+
+
+Tatung Einstein
+Put the CP/M system disk into the first drive and the game disk into the second drive.
+Boot the machine until you get to the CP/M prompt "0:".
+Type
+1:
+to change to the second drive (if you want, you can now list the disk contents by typing "dir").
+Now type
+htron
+to run the game.
+
+
+Memotech MTX
+Use the correct file version for either the MTX 500 (32K) or MTX 512 (64K or more).
+Insert the cassette and type
+LOAD""
+to load the program. When loading is finished, type
+RUN
+to start the program.
+Note: the MTX 500 version will also run on the MTX 512 if you type
+POKE 64122,0 
+NEW
+before loading.
+
+
+Amstrad CPC
+Insert the disk. If you want, you can type "dir" to list the disk contents.
+Type
+run"htron.cpc"
+to load and run the program.
+
+
+MicroBee 128k Standard / Premium / Premium Plus
+Put the CP/M system disk into the first drive and the game disk into the second drive.
+Boot the machine until you get to the CP/M prompt "A>".
+Type
+b:
+to change to the second drive (if you want, you can now list the disk contents by typing "dir").
+Now type
+htron
+to run the game.
+
+
+CCE MC-1000
+Insert the cassette, type...
+load
+...and then start the tape to load and run the program.
