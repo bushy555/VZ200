@@ -1,0 +1,24 @@
+Using OCR on VZ Program Listings
+RBK 4 Feb 2021
+
+This is a method of converting a high quality pdf image of a VZ Basic program listing into a .BAS file ready for conversion to .VZ for introduction into VZ emulator.
+
+1. Started with a  pdf scan in “Bob Kitch VZ Scrap Book” directory.
+
+2. Loaded a pdf into Adobe Acrobat Pro 2017. This version is a bit smarter than freeby Adobe Acrobat Reader DC!
+
+3. Edit>Select All should highlight all of the text in the pdf.
+
+4. File>Export To>Text (Accessible)>Save as a txt file. Keep Adobe screen open for editting.
+
+5. As a text editor I use freeby Notepad++ that is considerably smarter than MS Notepad. Open txt file in Notepad++ and clean out non listing stuff. Save txt file.
+
+6. Select Language>V>Visual Basic (pretty close syntax to GWBasic, QB and VZ ROM II Basic)
+This selection highlights basic keywords and variables to assist in correcting OCR errors. It is very good at highlighting OCR’s failure to discriminate between 0 and O and 1 and I that are hard to spot on the screen. Global character Search>Replace is handy for fixing character recognition errors too. ( ) ‘ and % not usually correctly recognised.
+
+7. Edit away using the Adobe screen as reference alongside.
+
+8. Good luck and save as a BAS file. Non VZ I know, but it can be run through a QB compiler to see if any more subtle errors remain. 
+
+9. This is quite a rapid method with less than an hour per A4 page of text. 
+
