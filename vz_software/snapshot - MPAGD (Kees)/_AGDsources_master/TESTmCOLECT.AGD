@@ -1,0 +1,778 @@
+
+DEFINEWINDOW    1 0 7 32
+
+DEFINEFONT             $00,$00,$00,$00,$00,$00,$00,$00 ; space 
+                       $0c,$0c,$0c,$0c,$00,$00,$0c,$00 ; !
+                       $cC,$cC,$00,$00,$00,$00,$00,$00 ; "
+                       $00,$cC,$Fc,$cC,$cc,$fC,$cC,$00 ; #
+                       $30,$30,$3c,$c0,$30,$0C,$f0,$30 ; $
+                       $cc,$cc,$0c,$30,$30,$c0,$cc,$cc ; %
+                       $30,$cc,$cc,$30,$cf,$cc,$33,$00 ; &
+                       $30,$c0,$00,$00,$00,$00,$00,$00 ; '
+                       $0c,$30,$30,$30,$30,$30,$0c,$00 ; (
+                       $30,$0c,$0c,$0c,$0c,$0c,$30,$00 ; )
+                       $00,$cc,$30,$fc,$30,$cc,$00,$00 ; *
+                       $00,$30,$30,$FC,$30,$30,$00,$00 ; +
+                       $00,$00,$00,$00,$00,$30,$30,$c0 ; ,
+                       $00,$00,$00,$FC,$00,$00,$00,$00 ; -
+                       $00,$00,$00,$00,$00,$00,$30,$00 ; .
+                       $0c,$0C,$0c,$30,$30,$C0,$c0,$c0 ; /
+
+                       $30,$cc,$cc,$cc,$cc,$cc,$30,$00 ; 0
+                       $30,$f0,$30,$30,$30,$30,$30,$00 ; 1
+                       $30,$cc,$0c,$0c,$30,$c0,$Fc,$00 ; 2
+                       $30,$cc,$0c,$30,$0c,$cc,$30,$00 ; 3
+                       $0c,$3c,$cc,$cc,$cc,$Fc,$0c,$00 ; 4
+                       $fc,$c0,$c0,$f0,$0c,$cc,$30,$00 ; 5
+                       $0c,$30,$c0,$f0,$cc,$cc,$30,$00 ; 6
+                       $fc,$0c,$0c,$30,$C0,$c0,$c0,$00 ; 7
+                       $30,$cc,$cc,$30,$cc,$cc,$30,$00 ; 8
+                       $30,$cc,$cc,$3c,$0c,$30,$c0,$00 ; 9
+                       $00,$30,$30,$00,$30,$30,$00,$00 ; :
+                       $00,$30,$30,$00,$30,$30,$c0,$00 ; ;
+                       $00,$0c,$30,$c0,$30,$0c,$00,$00 ; <
+                       $00,$00,$FC,$00,$00,$FC,$00,$00 ; =
+                       $00,$c0,$30,$0c,$30,$c0,$00,$00 ; >
+                       $30,$CC,$0C,$30,$30,$00,$30,$00 ; ?
+
+                       $00,$00,$3c,$cc,$cc,$C0,$3c,$00 ; @
+                       $30,$cc,$cc,$fc,$cc,$cc,$cc,$00 ; A
+                       $f0,$cc,$cc,$f0,$cc,$cc,$f0,$00 ; B
+                       $30,$cc,$c0,$c0,$c0,$cc,$30,$00 ; C
+                       $f0,$cc,$cc,$cc,$cc,$cc,$f0,$00 ; D
+                       $fc,$c0,$c0,$fc,$c0,$c0,$Fc,$00 ; E
+                       $fc,$c0,$c0,$f0,$c0,$c0,$c0,$00 ; F
+                       $30,$cc,$c0,$c0,$cc,$cc,$3c,$00 ; G
+                       $cc,$cc,$cc,$fc,$cc,$cc,$cc,$00 ; H
+                       $30,$30,$30,$30,$30,$30,$30,$00 ; I
+                       $0c,$0C,$0C,$0C,$0C,$cC,$30,$00 ; J
+                       $cc,$cc,$cc,$f0,$cc,$cc,$cc,$00 ; K
+                       $c0,$c0,$c0,$c0,$c0,$c0,$fc,$00 ; L
+                       $cc,$cc,$fc,$cc,$cc,$cc,$cc,$00 ; M
+                       $f0,$cc,$cc,$cc,$cc,$cc,$cc,$00 ; N
+                       $30,$cc,$cc,$cc,$cc,$cc,$30,$00 ; O
+
+                       $f0,$cc,$cc,$f0,$c0,$c0,$c0,$00 ; P
+                       $30,$cc,$cc,$cc,$fc,$cc,$3c,$00 ; Q
+                       $f0,$cc,$cc,$f0,$cc,$cc,$cc,$00 ; R
+                       $30,$cc,$c0,$30,$0c,$cc,$30,$00 ; S
+                       $fc,$30,$30,$30,$30,$30,$30,$00 ; T
+                       $cc,$cc,$cc,$cc,$cc,$cc,$3c,$00 ; U
+                       $cc,$cc,$cc,$cc,$cc,$cc,$30,$00 ; V
+                       $cc,$cc,$cc,$cc,$fc,$cc,$cc,$00 ; W
+                       $cc,$cc,$cc,$30,$cc,$cc,$cc,$00 ; X
+                       $cc,$cc,$cc,$fc,$30,$30,$30,$00 ; Y
+                       $fc,$0c,$0c,$30,$c0,$c0,$fc,$00 ; Z
+                       $f0,$c0,$c0,$c0,$c0,$c0,$f0,$00 ; [
+                       $C0,$c0,$c0,$30,$30,$0c,$0c,$0c ; \
+                       $3c,$0c,$0c,$0c,$0c,$0c,$3c,$00 ; ]
+                       $30,$cc,$00,$00,$00,$00,$00,$00 ; ^
+
+                       $00,$00,$00,$00,$00,$00,$00,$fc ; _
+                       $30,$c0,$00,$00,$00,$00,$00,$00 ; `
+                       $00,$00,$3C,$CC,$CC,$CC,$3C,$00 ; a
+                       $C0,$C0,$f0,$cc,$cc,$cc,$f0,$00 ; b
+                       $00,$00,$3c,$c0,$c0,$c0,$3c,$00 ; c
+                       $0c,$0c,$3c,$cc,$cc,$cc,$3c,$00 ; d
+                       $00,$00,$30,$cc,$fc,$c0,$3c,$00 ; e
+                       $3C,$30,$fc,$30,$30,$30,$30,$00 ; f
+                       $00,$00,$3c,$cc,$cc,$3c,$cc,$30 ; g
+                       $c0,$c0,$fc,$cc,$cc,$cc,$cc,$00 ; h
+                       $30,$00,$f0,$30,$30,$30,$fC,$00 ; i
+                       $30,$00,$f0,$30,$30,$30,$30,$c0 ; j
+                       $c0,$c0,$cc,$f0,$f0,$cc,$cc,$00 ; k
+                       $f0,$30,$30,$30,$30,$30,$fC,$00 ; l
+                       $00,$00,$cc,$fc,$cc,$cc,$cc,$00 ; m
+                       $00,$00,$fc,$cc,$cc,$cc,$cc,$00 ; n
+
+                       $00,$00,$30,$cc,$cc,$cc,$30,$00 ; o
+                       $00,$00,$f0,$cc,$cc,$cc,$f0,$c0 ; p
+                       $00,$00,$3c,$cc,$cc,$cc,$3c,$0c ; q
+                       $00,$00,$fc,$cc,$c0,$c0,$c0,$00 ; r
+                       $00,$00,$3c,$c0,$30,$0c,$f0,$00 ; s
+                       $30,$30,$fc,$30,$30,$30,$3C,$00 ; t
+                       $00,$00,$cc,$cc,$cc,$cc,$fc,$00 ; u
+                       $00,$00,$cc,$cc,$cc,$cc,$30,$00 ; v
+                       $00,$00,$cc,$cc,$cc,$fc,$cc,$00 ; w
+                       $00,$00,$cc,$cc,$30,$cc,$cc,$00 ; x
+                       $00,$00,$cc,$cc,$fc,$30,$30,$00 ; y
+                       $00,$00,$fc,$0c,$30,$c0,$fc,$00 ; z
+                       $0C,$30,$30,$c0,$30,$30,$0C,$00 ; {
+                       $0c,$0c,$0c,$0c,$0c,$0c,$0c,$0c ; |
+                       $c0,$30,$30,$0C,$30,$30,$c0,$00 ; }
+                       $00,$f0,$00,$00,$00,$00,$00,$00 ; ~
+                       $ff,$ff,$ff,$ff,$ff,$ff,$ff,$00 ; 
+
+DEFINEBLOCK     EMPTYBLOCK
+                0 0 0 0 0 0 0 0  71
+
+DEFINEBLOCK     WALLBLOCK
+	        255 255 255 255 255 255 255 255 ,69
+
+DEFINEBLOCK     WALLBLOCK
+		42,128,128,128,128,128,128,42,69
+
+DEFINEBLOCK     WALLBLOCK
+		130,130,130,130,130,130,130,40,69
+
+DEFINEBLOCK     WALLBLOCK
+		40,130,130,130,130,130,130,130,69
+
+DEFINEBLOCK     WALLBLOCK
+		170,0,0,0,0,0,0,170,69
+
+DEFINEBLOCK     WALLBLOCK
+		130,130,130,130,130,130,130,130,69
+
+DEFINEBLOCK     WALLBLOCK
+                252 254 15 7 3 3 131 195
+                69
+
+DEFINEBLOCK     WALLBLOCK
+                63 127 240 224 192 192 193 195
+                69
+
+DEFINEBLOCK     WALLBLOCK
+                195 131 3 3 7 15 254 252
+                69
+
+DEFINEBLOCK     WALLBLOCK
+                195 193 192 192 224 240 127 63
+                69
+
+DEFINEBLOCK     COLLECTABLE
+		0 0 0 1 0 0 0 0,71
+
+DEFINEBLOCK     EMPTYBLOCK
+                0 0 0 0 0 0 0 0
+                71
+
+DEFINEBLOCK     EMPTYBLOCK
+                0 0 0 0 0 0 0 0
+                71
+
+DEFINEBLOCK     EMPTYBLOCK
+                0 0 0 0 0 0 0 0
+                71
+
+DEFINEBLOCK     WALLBLOCK
+                254 255 7 3 3 7 255 254
+                69
+
+DEFINEBLOCK     PLATFORMBLOCK
+                42 20 160 10 164 65 144 4
+                66
+
+DEFINEBLOCK WALLBLOCK
+        0,0,48,204,240,252,48,0,61
+
+
+DEFINESPRITE 2
+		0,0,1,16,5,20,25,21
+		21,21,21,85,5,84,1,80
+		0,0,1,16,5,20,25,21
+		21,21,21,85,5,84,1,80
+
+		0,0,1,80,5,84,25,85
+		21,85,21,85,5,84,1,80
+		0,0,1,80,5,84,25,85
+		21,85,21,85,5,84,1,80
+
+DEFINESPRITE 2
+		1,80,5,84,21,85,21,21
+		25,21,5,20,1,16,0,0
+		1,80,5,84,21,85,21,21
+		25,21,5,20,1,16,0,0
+
+		1,80,5,84,21,85,21,85
+		25,85,5,84,1,80,0,0
+		1,80,5,84,21,85,21,85
+		25,85,5,84,1,80,0,0
+
+DEFINESPRITE 2
+		0,0,1,80,5,148,21,85
+		21,0,21,85,5,84,1,80
+		0,0,1,80,5,148,21,85
+		21,0,21,85,5,84,1,80
+
+		0,0,1,80,5,148,21,85
+		21,85,21,85,5,84,1,80
+		0,0,1,80,5,148,21,85
+		21,85,21,85,5,84,1,80
+
+DEFINESPRITE 2
+		0,0,5,64,22,80,85,84
+		0,84,85,84,21,80,5,64
+		0,0,5,64,22,80,85,84
+		0,84,85,84,21,80,5,64
+
+		0,0,5,64,22,80,85,84
+		85,84,85,84,21,80,5,64
+		0,0,5,64,22,80,85,84
+		85,84,85,84,21,80,5,64
+
+; Ghost up
+
+DEFINESPRITE 1
+		2,160,10,168,38,166,37,150
+		37,150,42,170,42,170,34,34
+		0,0,0,0,0,0,0,0
+		0,0,0,0,0,0,0,0
+
+; Ghost down
+
+DEFINESPRITE 1
+		2,160,10,168,37,150,37,150
+		38,166,42,170,42,170,34,34
+		0,0,0,0,0,0,0,0
+		0,0,0,0,0,0,0,0
+
+; Ghost left
+
+DEFINESPRITE 1
+		2,160,10,168,37,150,37,150
+		38,154,42,170,42,170,34,34
+		0,0,0,0,0,0,0,0
+		0,0,0,0,0,0,0,0
+
+; Ghost right
+
+DEFINESPRITE 1
+		2,160,10,168,37,150,37,150
+		41,166,42,170,42,170,34,34
+		0,0,0,0,0,0,0,0
+		0,0,0,0,0,0,0,0
+
+DEFINESPRITE 5
+		1,16,5,20,21,21,21,21
+		21,21,5,84,1,80,0,0
+		0,0,0,0,0,0,0,0
+		0,0,0,0,0,0,0,0
+
+		0,0,0,0,16,1,20,5
+		21,21,5,84,1,80,0,0
+		0,0,0,0,0,0,0,0
+		0,0,0,0,0,0,0,0
+
+		0,0,0,0,0,0,0,0
+		0,0,1,80,1,80,0,0
+		0,0,0,0,0,0,0,0
+		0,0,0,0,0,0,0,0
+
+		0,0,4,4,0,0,1,16
+		0,64,1,16,0,0,4,4
+		0,0,0,0,0,0,0,0
+		0,0,0,0,0,0,0,0
+
+		0,0,0,0,0,0,0,0
+		0,0,0,0,0,0,0,0
+		0,0,0,0,0,0,0,0
+		0,0,0,0,0,0,0,0
+
+
+
+DEFINESCREEN     11   0  11   0  11   0  11   0  11   0  11   0  11   0  11   0  11   0  11   0  11   0  11   0  11   0  11   0  11   0  11   0
+                 11   0   1   1  11   0   1   1   1   1   1   1   1   1  11   0   1   1   1   1   1   1   1   1   1   1  11   0   1   1  11   0
+                 11   0  11   0  11   0  11   0  11   0  11   0  11   0  11   0  11   0  11   0  11   0  11   0  11   0  11   0  11   0  11   0
+                 11   0   1   1  11   0   1   1   1   1  11   0   1   1   1   1   1   1   1   1  11   0   1   1   1   1  11   0   1   1  11   0
+                 11   0  11   0  11   0  11   0  11   0  11   0  11   0  11   0  11   0  11   0  11   0  11   0  11   0  11   0  11   0  11   0
+                 11   0   1   1  11   0   1   1   1   1   1   1   1   1   1   1  11   0   1   1   1   1   1   1   1   1  11   0   1   1  11   0
+                 11   0  11   0  11   0  11   0  11   0  11   0  11   0  11   0  11   0  11   0  11   0  11   0  11   0  11   0  11   0  11   0
+
+SPRITEPOSITION  0 0 56 0
+SPRITEPOSITION  1 4 8 240
+SPRITEPOSITION  1 4 56 240
+SPRITEPOSITION  1 5 8 0
+
+
+DEFINEOBJECT    01 254 56 120
+               255 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+                0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 255
+
+
+MAP             WIDTH 3
+                STARTSCREEN 255
+                255   0 255
+ENDMAP
+
+
+
+EVENT PLAYER
+  GETBLOCKS
+  LET A Y
+  LET B X
+  LET O 0
+  LET P 0
+  LET S 0
+  LET T 0
+
+  IF CANGOUP
+    LET O 1
+  ENDIF
+
+  IF Y = 0
+    LET O 0
+  ENDIF
+
+  IF CANGODOWN
+    LET P 1
+  ENDIF
+
+  IF Y > 55
+    LET P 0
+  ENDIF
+
+  IF CANGORIGHT
+    LET S 1
+  ENDIF
+
+  IF X > 238
+    LET S 0
+  ENDIF
+
+  IF CANGOLEFT
+    LET T 1
+  ENDIF
+
+  IF X = 0
+    LET T 0
+  ENDIF
+
+  IF KEY RIGHT
+    IF S = 1
+      LET DIRECTION 2
+    ENDIF
+  ENDIF
+
+  IF KEY LEFT
+    IF T = 1
+      LET DIRECTION 3
+    ENDIF
+  ENDIF
+
+  IF KEY DOWN
+    IF Y < 183
+      IF P = 1
+        LET DIRECTION 1
+      ENDIF
+    ENDIF
+  ENDIF
+
+  IF KEY UP
+    IF O = 1
+      LET DIRECTION 0
+    ENDIF
+  ENDIF
+
+  IF DIRECTION = 0
+    IF O = 1
+      SPRITEUP
+      ANIMATE SLOW
+    ENDIF
+  ENDIF
+
+  IF DIRECTION = 1
+    IF P = 1
+      SPRITEDOWN
+      ANIMATE SLOW
+    ENDIF
+  ENDIF
+
+  IF DIRECTION = 2
+    IF S = 1
+      SPRITERIGHT
+      ANIMATE SLOW
+    ENDIF
+  ENDIF
+
+  IF DIRECTION = 3
+    IF T = 1
+      SPRITELEFT
+      ANIMATE SLOW
+    ENDIF
+  ENDIF
+
+  LET IMAGE DIRECTION
+
+EVENT SPRITETYPE1
+  LET O 0
+  LET P 0
+  LET S 0
+  LET T 0
+
+  IF CANGOUP
+    LET O 1
+  ENDIF
+
+  IF Y = 0
+    LET O 0
+  ENDIF
+
+  IF CANGODOWN
+    LET P 1
+  ENDIF
+
+  IF Y >55
+    LET P 0
+  ENDIF
+
+  IF CANGORIGHT
+    LET S 1
+  ENDIF
+
+  IF X >238
+    LET S 0
+  ENDIF
+
+  IF CANGOLEFT
+    LET T 1
+  ENDIF
+
+  IF X = 0
+    LET T 0
+  ENDIF
+
+  IF DIRECTION = 0
+    LET Q 0
+    IF X = B
+      IF O = 1
+        IF Y > A
+          LET Q 1
+        ENDIF
+      ENDIF
+    ENDIF
+    IF Q = 0
+      IF X > B
+        IF T = 1
+          LET DIRECTION 3
+        ELSE
+          IF O = 0
+            IF S = 1
+              LET DIRECTION 2
+            ELSE
+              LET DIRECTION 1
+            ENDIF
+          ENDIF
+        ENDIF
+      ELSE
+        IF S = 1
+          LET DIRECTION 2
+        ELSE
+          IF O = 0
+            IF T = 1
+              LET DIRECTION 3
+            ELSE
+              LET DIRECTION 1
+            ENDIF
+          ENDIF
+        ENDIF
+      ENDIF
+    ENDIF
+  ELSE
+    IF DIRECTION = 1
+      LET Q 0
+      IF X = B
+        IF P = 1
+          IF A > Y
+            LET Q 1
+          ENDIF
+        ENDIF
+      ENDIF
+      IF Q = 0
+        IF B > X
+          IF S = 1
+            LET DIRECTION 2
+          ELSE
+            IF P = 0
+              IF T = 1
+                LET DIRECTION 3
+              ELSE
+                LET DIRECTION 0
+              ENDIF
+            ENDIF
+          ENDIF
+        ELSE
+          IF T = 1
+            LET DIRECTION 3
+          ELSE
+            IF P = 0
+              IF S = 1
+                LET DIRECTION 2
+              ELSE
+                LET DIRECTION 0
+              ENDIF
+            ENDIF
+          ENDIF
+        ENDIF
+      ENDIF
+    ELSE
+      IF DIRECTION = 2
+        LET Q 0
+        IF Y = A
+          IF B > X
+            IF S = 1
+              LET Q 1
+            ENDIF
+          ENDIF
+        ENDIF
+        IF Q = 0
+          IF Y > A
+            IF O = 1
+              LET DIRECTION 0
+            ELSE
+              IF S = 0
+                IF P = 1
+                  LET DIRECTION 1
+                ELSE
+                  LET DIRECTION 3
+                ENDIF
+              ENDIF
+            ENDIF
+          ELSE
+            IF P = 1
+              LET DIRECTION 1
+            ELSE
+              IF S = 0
+                IF O = 1
+                  LET DIRECTION 0
+                ELSE
+                  LET DIRECTION 3
+                ENDIF
+              ENDIF
+            ENDIF
+          ENDIF
+        ENDIF
+      ELSE
+        IF DIRECTION = 3
+          LET Q 0
+          IF Y = A
+            IF T = 1
+              IF X > B
+                LET Q 1
+              ENDIF
+            ENDIF
+          ENDIF
+          IF Q = 0
+            IF A > Y
+              IF P = 1
+                LET DIRECTION 1
+              ELSE
+                IF T = 0
+                  IF O = 1
+                    LET DIRECTION 0
+                  ELSE
+                    LET DIRECTION 2
+                  ENDIF
+                ENDIF
+              ENDIF
+            ELSE
+              IF O = 1
+                LET DIRECTION 0
+              ELSE
+                IF T = 0
+                  IF P = 1
+                    LET DIRECTION 1
+                  ELSE
+                    LET DIRECTION 2
+                  ENDIF
+                ENDIF
+              ENDIF
+            ENDIF
+          ENDIF
+        ENDIF
+      ENDIF
+    ENDIF
+  ENDIF
+
+  IF DIRECTION = 0
+    SPRITEUP
+    LET IMAGE 4
+    ANIMATE SLOW
+  ENDIF
+
+  IF DIRECTION = 1
+    SPRITEDOWN
+    LET IMAGE 5
+    ANIMATE SLOW
+  ENDIF
+
+  IF DIRECTION = 2
+    SPRITERIGHT
+    LET IMAGE 6
+    ANIMATE SLOW
+  ENDIF
+
+  IF DIRECTION = 3
+    SPRITELEFT
+    LET IMAGE 7
+    ANIMATE SLOW
+  ENDIF
+
+  IF COLLISION 1
+    IF DIRECTION = 0
+      LET DIRECTION = 1
+    ELSE
+      IF DIRECTION = 1
+        LET DIRECTION 0
+      ELSE
+        IF DIRECTION = 2
+          LET DIRECTION 3
+        ELSE
+          LET DIRECTION 2
+        ENDIF
+      ENDIF
+    ENDIF
+  ENDIF
+
+  IF COLLISION 0
+    KILL
+  ENDIF
+
+EVENT SPRITETYPE2
+
+EVENT SPRITETYPE3
+
+EVENT SPRITETYPE4
+
+EVENT SPRITETYPE5
+
+EVENT SPRITETYPE6
+
+EVENT SPRITETYPE7
+
+EVENT SPRITETYPE8
+
+EVENT INITSPRITE
+  IF TYPE = 1
+    LET SETTINGA I
+    ADD 1 TO I
+  ENDIF
+
+EVENT MAINLOOP1
+  IF K 1
+    DELAY 5
+    KILL
+  ENDIF
+
+EVENT MAINLOOP2
+
+EVENT INTROMENU
+  CLS
+  PAPER 2
+  INK 1
+  AT 0,7
+  PRINT " SELECT INPUT DEVICE "
+
+  PAPER 0
+  INK 2
+  AT 2 10
+  PRINT "1. KEYBOARD"
+  AT 3 10
+  PRINT "2. JOYSTICK 1"
+  AT 4 10
+  PRINT "3. JOYSTICK 2"
+  CONTROLMENU
+
+EVENT GAMEINIT
+  LET LIVES 3
+
+  CLS
+  PAPER 2
+  INK 1
+  AT 0,0
+  PRINT " ...      P A C M A N    000000 "   
+  ADD 1 TO Z
+  AT 0,1
+  REPEAT LIVES
+    PUTBLOCK 17
+  ENDREPEAT
+  PRINT "   "
+  PAPER 0
+  INK 3
+
+EVENT RESTARTSCREEN
+  LET I = 0
+  LET F = 0
+  LET Z = 0
+  LET K = 0
+
+EVENT FELLTOOFAR
+
+EVENT KILLPLAYER
+  SUBTRACT 1 FROM LIVES
+  PAPER 2
+  INK 1
+  AT 0,1
+  IF LIVES > 0
+    REPEAT LIVES
+      PUTBLOCK 17
+    ENDREPEAT
+  ENDIF
+  PRINT "   "
+  PAPER 0
+  INK 3
+  DELAY 40
+
+EVENT LOSTGAME
+  REPEAT 6
+    PAPER 3
+    INK 1
+    AT 4,10
+    PRINT " GAME  OVER "
+    DELAY 5
+    PAPER 2
+    INK 1
+    AT 4,10
+    PRINT " GAME  OVER "
+    DELAY 5
+  ENDREPEAT
+  PAPER 0
+  INK 3
+  WAITKEY
+
+EVENT COMPLETEDGAME
+  REPEAT 6
+    PAPER 1
+    INK 2
+    AT 4,7
+    PRINT " CONGRATULATIONS! "
+    DELAY 5
+    PAPER 2
+    INK 1
+    AT 4,7
+    PRINT " CONGRATULATIONS! "
+    DELAY 5
+  ENDREPEAT
+  PAPER 0
+  INK 3
+  WAITKEY
+
+EVENT NEWHIGHSCORE
+  REPEAT 6
+    PAPER 3
+    INK 1
+    AT 4,7
+    PRINT "   HIGH SCORE!!   "
+    DELAY 5
+    PAPER 1
+    INK 3
+    AT 4,7
+    PRINT "   HIGH SCORE!!   "
+    DELAY 5
+  ENDREPEAT
+  PAPER 0
+  INK 3
+  WAITKEY
+
+EVENT COLLECTBLOCK
+  PAPER 2
+  INK 1
+  AT 0,25
+  SHOWSCORE
+  SCORE 10
+  ADD 1 TO Z
+  PAPER 0
+  INK 3
+  IF Z 80
+    ENDGAME
+  ENDIF

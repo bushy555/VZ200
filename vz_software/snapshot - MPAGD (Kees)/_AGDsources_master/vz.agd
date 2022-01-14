@@ -1,0 +1,655 @@
+
+DEFINEWINDOW    1 1 22 22
+
+DEFINECONTROLS  'Q' 'A' 'O' 'P' 'M' 'Z' 'H' '1' '2' '3' '4'
+
+DEFINEBLOCK     EMPTYBLOCK
+                255 255 255 255 255 255 255 255 96
+
+DEFINEBLOCK     WALLBLOCK
+                1 1 1 255 16 16 16 255 96
+
+DEFINEBLOCK     LADDERBLOCK
+                255 255 0 255 255 255 0 255 96
+
+DEFINEBLOCK     FODDERBLOCK
+                85 170 85 170 85 170 85 170 96
+
+DEFINEBLOCK     COLLECTABLE
+                249 246 246 233 223 191 31 191 96
+
+
+DEFINESPRITE    4
+                67 128 55 197 103 226 39 229 19 228 15 248 1 240 1 240
+                3 240 3 224 7 224 15 224 23 208 19 144 56 24 120 60
+                0 0 3 128 7 192 87 229 39 226 83 237 15 241 1 240
+                1 240 3 240 3 224 7 224 15 240 23 200 227 134 224 15
+                3 128 7 192 7 224 7 224 67 224 35 241 253 250 33 247
+                3 242 3 225 7 224 15 224 23 208 19 144 56 24 120 60
+                3 128 7 192 7 224 87 229 35 226 83 253 13 241 1 240
+                3 240 3 224 7 224 7 224 7 224 3 160 15 112 15 112
+
+DEFINESPRITE    4
+                1 192 195 224 199 224 39 224 47 192 31 243 15 143 15 128
+                15 192 7 216 7 246 7 247 59 224 33 192 224 0 224 0
+                1 192 3 224 7 224 199 227 207 207 63 240 15 128 15 128
+                15 192 7 192 55 232 47 244 227 231 225 199 0 0 0 0
+                1 192 3 227 7 227 7 228 15 200 207 240 223 128 47 128
+                15 192 63 192 231 224 231 240 3 232 1 196 0 7 0 7
+                1 192 3 224 7 224 199 227 207 207 63 240 15 128 15 128
+                15 192 7 192 55 232 47 244 227 231 225 199 0 0 0 0
+
+DEFINESPRITE    2
+                31 240 63 252 95 254 79 62 110 31 76 159 253 127 215 255
+                83 255 127 223 47 30 138 184 160 96 234 224 255 224 127 192
+                15 248 63 252 127 250 124 242 248 118 249 50 254 191 255 235
+                255 202 251 254 120 244 29 81 6 5 7 87 7 255 3 254
+
+DEFINESPRITE    1
+                1 128 7 224 27 56 103 142 159 195 224 63 159 193 159 193
+                207 195 103 134 51 140 27 24 13 48 6 96 3 192 1 128
+
+
+DEFINEOBJECT    96 254 56 120
+                0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+                0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+
+
+
+DEFINESCREEN      1   1   1   1   1   1   1   2   2   1   1   1   1   1   1   1   1   1   1   1   1   1
+                  0   0   0   0   0   0   0   2   2   0   0   0   0   0   0   0   0   0   0   0   0   0
+                  1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   2   2   1   1   1   1   1
+                  0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   2   2   0   0   0   0   0
+                  1   1   1   1   0   0   0   0   0   0   0   0   0   0   0   2   2   3   3   3   3   3
+                  1   1   1   1   1   1   1   2   2   1   1   1   1   1   1   1   1   3   3   3   3   3
+                  1   0   0   0   0   0   0   2   2   0   0   0   0   0   0   0   0   3   3   3   3   3
+                  1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1
+                  0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+                  0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+                  0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+                  0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+                  0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+                  0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+                  0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+                  0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+                  0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+                  0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+                  0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+                  0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+                  0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+                  0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+SPRITEPOSITION  0 0 32 104
+SPRITEPOSITION  1 2 32 48
+SPRITEPOSITION  2 3 48 144
+SPRITEPOSITION  2 3 56 80
+SPRITEPOSITION  2 3 48 144
+SPRITEPOSITION  2 3 32 16
+SPRITEPOSITION  1 2 48 168
+
+DEFINESCREEN      1   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   1
+                  1   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   1
+                  1   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   1
+                  1   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   1
+                  1   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   1
+                  1   2   2   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   2   2   1
+                  1   2   2   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   2   2   1
+                  1   2   2   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   2   2   1
+                  1   1   1   1   1   1   1   1   1   1   2   2   1   1   1   1   1   1   1   1   1   1
+                  1   0   0   0   0   0   0   0   0   0   2   2   1   1   1   0   0   0   0   0   0   1
+                  1   0   0   0   0   0   0   0   0   0   2   2   1   1   1   0   0   0   0   0   0   1
+                  1   1   1   1   1   1   1   1   2   2   1   1   1   1   1   1   1   2   2   1   1   1
+                  1   0   0   0   0   0   0   0   2   2   0   0   0   0   0   0   0   2   2   0   0   1
+                  1   0   0   0   0   0   0   0   2   2   0   0   0   0   0   0   0   2   2   0   0   1
+                  1   1   1   1   2   2   1   1   1   1   1   1   1   2   2   1   1   1   1   1   1   1
+                  1   0   0   0   2   2   0   0   0   0   0   0   0   2   2   0   0   0   0   0   0   1
+                  1   0   0   0   2   2   0   0   0   0   0   0   0   2   2   0   0   0   0   0   0   1
+                  1   1   1   1   1   1   1   2   2   1   1   1   1   1   1   1   1   1   2   2   1   1
+                  1   0   0   0   0   0   0   2   2   0   0   0   0   0   0   0   0   0   2   2   0   1
+                  1   0   0   0   0   0   0   2   2   0   0   0   0   0   0   0   0   0   2   2   0   1
+                  1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1
+                  0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0
+SPRITEPOSITION  0 0 80 64
+SPRITEPOSITION  1 2 128 16
+SPRITEPOSITION  1 2 32 16
+SPRITEPOSITION  2 3 32 80
+SPRITEPOSITION  2 3 56 112
+SPRITEPOSITION  2 3 80 128
+SPRITEPOSITION  2 3 128 88
+
+DEFINESCREEN      1   1   1   1   0   0   0   0   0   0   0   0   0   0   1   0   0   0   0   0   0   1
+                  1   1   1   1   0   0   0   0   0   0   0   0   0   0   1   0   0   0   0   0   0   1
+                  1   1   1   1   0   0   0   0   0   0   0   0   0   0   1   0   0   0   0   0   0   1
+                  1   1   1   1   1   1   1   1   2   2   1   1   1   1   1   1   1   1   1   2   2   1
+                  1   0   0   0   0   0   0   0   2   2   0   0   0   0   0   0   0   0   1   2   2   1
+                  1   0   0   0   0   0   0   0   2   2   0   0   0   0   0   0   0   0   1   2   2   1
+                  1   1   1   2   2   1   1   1   1   1   1   1   1   2   2   1   1   1   1   2   2   1
+                  1   0   0   2   2   0   0   0   0   0   0   0   0   2   2   0   0   0   0   2   2   1
+                  1   0   0   2   2   0   0   0   0   0   0   0   0   2   2   0   0   0   0   2   2   1
+                  1   1   1   1   1   1   1   2   2   1   1   1   1   1   1   1   1   1   1   1   1   1
+                  1   0   0   0   0   0   0   2   2   0   0   0   0   0   0   0   0   0   0   0   0   1
+                  1   0   0   0   0   0   0   2   2   0   0   0   0   0   0   0   0   0   0   0   0   1
+                  1   1   1   1   2   2   1   1   1   1   1   1   1   1   1   2   2   1   1   1   1   1
+                  1   0   0   0   2   2   0   0   0   0   0   0   0   0   0   2   2   0   0   0   0   1
+                  1   0   0   0   2   2   0   0   0   0   0   0   0   0   0   2   2   0   0   0   0   1
+                  1   2   2   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   2   2   1
+                  1   2   2   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   2   2   1
+                  1   2   2   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   2   2   1
+                  1   1   1   1   1   2   2   1   1   1   1   1   1   1   1   2   2   1   1   1   1   1
+                  1   0   0   0   0   2   2   0   0   0   0   1   0   0   0   2   2   0   0   0   0   1
+                  1   0   0   0   0   2   2   0   0   0   0   1   0   0   0   2   2   0   0   0   0   1
+                  1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1
+SPRITEPOSITION  0 0 64 136
+SPRITEPOSITION  1 2 40 56
+SPRITEPOSITION  1 2 112 64
+SPRITEPOSITION  2 3 16 40
+SPRITEPOSITION  2 3 16 128
+SPRITEPOSITION  2 3 88 152
+SPRITEPOSITION  2 3 136 88
+SPRITEPOSITION  2 3 160 16
+SPRITEPOSITION  2 3 160 160
+
+DEFINESCREEN      1   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   1
+                  1   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   1
+                  1   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   0   1
+                  1   1   1   1   1   1   1   1   1   1   1   2   2   1   2   2   1   1   1   1   1   1
+                  1   0   0   0   0   0   0   0   0   0   0   2   2   1   2   2   0   0   0   0   0   1
+                  1   0   0   0   0   0   0   0   0   0   0   2   2   1   2   2   0   0   0   0   0   1
+                  1   1   1   1   1   2   2   1   1   1   1   1   1   1   1   1   1   2   2   1   1   1
+                  1   0   0   0   0   2   2   0   0   0   0   0   0   0   0   0   0   2   2   0   0   1
+                  1   0   0   0   0   2   2   0   0   0   0   0   0   0   0   0   0   2   2   0   0   1
+                  1   1   1   1   1   1   1   1   1   1   1   1   1   1   2   2   1   1   1   1   1   1
+                  1   0   0   0   0   0   0   1   0   0   0   0   0   0   2   2   0   0   0   0   0   1
+                  1   0   0   0   0   0   0   1   0   0   0   0   0   0   2   2   0   0   0   0   0   1
+                  1   1   1   1   1   2   2   1   1   2   2   1   1   1   1   1   1   1   1   2   2   1
+                  1   0   0   0   0   2   2   0   0   2   2   0   0   0   0   0   0   0   0   2   2   1
+                  1   0   0   0   0   2   2   0   0   2   2   0   0   0   0   0   0   0   0   2   2   1
+                  1   2   2   1   1   1   1   1   1   1   1   1   1   1   2   2   1   1   1   1   1   1
+                  1   2   2   0   0   0   0   0   0   0   0   0   0   0   2   2   1   0   0   0   0   1
+                  1   2   2   0   0   0   0   0   0   0   0   0   0   0   2   2   1   0   0   0   0   1
+                  1   1   1   1   2   2   1   1   1   1   1   1   1   1   1   1   1   2   2   1   1   1
+                  1   0   0   0   2   2   0   0   0   0   0   0   0   0   0   0   0   2   2   0   0   1
+                  1   0   0   0   2   2   0   0   0   0   0   0   0   0   0   0   0   2   2   0   0   1
+                  1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1
+SPRITEPOSITION  0 0 160 16
+SPRITEPOSITION  1 2 16 104
+SPRITEPOSITION  1 2 64 80
+SPRITEPOSITION  1 2 112 112
+SPRITEPOSITION  2 3 16 16
+SPRITEPOSITION  2 3 88 16
+SPRITEPOSITION  2 3 136 160
+SPRITEPOSITION  2 3 16 152
+SPRITEPOSITION  2 3 64 24
+
+DEFINESCREEN      1   0   0   0   0   0   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1
+                  1   0   0   0   0   4   1   0   0   0   3   0   0   0   0   0   0   0   0   0   0   1
+                  1   0   0   0   0   0   1   0   0   0   3   0   0   0   0   0   0   0   0   0   0   1
+                  1   2   2   1   1   1   1   1   1   1   1   2   2   1   1   1   1   1   1   1   1   1
+                  1   2   2   1   0   0   0   0   0   0   0   2   2   0   0   0   0   0   0   0   0   1
+                  1   2   2   1   0   0   0   0   0   0   0   2   2   0   0   0   0   0   0   0   0   1
+                  1   2   2   1   1   1   1   1   2   2   1   1   1   1   2   2   1   1   1   2   2   1
+                  1   2   2   0   0   0   0   0   2   2   0   0   0   0   2   2   0   0   0   2   2   1
+                  1   2   2   0   0   0   0   0   2   2   0   0   0   0   2   2   0   0   0   2   2   1
+                  1   1   1   1   1   2   2   1   1   1   1   2   2   1   1   1   1   1   1   1   1   1
+                  1   1   0   0   0   2   2   0   0   0   0   2   2   0   0   0   0   0   0   0   0   1
+                  1   1   0   0   0   2   2   0   0   0   0   2   2   0   0   0   0   0   0   0   0   1
+                  1   1   2   2   1   1   1   1   1   1   1   1   1   1   1   1   1   2   2   1   1   1
+                  1   1   2   2   0   0   0   0   0   0   0   0   0   0   0   0   0   2   2   0   0   1
+                  1   1   2   2   0   0   0   0   0   0   0   0   0   0   0   0   0   2   2   0   0   1
+                  1   1   1   1   1   2   2   1   1   1   1   1   1   2   2   1   1   1   1   1   1   1
+                  1   0   0   0   0   2   2   0   0   0   0   0   1   2   2   0   0   0   0   0   0   1
+                  1   0   0   0   0   2   2   0   0   0   0   0   1   2   2   0   0   0   0   0   0   1
+                  1   2   2   1   1   1   1   1   1   1   2   2   1   1   1   1   1   1   1   2   2   1
+                  1   2   2   0   0   0   0   0   0   0   2   2   0   0   0   0   0   0   0   2   2   1
+                  1   2   2   0   0   0   0   0   0   0   2   2   0   0   0   0   0   0   0   2   2   1
+                  1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1   1
+SPRITEPOSITION  0 0 112 160
+SPRITEPOSITION  1 2 88 72
+SPRITEPOSITION  1 2 16 160
+SPRITEPOSITION  1 2 160 64
+SPRITEPOSITION  2 3 88 160
+SPRITEPOSITION  2 3 40 40
+SPRITEPOSITION  2 3 16 64
+SPRITEPOSITION  2 3 160 104
+
+MAP             WIDTH 5
+                STARTSCREEN 255
+                255   0   1   2 255
+ENDMAP
+
+DEFINEFONT      0 0 0 0 0 0 0 0
+                0 32 32 32 32 0 32 0
+                80 80 0 0 0 0 0 0
+                0 80 248 80 248 80 0 0
+                32 112 192 96 48 224 32 0
+                0 160 32 64 64 128 160 0
+                0 64 160 64 176 160 112 0
+                64 64 0 0 0 0 0 0
+                0 32 64 64 64 64 32 0
+                0 64 32 32 32 32 64 0
+                0 32 248 112 248 32 0 0
+                0 64 64 224 64 64 0 0
+                0 0 0 0 0 0 32 64
+                0 0 0 224 0 0 0 0
+                0 0 0 0 0 0 64 0
+                0 32 32 64 64 128 128 0
+                0 96 144 176 208 144 96 0
+                0 64 192 64 64 64 224 0
+                0 96 144 16 96 128 240 0
+                0 96 144 32 16 144 96 0
+                0 32 96 160 240 32 32 0
+                0 240 128 224 16 16 224 0
+                0 96 128 224 144 144 96 0
+                0 240 16 32 32 64 64 0
+                0 96 144 96 144 144 96 0
+                0 96 144 144 112 16 96 0
+                0 0 64 0 0 64 0 0
+                0 0 64 0 0 64 128 0
+                0 0 32 64 128 64 32 0
+                0 0 128 64 32 64 128 0
+                0 0 0 224 0 224 0 0
+                0 224 16 32 64 0 64 0
+                0 96 144 176 176 128 112 0
+                0 96 144 144 240 144 144 0
+                0 224 144 224 144 144 224 0
+                0 96 144 128 128 144 96 0
+                0 192 160 144 144 144 224 0
+                0 240 128 224 128 128 240 0
+                0 240 128 224 128 128 128 0
+                0 96 144 128 176 144 112 0
+                0 144 144 240 144 144 144 0
+                0 224 64 64 64 64 224 0
+                0 48 16 16 16 144 96 0
+                0 144 160 192 160 144 144 0
+                0 128 128 128 128 128 240 0
+                0 136 216 168 136 136 136 0
+                0 144 208 208 176 176 144 0
+                0 96 144 144 144 144 96 0
+                0 224 144 144 224 128 128 0
+                0 96 144 144 176 144 112 0
+                0 224 144 160 192 160 144 0
+                0 112 128 64 32 16 224 0
+                0 248 32 32 32 32 32 0
+                0 144 144 144 144 144 96 0
+                0 136 136 80 80 32 32 0
+                0 136 136 136 168 168 80 0
+                0 144 144 96 96 144 144 0
+                0 136 136 80 32 32 32 0
+                0 240 16 32 64 128 240 0
+                0 96 64 64 64 64 96 0
+                0 128 128 64 64 32 32 0
+                0 96 32 32 32 32 96 0
+                64 160 0 0 0 0 0 0
+                0 0 0 0 0 0 0 248
+                48 64 64 224 64 64 240 0
+                0 224 16 112 144 144 112 0
+                0 128 128 224 144 144 224 0
+                0 0 96 128 128 144 96 0
+                0 16 16 112 144 144 112 0
+                0 0 96 144 240 128 112 0
+                0 48 64 224 64 64 64 0
+                0 0 112 144 144 112 16 96
+                0 128 128 128 224 144 144 0
+                0 64 0 192 64 64 224 0
+                0 32 0 96 32 32 32 192
+                0 128 144 160 192 160 144 0
+                0 64 64 64 64 64 32 0
+                0 0 80 168 168 136 136 0
+                0 0 224 144 144 144 144 0
+                0 0 96 144 144 144 96 0
+                0 0 224 144 144 224 128 128
+                0 0 112 144 144 112 16 16
+                0 0 96 128 128 128 128 0
+                0 0 112 128 96 16 224 0
+                0 64 224 64 64 64 32 0
+                0 0 144 144 144 144 96 0
+                0 0 136 136 80 80 32 0
+                0 0 136 136 136 168 80 0
+                0 0 144 144 96 144 144 0
+                0 0 144 144 144 112 16 224
+                0 0 240 32 64 128 240 0
+                0 96 64 192 64 64 96 0
+                0 64 64 64 64 64 64 0
+                0 192 64 96 64 64 192 0
+                0 80 160 0 0 0 0 0
+                112 136 32 64 64 32 136 112
+
+EVENT PLAYER
+
+SPRITEINK 7
+IF KEY UP
+    IF LADDERABOVE
+        LET IMAGE = 1
+        ANIMATE
+        SPRITEUP
+    ENDIF
+ENDIF
+IF KEY DOWN
+    IF LADDERBELOW
+        LET IMAGE = 1
+        ANIMATE
+        SPRITEDOWN
+    ENDIF
+ENDIF
+IF KEY RIGHT
+    IF CANGORIGHT
+        TRAIL
+        LET IMAGE = 0
+        ANIMATE
+        SPRITERIGHT
+    ELSE
+        IF K > 0
+            DIG RIGHT
+        ENDIF
+    ENDIF
+ENDIF
+IF KEY LEFT
+    IF CANGOLEFT
+        TRAIL
+        LET IMAGE = 0
+        ANIMATE
+        SPRITELEFT
+    ELSE
+        IF K > 0
+            DIG LEFT
+        ENDIF
+    ENDIF
+ENDIF
+SPRITEINK 6
+GETBLOCKS
+
+EVENT SPRITETYPE1
+
+; Enemy climbing a ladder.
+IF DIRECTION = 0
+    IF LADDERABOVE
+        SPRITEUP
+    ELSE
+        GETRANDOM 2
+        IF RND = 0
+            LET DIRECTION = 2
+        ELSE
+            LET DIRECTION = 3
+        ENDIF
+        LET SETTINGA = 50
+    ENDIF
+ENDIF
+
+; Enemy descending a ladder.
+IF DIRECTION = 1
+    IF LADDERBELOW
+        SPRITEDOWN
+    ELSE
+        GETRANDOM 2
+        IF RND = 0
+            LET DIRECTION = 2
+        ELSE
+            LET DIRECTION = 3
+        ENDIF
+        LET SETTINGA = 50
+    ENDIF
+ENDIF
+
+; Enemy moving left.
+IF DIRECTION = 2
+    IF CANGOLEFT
+        SPRITELEFT
+        LET FRAME = 0
+    ELSE
+        LET DIRECTION = 3
+    ENDIF
+    IF SETTINGA > 0
+        SUBTRACT 1 FROM SETTINGA
+    ELSE
+        GETRANDOM 4
+        IF RND = 0
+            IF LADDERABOVE
+                LET DIRECTION = 0
+            ELSE
+                IF LADDERBELOW
+                    LET DIRECTION = 1
+                ENDIF
+            ENDIF
+        ENDIF
+    ENDIF
+ENDIF
+
+; Enemy moving right.
+IF DIRECTION = 3
+    IF CANGORIGHT
+        SPRITERIGHT
+        LET FRAME = 1
+    ELSE
+        LET DIRECTION = 2
+    ENDIF
+    IF SETTINGA > 0
+        SUBTRACT 1 FROM SETTINGA
+    ELSE
+        GETRANDOM 4
+        IF RND = 0
+            IF LADDERABOVE
+                LET DIRECTION = 0
+            ELSE
+                IF LADDERBELOW
+                    LET DIRECTION = 1
+                ENDIF
+            ENDIF
+        ENDIF
+    ENDIF
+ENDIF
+
+; Test if hit player.
+IF COLLISION 0
+    KILL
+ENDIF
+
+
+EVENT SPRITETYPE2
+
+IF SETTINGA = 0
+    IF SETTINGB = 66
+        LET SETTINGA = 1
+    ELSE
+        SUBTRACT 1 FROM SETTINGB
+    ENDIF
+ELSE
+    IF SETTINGB = 70
+        LET SETTINGA = 0
+    ELSE
+        ADD 1 TO SETTINGB
+    ENDIF
+ENDIF
+
+SPRITEINK SETTINGB
+
+IF COLLISION 0
+    REMOVE
+    EXPLODE 25
+    SPRITEINK 7
+    SCORE 100
+    SUBTRACT 1 FROM A
+    IF A = 0
+        DELAY 50
+        WHILE T > 0
+            SUBTRACT 1 FROM T
+            SCORE 1
+            AT 12 26
+            DISPLAY SECONDS T
+            AT 3 25
+            SHOWSCORE
+            BEEP 50
+            DELAY 2
+        ENDWHILE
+        NEXTLEVEL
+    ENDIF
+    SOUND 1
+    AT 3 25
+    SHOWSCORE
+ENDIF
+
+
+EVENT SPRITETYPE3
+
+
+
+EVENT SPRITETYPE4
+
+
+
+EVENT SPRITETYPE5
+
+
+
+EVENT SPRITETYPE6
+
+
+
+EVENT SPRITETYPE7
+
+
+
+EVENT SPRITETYPE8
+
+
+
+EVENT INITSPRITE
+
+IF TYPE = 2
+    ADD 1 TO A
+    LET SETTINGA = 0
+    LET SETTINGB = 69
+ENDIF
+
+
+EVENT MAINLOOP1
+
+; Update the bonus timer.
+ADD 1 TO S
+IF S > 25
+    SUBTRACT 25 FROM S
+    IF T > 0
+        SUBTRACT 1 FROM T
+    ENDIF
+    AT 12 26
+    DISPLAY SECONDS T
+ENDIF
+
+
+EVENT MAINLOOP2
+
+
+
+EVENT INTROMENU
+
+INK 15
+PAPER 0
+CLS
+AT 4 9
+
+LET CONTROL = 99
+WHILE CONTROL >= 99
+    CLS
+    AT 5 9
+    PRINTMODE 1
+    PRINT "DIAMOND GEEZER"
+    PRINTMODE 0
+    AT 9 10
+    PRINT "1. KEYBOARD"
+    AT 11 10
+    PRINT "2. KEMPSTON"
+    AT 13 10
+    PRINT "3. SINCLAIR"
+    LET CONTROL = 99
+    WHILE CONTROL = 99
+        IF KEY OPTION1
+            LET CONTROL = 0
+        ENDIF
+        IF KEY OPTION2
+            LET CONTROL = 1
+        ENDIF
+        IF KEY OPTION3
+            LET CONTROL = 2
+        ENDIF
+    ENDWHILE
+ENDWHILE
+CLS
+
+EVENT GAMEINIT
+
+LET LIVES = 3
+LET SCREEN = 0
+INK 7
+PAPER 2
+BORDER 2
+CLS
+AT 2 25
+PRINT "SCORE"
+AT 5 25
+PRINT "LIVES"
+AT 8 26
+PRINT "HIGH"
+AT 11 26
+PRINT "TIME"
+AT 12 27
+PRINT ":"
+AT 14 25
+PRINT "LEVEL"
+INK 0
+PAPER 6
+AT 3 25
+SHOWSCORE
+AT 9 25
+SHOWHIGH
+
+EVENT RESTARTSCREEN
+
+AT 6 27
+DISPLAY LIVES
+
+LET S = SCREEN
+ADD 1 TO S
+AT 15 26
+DISPLAY TRIPLEDIGITS S
+
+LET A = 0
+LET T = 60                      ; 60 seconds
+LET S = 0                       ; 25ths of a second
+
+LET K = 0                       ; no  keys collected yet.
+
+EVENT FELLTOOFAR
+
+IF TYPE = 0
+    KILL
+ENDIF
+
+
+EVENT KILLPLAYER
+
+SOUND 0
+; FADE
+SUBTRACT 1 FROM LIVES
+
+
+EVENT LOSTGAME
+
+DELAY 50
+
+
+EVENT COMPLETEDGAME
+
+DELAY 50
+
+
+EVENT NEWHIGHSCORE
+
+INK 5
+PAPER 0
+CLW
+PRINTMODE 1
+AT 4 5
+PRINT "NEW HIGH SCORE"
+PRINTMODE 0
+DELAY 100
+EVENT COLLECTBLOCK
+
+LET K = 1
