@@ -1,0 +1,83 @@
+5MODE(1)
+10sp=2:IFspTHENDIMc(sp,3):DIMr(sp):DIMq(sp)
+20FORk=1TOsp:READc(k,1),c(k,2),c(k,3),r:r(k)=r:q(k)=r*r:NEXTk
+30DATA-0.3,-0.8,3,0.6
+40DATA0.9,-1.1,2,0.2
+50FORi=0TO175:FORj=0TO255
+60x=0.3:y=-0.5:z=0
+70dx=j-128:dy=88-i:dz=300:dd=dx*dx+dy*dy+dz*dz
+80GOSUB100:NEXTj:NEXTi
+90GOTO90
+100n=-(y>=0ORdy<=0):IFNOTn,s=-y/dy
+110FORk=1TOsp:px=c(k,1)-x:py=c(k,2)-y:pz=c(k,3)-z
+130pp=px*px+py*py+pz*pz:sc=px*dx+py*dy+pz*dz
+150IFsc<=0,200
+160bb=sc*sc/dd:aa=q(k)-pp+bb:IFaa<=0,200
+190sc=(SQRbb-SQRaa)/SQRdd:IFsc<sORn<0THENn=k:s=sc
+200NEXTk
+210IFn<0,RETURN
+220dx=dx*s:dy=dy*s:dz=dz*s:dd=dd*s*s
+230x=x+dx:y=y+dy:z=z+dz
+240IFn=0THENGOTO300
+250nx=x-c(n,1):ny=y-c(n,2):nz=z-c(n,3)
+270l=2*(dx*nx+dy*ny+dz*nz)/q(n)
+280dx=dx-nx*l:dy=dy-ny*l:dz=dz-nz*l
+290GOTO100
+300FORk=1TOsp
+310u=c(k,1)-x:v=c(k,3)-z:IFu*u+v*v<=q(k)THENRETURN
+320NEXTk
+330IF(x-INTx>.5)<>(z-INTz>.5),SET(j,i)
+340RETURN
+
+
+
+1 BORDER 0: PAPER 0: INK 9: BRIGHT 1: CLS
+10 CONST spheres as UByte = 2
+   DIM i, j as Integer
+   DIM k as UByte
+   DIM n as Byte
+   DIM c(spheres,3) as Float
+   DIM r(spheres) as Float
+   DIM q(spheres) as Float
+   DIM r1, dx, dy, dz, dd as Float
+   DIM pp, px, py, pz, sc as Float
+   DIM x, y, z, u, v as Float
+   DIM bb, aa as Float
+
+20 FOR k=1 TO spheres: READ c(k,1),c(k,2),c(k,3),r1: LET r(k)=r1: LET q(k)=r1*r1: NEXT k
+30 DATA -0.3,-0.8,3,0.6
+40 DATA 0.9,-1.1,2,0.2
+50 FOR i=0 TO 175: FOR j=0 TO 255
+60 LET x=0.3: LET y=-0.5: LET z=0
+70 LET dx=j-128: LET dy=88-i: LET dz=300: LET dd=dx*dx+dy*dy+dz*dz
+80 GO SUB 100: NEXT j: NEXT i
+90 STOP
+
+100 LET n=-1: IF y<=0 AND dy>=0 THEN LET n=0: LET s=-y/dy
+110 FOR k=1 TO spheres
+120 LET px=c(k,1)-x: LET py=c(k,2)-y: LET pz=c(k,3)-z
+140 LET sc=px*dx+py*dy+pz*dz
+150 IF sc<=0 THEN GO TO 200
+155 LET pp=px*px+py*py+pz*pz: REM This was line 130
+160 LET bb=sc*sc/dd
+170 LET aa=q(k)-pp+bb
+180 IF aa<=0 THEN GO TO 200
+190 LET sc=(SQR bb-SQR aa)/SQR dd: IF sc<s OR n<0 THEN LET n=k: LET s=sc
+200 NEXT k
+210 IF n<0 THEN RETURN
+220 LET dx=dx*s: LET dy=dy*s: LET dz=dz*s: LET dd=dd*s*s
+230 LET x=x+dx: LET y=y+dy: LET z=z+dz
+240 IF n=0 THEN GO TO 300
+250 LET nx=x-c(n,1): LET ny=y-c(n,2): LET nz=z-c(n,3)
+270 LET l=2*(dx*nx+dy*ny+dz*nz)/q(n)
+280 LET dx=dx-nx*l: LET dy=dy-ny*l: LET dz=dz-nz*l
+290 GO TO 100
+300 FOR k=1 TO spheres
+310 LET u=c(k,1)-x: LET v=c(k,3)-z: IF u*u+v*v<=q(k) THEN RETURN
+320 NEXT k
+330 IF ((x-INT x)>.5) XOR ((z-INT z)>.5) THEN PLOT INK 7; j,i
+340 RETURN
+
+
+
+
