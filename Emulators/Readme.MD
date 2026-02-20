@@ -592,9 +592,9 @@ mame laser210 -mem laser_64k -video soft -ui_active -bp ~/.mame/roms -resolution
 
 
 
-=========
+
 (4) JEMU
-=========
+
 Richard Wilson's name is big within the Amstrad CPC community. He wrote WinApe. Never heard of 
 WinApe? Do a google. Richard was also a member of the VZ community in the early years whilst he
 wrote his java emulator. Its all there within his site. Load it up, get Java working, and play 
@@ -604,9 +604,8 @@ Java VZ					https://jemu.winape.net
 
 
 
-========================
+
 (5) WinVZ300 / DSEVZ200 
-========================
 
 Gavin Turner is (was?) a highly active fellow in Christchurch in New Zealand. Loves his emulators. 
 Has written a number of them for differing flavours of hardware over he years. Originally writing 
@@ -637,18 +636,18 @@ WinVZ300				https://github.com/PhoenixInteractiveNL/emuDownloadCenter/wiki/Emula
 Archive site				https://archive.is/hsAiB
 
 
-=========================
+
 (6) Arcadia Emulator 2001
-=========================
+
 By Gavin TUrner
 
 Arcadia-2001				https://web.archive.org/web/20051026150459/http://www.gstsoftware.co.nz/ 	   
 
 
 
-==============================
+
 (7) SoundPaint - Jürgen Reuter
-==============================
+
 by: Jürgen Reuter
 Sits on Github with a youtube available showing Jurgen performing a lecture about it.
 
@@ -659,9 +658,9 @@ Video #2				https://media.ccc.de/v/gpn19-114-retrocomputing-emulator-vz200-z80
 
 
 
-=================
+
 (8) VZ200 Remake
-=================
+
 By: Jürgen Wahlmann & Christian Wahlmann
 Is a full on remake of Richard's Java VZ, with many updates.
 
@@ -670,9 +669,9 @@ VZ200Remake				https://github.com/cwahlmann/vz200-remake
 
 
 
-=======================
+
 (9) ZZEMU Laser 310 Emu
-=======================
+
 "LASER310 Emulator"
 
 ZZEMU Laser 310 emu			https://github.com/zzemu-cn/LASER310EMU
@@ -680,9 +679,9 @@ ZZEMU Laser 310 emu			https://github.com/zzemu-cn/LASER310EMU
 
 
 
-=============================
+
 (10) ZZEMU's FPGA - By ZZEMU
-=============================
+
 
 Terrasic FPGA DE1 DE2			https://github.com/zzemu-cn/LASER310_FPGA
 Terrasic FPGA DE1 DE2 Floppy		https://github.com/zzemu-cn/LASER310_FPGA_DD20
@@ -691,9 +690,9 @@ Terrasic FPGA base version 		https://github.com/zzemu-cn/LASER310_FPGA_BASE
 
 
 
-=====================================
+
 (11) VZ Emulator - By: Paul Anderson
-=====================================
+
 
 "An emulator for the VZ200/VZ300 Z80 8-bit CPU based Computer. Written in c#"
 
@@ -711,9 +710,8 @@ VZEmulator				https://github.com/PaulAnderson/VzEmulator
 
 
 
-=============
 (12) VZ-Next
-=============
+
 by: Paul Robson. "An implementation of the TX800/VZ200/Laser200 platform for ESP32/Windows/Linux/Raspi"
 
 VZ-Next					https://github.com/paulscottrobson/vz-next
@@ -724,9 +722,9 @@ https://github.com/paulscottrobson/vz400	VZ400. VZ/Laser/Texet emulator, hardwar
 https://github.com/paulscottrobson/vz-next-2
 
 
-===================
+
 (13) MISTer - Alan.
-===================
+
 By: Alan. "This is a MiSTer port of the core of	https://github.com/zzemu-cn/LASER310_FPGA_DD20"
 
 MISTer					https://github.com/alanswx/Laser310_MiSTer
@@ -734,17 +732,17 @@ MISTer					https://github.com/alanswx/Laser310_MiSTer
 
 
 
-===========
+
 (14) JSMESS
-===========
+
 By: Jason Scott 
 MESS
 					https://github.com/jsmess/jsmess/wiki/JSMESS-v1.0-Systems
 
 
-===================
+
 (15) Laser 310 Emu 
-===================
+
 By: Antonino Porcino.
 Written in Feb-Mar 2021. Updated continuously.
  
@@ -765,17 +763,17 @@ The .wav file will be downloaded as a normal browser download.
 Little bit offtopc, Antonino is also a Laser500 guru. His online Laser500 emulator is here:	 nippur72.github.io/laser500emu
 
 
-========================================
+
 (16) VZ Emulator - By: Richard Chandler
-========================================
+
 No information yet available.
 
 
 
 
-====================================================
+
 (17) FPGA Laser 210 clone	- Jesus Arias (2025)
-====================================================
+
 Supplied by SK 21/July/25.
 Destined FPGA:  Alhambra-II.
 Description and details : 	http://www.ele.uva.es/~jesus/laser200.pdf
@@ -783,9 +781,9 @@ Download files		:  	https://www.ele.uva.es/~jesus/VZ200.tgz
 
 
 
-====================================================
+
 (18) Laser310 - Browser based DOS based VZEM.
-====================================================
+
 URL	: https://www.compumuseum.com/emularity.html?machine=laser310
 
 
