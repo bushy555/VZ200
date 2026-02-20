@@ -8,28 +8,51 @@ VZ / Laser EMULATORS v1.3						as at 13/aug/2025.
 
 
 (1) VZEM			- Guy Thomason
+
     a) DOS								16bit DOS / Command line.
+
     b) Windows GUI							Windows 32-bit
+
     c) SDL release
+
     c) Android
+
     d) Pocket PC
+
     e) Raspberry PI
+
 (2) JamesVZ200.			- James 'EmuCompBoy' Tamer. 		Windows.
+
 (3) MAME.			- Juergen Buchmueller and Dirk Best	Windows. Linux
+
 (4) JEMU (java)			- Richard Wilson	    		Windows. Linux
+
 (5) WinVZ300 and DSEVZ200 	- Gavin Turner				Windows
+
 (6) Emulator 2001 		- Gavin Turner				Windows
+
 (7) VZ SoundPaint java emu	- Jürgen Reuter				Windows. Linux
+
 (8) VZ200 Remake (java)		- Jürgen Wahlmann & Christian Wahlmann	Windows. Linux
+
 (9) Laser 310 Emu 		- ZZEMU    (SDL2, DD20) 		Windows
+
 (10) FPGA Laser310 emu		- ZZEMU.   				FPGA : Altera Cyclone based FPGA DE0, DE1, DE2 boards.
+
 (11) VZ Emulator		- Paul Anderson				Windows.
+
 (12) VZ-Next			- Paul Robson				Windows. Linux. ESP32. Raspi 
+
 (13) MISTer 			- Alan.					MiSTer port of the core from PGA Laser310 emu
+
 (14) JSMESS 			- Jason Scott				Windows. Linux.
+
 (15) Laser 310 Emu 		- Antonino Porcino.			Windows. Linux.
+
 (16) Emulator 			- Richard Chandler			Windows. ?
+
 (17) FPGA Laser 210 clone	- Jesus Arias (2025). 			FPGA : Alhambra-II.
+
 (18) Laser310 Browser VZEM	- Guy Thomason 				Browser		https://www.compumuseum.com/emularity.html?machine=laser310
 
 
