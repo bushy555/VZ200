@@ -61,29 +61,29 @@ VZ / Laser EMULATORS v1.3						as at June/2026.
 ========
 VZEM and VZEM SDL			https://bluebilby.com/sdm_categories/tools/
 
-Guy's Main site		(bad link)	http://intertek00.customer.netspace.net.au/vz200/
-VZEM v2.2 (DOS)		(bad link)	https://vzalive.bluebilby.com/emulators/vzem_22.zip
-VZEM (aka WinVZ)	(bad link)	https://vzalive.bluebilby.com/emulators/winvz4.zip
-VZEM SDL		(bad link)	http://intertek00.customer.netspace.net.au/vz4sdl/
-VZEM Android		(bad link)	http://intertek00.customer.netspace.net.au/vz4droid/
-VZEM Pocket PC		(bad link)	http://intertek00.customer.netspace.net.au/pocketvz/
-VZEM Raspberry PI	(bad link)	http://intertek00.customer.netspace.net.au/PI2VZ.htm   
-3 chip project		(bad link)	http://intertek00.customer.netspace.net.au/3ChipVZ/
+	Guy's Main site		(bad link)	http://intertek00.customer.netspace.net.au/vz200/
+	VZEM v2.2 (DOS)		(bad link)	https://vzalive.bluebilby.com/emulators/vzem_22.zip
+	VZEM (aka WinVZ)	(bad link)	https://vzalive.bluebilby.com/emulators/winvz4.zip
+	VZEM SDL		(bad link)	http://intertek00.customer.netspace.net.au/vz4sdl/
+	VZEM Android		(bad link)	http://intertek00.customer.netspace.net.au/vz4droid/
+	VZEM Pocket PC		(bad link)	http://intertek00.customer.netspace.net.au/pocketvz/
+	VZEM Raspberry PI	(bad link)	http://intertek00.customer.netspace.net.au/PI2VZ.htm   
+	3 chip project		(bad link)	http://intertek00.customer.netspace.net.au/3ChipVZ/
 
 
 
 VZEM INDEX
 ----------
-0) Introduction.
-1) Running, editing and listing the code within the Emulator.
-2) Loading TEXT files, or an ASCII program listings into the Emulator.
-3) ROM versions.
-4) Memory Capability.
-5) LLIST or LPRINTING 
-6) Opening files - VZ and WAV.
-7) Opening files - floppy disk images.
-8) Saving your code.
-9) Importing BMP images.
+	0) Introduction.
+	1) Running, editing and listing the code within the Emulator.
+	2) Loading TEXT files, or an ASCII program listings into the Emulator.
+	3) ROM versions.
+	4) Memory Capability.
+	5) LLIST or LPRINTING 
+	6) Opening files - VZ and WAV.
+	7) Opening files - floppy disk images.
+	8) Saving your code.
+	9) Importing BMP images.
 
 
 
