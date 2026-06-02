@@ -3,7 +3,7 @@
 (G)  EMULATORS
 ==================
 
-VZ / Laser EMULATORS v1.3						as at 13/aug/2025.
+VZ / Laser EMULATORS v1.3						as at June/2026.
 =========================
 
 
@@ -377,6 +377,9 @@ JVZ200 (v0.21b)				http://www.oocities.com/emucompboy
 ===============
 
 VZ by: Juergen Buchmueller and Dirk Best
+
+MAME.ZIP (6 parts included in this repositry) is version 2.17 x32 from 2019 era.
+Configured for the VZ/Laser with a bunch of games, demos and music under the .\snapshot directory.
 
 
 MAME is the biggest and largest combination of emulators on this planet. All rolled up into one 
