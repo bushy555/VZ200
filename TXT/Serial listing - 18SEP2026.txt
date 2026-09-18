@@ -1,0 +1,502 @@
+
+============
+(Q) Serials
+============
+The serial number listing. Started off as an idea to collect known serials, and has grown.
+It appears as though Laser500, Laser700 also use the same sequential serial numbers.
+From a random source it mentioned that batches of numbers were produced at different processing plants.
+However after browsing the listing there appears to be no real meaningful or identifiable groups of numbers,
+other than the cut off periods of the 300 and 310 generations. 
+
+
+All units have 2k video which is included in the RAM totals below.
+4k = 2k user RAM + 2k video RAM.
+8k = 6k user RAM + 2k video RAM.
+18k= 16k user RAM + 2k video RAM.
+66k= 64k user RAM + 2k video RAM.
+
+Note:-
+"Laser200 generation 2":  Seltron style layout of PCB, ie, Laser310 circuit board in Laser200 housing.
+
+"VZ300/Laser310 generation 1": Brown keys with no under labels on keys.  mid 1985-1986.  (Late 1984 for Germany!)
+"VZ300/Laser310 generation 2": Brown keys with under labels on keys.     1986-1987.
+"VZ300/Laser310 generation 3": beige/cream keyboard.                     1987 onwards.
+
+Known to exist units with missing serial numbers unfortunately.
+Some will be impossible to further trace into the future.
+
+SERIAL #	Computer	Source
+---------------------------------------------
+missing #	Laser210 	Ian Gledhill					4k
+missing #	Laser300	Photo supplied by SK Leung			?
+missing #	Laser305							?
+missing #	Laser305							?
+missing #	Laser310 g1	Meryk Jenkins					18k
+missing #	Laser310 g1	Shane Broadbent					18k
+missing #	Laser310 g1	FB						18k
+missing #	Laser310 	SK Leung					66k
+missing #	Laser310 	SK Leung					18k
+missing #	VZ200 		David Wagner					8k
+missing	#	VZ200		FB. #1						8k
+missing	#	VZ200		FB. #2						8k
+missing	#	VZ200		FB. #3  					18k	19/10/24.
+missing #	VZ300 g?    	HaQue (dead???)   				18k
+missing #	VZ300 g?	Andrew Round					18k	1/7/25.
+missing #	VZ300 g1   	Ebay. Aus.  Toowoomba				18k	6/5/25.
+missing #	VZ300 g1	MOTAT NZ Mueseum				18k
+missing #	VZ300 g2   	Guy Thomason - serial sticker missing		18k
+missing #	VZ300 g2   	Geronimos.  ex-Dave Maunder, ex-Ben Hobson.	18k
+missing #	VZ300 g3	Guy Thomason					18k
+missing #	VZ300 g3	Brian Mora					18k
+missing #	VZ300 g3	Brian Mora --> Ebay. 				18k	05/25.
+missing	#	VZ300 g3	FB. #1						18k
+missing	#	VZ300 g3	FB. #2						18k
+missing #	VZ300 g3	FB. #3  					18k
+missing #	VZ300 g3	FB. #4						18k
+missing #	VZ300 g3	MOTAT NZ Mueseum				18k	
+missing # 	Seltron 200 	John Layt   					4k.		06/25
+missing #	VZ300 g3	Facebook market place				18k	08/25	
+missing #	VZ300 g3	Facebook market place				18k	08/25
+
+
+v??????		Laser500  	Altinu Aletienun 11/3/26    2388000664
+
+v000029 	Salora Manager
+v000582		Salora Fellow	Google
+v001979		Laser210	FB						8k.
+v002649		VZ200   	eBay.				Germany. 	4k.	06/2025.
+v002875		VZ200		eBay.
+v005512 	VZ200         	Google. 		 	Aus. 		4k.
+v004587		VZ200    	Robert Miller.		 	USA. 		4k.
+v006505		VZ200		Philip Yarra.
+v007566 	VZ200		Andrew Round						1/7/25.
+v007906		VZ200		Shane broadbent		 	Aus. 	PAL	8k.
+v008109		VZ200		eBay. 			 	German. 	4k.
+v008653		VZ200		Aarron Climas			Aus. 	PAL	8k.	30/9/25
+v008737   	VZ200    	John Passfield			Aus.	PAL	8k.	15/5/26
+v010254		VZ200		Thomas OderausVkommt					23/3/25				
+v010546		VZ200		Casper De Dusz
+v011941		VZ200		Google
+v012941		VZ200		Ebay 			 	German. 	4k.
+v01294?		VZ200		Google 			 	German. 	4k.
+v013193		VZ200		Stephen Mullens
+v013543		VZ200		Manuel Carvalho			Aus	PAL	8k.	25/4/26.
+v014107		VZ200		Casper De Dusz
+v014680  	Laser200 	Fenyvesi Tibor. 		English. 	4k.
+v016445  	Laser110    	Thomas Oderausvkommt		Norway.		4k.	23/3/25 
+v016746  	Laser200	SK Leung.	 		China.		8k.
+v017503		VZ200		Thomas OderausVkommt		Norway.			23/3/25
+v017644		VZ200		Thomas OderausVkommt		Norway.			23/3/25
+v017768		VZ200    	FB						4k	
+v017968		VZ200 		Dean Thompson
+v018472		Laser210 	Casper De Dusz.
+v019183         Laser200        Ole Kristian Vonen 		Norweighan.  	4k. “(N) Video Technology LTD”.       Base plate: © 1982.              
+v019186		VZ200		Geronimus.			Aus.
+v01959?		VZ200		Andrew Laird.			Aus.
+v019632		VZ200		Dave Maunder.			Aus. PAL	8k. Tamworth DSE, May 1983.	
+v019727		VZ200		FB
+v020244		Laser310 g2	Twitter/X
+v020881 	VZ300 g? 	Andrew Round			Aus. 			1/7/25.
+v021006		VZ200		Alan Laughton. 			Aus. 		8k. DSE. 			 
+v021248		Laser500	FB
+v021339		VZ200		Randall Crook.
+v021399		VZ200		web
+v022198		Laser210	Frank Doege (Laser110 style case)
+v022552		Laser210	Google german
+v022857		Laser500	eBay.				France
+v022903		Laser500	Google.				Italy.
+v023164		Laser210	eBay.				Italy.			06/2025. 
+v023825         Laser200        Brian Mora         		Aus.		4k. Base plate: © 1982.
+v024662		VZ200 	 	Google				Germany		4k. NTSC
+v025039 	VZ200		Ebay via John Layt german 	Germany		4k. 	16/9/2026
+v025446		VZ200		ebay. 				Germany		4k.	'VZ200 Farb Computer'. German sticker on base.
+v025937		VZ200		Frank Doege
+v026218		VZ200		Thomas OderausVkommt		Norway.			23/3/25
+v026983		VZ200		Ben Beazley			Aus.
+v027688		VZ200		Ian Salmon
+v027967		VZ200		ebay				Aus.		8k. DSE.
+v028300  	VZ200		Stephen Mullens			Aus.		8k. DSE.
+v028531		VZ200		Alan Hanson	Oct83.		Aus.		8k. DSE.
+v028779		VZ200		Darryn Hancock			Aus.		8k. DSE.
+v028882 	VZ200		Supplied by Jason.		Aus.		8k. DSE.
+v029031		VZ200		Manuel Carvalho			Aus.		8k.	10/2025.
+v029079		Laser500	Leslie Ayling. 			Aus			13/06/2025
+v029777		VZ200           John Parker		
+v029893		Laser500	google
+v030338		VZ200         	HaQue. (P/S problem)
+v030384		VZ200		Stephen Hart			Aus. 		8k
+v030622		VZ200		FB. 				Hungary.
+v031959		VZ200		Teresa Dore. 2022.  Re-advertised on FB May2024. eBay 2023. 8k. DSE
+v032149		VZ200		Gregory Cumming.		Aus.		8k. DSE	25/11/2025.
+v034087		Laser110	Google (NightfallCrew.com)
+v034663		Laser200	FB
+v035675		Laser110        Google 2k. (Italy)
+v035919  	VZ200           Ashlin Inwood.		           		8k DSE   
+v035991		VZ200		Craig Whitmore. 		NZ.		8k DSE
+v036078  	VZ200   	Keith Sircombe. 				8k DSE
+v036385		VZ200		Donovan Marshall
+v036419		VZ200		ex-Pete Hill.  --> ?
+v036616		VZ200		ex-Pete Hill.  --> ?
+v036868		VZ200		ebay german
+v036874		VZ200		ex-Pete Hill.  --> ?
+v036959		VZ200		Manuel Carvalho			Aus.		8k.	10/2025.
+v037219		VZ200		ebay
+v037312  	VZ200		ebay
+v037344		VZ200		Dean Bowerman
+v038079		VZ200		ex-Pete Hill   --> ?
+v039220		VZ200		German Ebay via John Layt	Germany		8k	6/4/26
+v039919		Laser200	Martin Vilcans
+v040636		Laser200	google. 			French.	
+v040963		Laser200	Andrew Laird.			Aus
+v041148		VZ200		Frank Doege
+v041178		VZ200		Thomas OderausVkommt					13/06/25
+v041750		VZ200		Alan Laughton			Aus		8k	19/09/25
+v041843		VZ200		Craig Whitmore			New Zealand.
+v042042		Laser200	Tommy Oversen's.  		Norway. 
+v042307		VZ200		Craig Whitmore			Aus.
+v044268		VZ200		Brian Mora			Aus
+v044427 	VZ200 		Matheus Geraldini Dos Santos
+v045043		VZ200 		Guy Thomason			Aus
+v045046		VZ200		James Diffendaffer. 		USA PAL. 	4k.  Factory colour disable switch.
+v045053		VZ200		Manuel Carvalho			Aus.		8k.	10/2025.
+v045224		VZ200		Brendan Murphy			Aus.
+V045395		VZ200		Steven York			Aus			02/26	
+v045426		VZ200		Brenden Murphy			Aus
+v048292  	Laser200    	Sylvain Louvel			France.  Secam. 4k
+v048506		VZ200		Manuel Carvalho			Aus.		8k.	10/2025.
+v048614		VZ200		Aaron Clarke			Aus.		8k	13/03/26
+v048972    	VZ200    	Brendan Murphy - Marketplace 	Aus.		8k	16/09/26
+v048978 	VZ200 		Andrew Round						1/7/25.
+v049025		VZ200		Philip Yarra
+v049196  	VZ200		Mark Lewin			Aus.	 	8k. 	05/25
+v049411		VZ200		Ebay
+v049718		VZ300 g1	FB
+v049976		VZ200		Darren Ottery
+v050581		VZ200		Google. 			germany
+v050991		VZ200		Ebay via Jason			Aus.	 	8k.	09/25
+v051080		VZ200		Google. 			germany. 	4k. 
+v051647		Laser310 g1	Google. 			germany
+V051701		VZ200	  	Ebay 24/3/2026
+v052298		VZ200		JOhn Layt			UK	PAL.	8k	11/25.  DSE VZ200.
+v052313		VZ200		Craig Whitmore Trademe.co.nz	NZ
+v053571		VZ200		zoltan berenyi. 		Germany.	4k 	
+v053868		VZ200		FB - German for sale site.	Germany.		04/25.	
+v054217		VZ200		Chris Kilby			AUS		8k	05/26.  Richmond, Melbourne
+v054330		Laser210	John Layt			UK	 	8k	08/25
+v054576		Laser200        Bill Yow
+v054926		VZ200		Jacob Squires.			Aus.			03/25.
+v056853		Laser200	Thomas Kalbe				 	4k.
+v057603		Laser200	Andres Gamero Roca
+v058431 	Salora Fellow  	Jos Hermans                                      
+v058759 	Salora Fellow	Jos Hermans     - Assume Salora as Base plate missing.
+v058873		salora Fellow	Google						4K 		 SALORAoy SALO FINLAND Home computer Type Fellow.	4k 
+v060660		Salora Fellow	Nordic Retro Devices (YT)	Finland 	4k 	13/5/26. SALORAoy SALO FINLAND Home computer Type Fellow.	4k 	
+v060810  	Laser200        Alexandros Mpatsis 
+v060847		Laser200	Google. 			     Secam	4k
+v061426		Salora Fellow   ebay				UK   Secam	4k	18/9/26. SALORAoy SALO FINLAND Home computer Type Fellow.	4k
+v062788		VZ200		Aaron Climas. 			Aus.	 	8k.   
+v063144		Laser200 	FB via Stephanie LeMochi 	France.	4k	09/26.
+v063413		Laser210	Google. 			Germany. 	4k.
+v064077      	Salora Fellow   Jalonen Jari.  "SALORAOY SALO FINLAND Home computer Type Fellow"
+v064138		Salora Fellow	Jalonen Jari found on Finland sales market	4k.	8/4/26
+v064759		Laser210	stephane Motschw. 	french secam video qwerty
+v064886		Laser200	ebay
+v066301		Laser200	John Layt			French			089/26
+v066539		VZ200		Geronimus			Aus
+v066629		VZ200		Ben Grimmett			Aus	 	8k.
+v066914 	VZ200		John Layt			UK.  PAL.	8k	11/25.  DSE VZ200.
+v067233		Laser200	FB - Anuwat Ngowchieng.		Thailand.	4k.
+v067273		VZ200		Brian Mora			Aus. PAL.	8k	
+v067455		VZ200		Danny L'Estrange
+v067509		VZ200		Elisa Black
+v067741 	VZ200		Andrew Round						1/7/25.
+v068988		vZ200		Ben Grimmet			Aus. PAL.	8k
+v069007		VZ200		ebay via Jason			Aus. PAL	8k	20/5/26.
+v069226 	VZ200		Andrew Round						1/7/25.
+v069579		VZ200		Mark Yelich			Aus. PAL.	8k
+v069599		VZ200		ebay
+v070183		VZ200		Dave Everett			Aus. PAL.	8k
+v070665		VZ200		Leslie Ayling			Aus. PAL.	8k	13/06/2025
+v071282		VZ200		Gregory Cumming			Aus. PAL.	8k	25/11/25
+v071548		Laser200	Stephane LeMochi		France.		8k	28/11/25
+v072894		VZ200		ebay
+v074050		Laser200	Oyvind Hjelleset		Norway. 	4k	09/06/26
+v074869		VZ200		ebay
+v074973		VZ200		ebay
+v075055 	VZ200		Dominic Skilton			Aus. PAL.	8k	2/4/25. Dick Smith @$199.  Cannington, Western Aus, 1982.   Current location: USA
+v075072		VZ200		Gerry McKee
+v075172  	VZ200		Rhys Weatherly			Aus. PAL.	8k	
+v075409		VZ200		Derek Christenson		USA
+v075803		VZ200           FB/ebay lising
+v075846		VZ200		Stephen York			Aus. Pal	8k	8/4/26
+v075969		vz200		google
+v076122		VZ200 		ebay
+v076132		VZ200		Manuel Carvalho			Aus.		8k.	10/2025.
+v076213		VZ200		Andrew Laird 			Aus		8k. (ex-Barry Hubble)
+v076916		VZ200 		Guy Thomason			Aus		8k.
+v077020  	VZ200           Blake Wyman. 			Aus.		8k
+v077130  	VZ200           Alexandros Mpatsis. 		Germany.
+v077451		VZ200		ex-Pete Hill			
+v077560  	VZ200		Phil whybrow			Aus 		8k.	05/2025.
+v077897		VZ200		Andrew Laird			Aus
+v077912		VZ200		Andrew Laird			Aus
+v077979		VZ200		Ian Pople
+v078111		vz200		Ben Grimmet			Aus
+v078693		VZ200		James Diffendaffer. 		USA 		4k.	NTSC. 
+v081034		DSE TypeWrite	Google
+v085976		Laser200	Christophe Pousset
+v086797		Laser200	Leslie Ayling			Aus
+v087022		Laser200	eBay.				Spain. 		4k	13/06/25
+v087234		Laser200   	Altinu Aletienun				18k	08/26       
+v087752  	Laser200	sk Leung.			China.		8k.
+v088237		VZ200           FB via eBay.
+v088667		Laser200	China flea market.		China.			20/06/25. Supplied by SK Leung. 	
+v088857		Laser200 	Arpad virag
+v090347		Laser200	Google. german. 				4k.
+v091248  	Laser310 g1     Google.						18k
+v092187  	Laser310 g1     Italia eBay.  Localised serial: 000961.		18k
+v093682		Laser110	Italia eBay.					4k	06/2025.
+v095503		Laser310 g1	Riccardo Altamura		German. Pal	18k	05/2026.
+v098253		Laser110	Altinu Aletienun				4k	02/2026.  DOS 2.0
+v098710		Laser200	SK Leung.			China.		
+v102xxx  	Laser310 g1     Google image search.				18k
+v102???		Laser310 g?	google						18k
+v100337		Laser200 g2	FB. SK Leung.			China.				New PCB layout  ("Seltron Gen 2" layout) 
+v100367		Laser200 g2	FB. SK Keung.			China.				New PCB layout (("Seltron Gen 2" layout) 
+v100935		Laser110	John Layt.					4k.    	08/26
+v101475  	Laser310 g1	ebay via Ernst Teunner.  	German		18k	13/9/26
+v101845		Laser310 g1	Ebay via Leslie 		France listing	18k	08/26		
+v103159		Laser110 	FB. Daniele Bene Tti				
+v103321		Laser200 g2	SK Leung (QQ). 			China. 		4k. 		("Seltron Gen 2" layout) 
+v104797		Laser310 g1	Sk Leung 			China.		18k
+v106288  	Laser310 g1	google						18k
+v106446		Laser310 g1	eBay.	Germany.				18k	06/2025.
+v106564		Laser310 g?	SK Leung.			China. 		18k
+v108671		Laser310 g?     Bill Yow					18k
+v109860		Laser310 g1	China flea market.		China.	PAL	18k. 	20/06/25. Supplied by SK Leung. 	
+v110043		Laser310 g1	Sk Leung			China.		18k
+v110424		Laser310 g?	SK Leung.			China. 		18k
+v112909  	Laser310 g1  	Antonino					18k
+v116824 	Laser310 g?	SK Leung.			China.		18k
+v117034		Laser310 g?	Google.						18k	06/2025.
+v117571		Seltron200 g2	https://hup.hu/node/100360 			4k.     06/2025. ("Seltron Gen 2" layout) 
+v118148		Laser310 g1	China flea market.		China.	PAL	18k. 	20/06/25. Supplied by SK Leung. 	
+v118314		Seltron200 g2	https://www.retropages.hu/theme_Seltron.html 	4k.	06/2025. ("Seltron Gen 2" layout) 
+v118323		Seltron200 g2	Brian Mora. 					4k.		 ("Seltron Gen 2" layout) 
+v120859		Seltron200	eBay.				Italy.		4k.	06/2025
+v123348 	Laser310  	Altinu Aletienun     				18k	11/3/26	  extra number: 2100123348
+v123771		Laser310 g1	Rob Glazebrook 					18k
+v125339		Laser310 g1	google						18k
+v125987		Laser310 g1	google				Luxemborg. 	18k. 	13/8/25 SECAM.		https://computarium.lcd.lu/photos/albums/VTECH_LASER310/album/slides/DSC02985.html
+v133288		VZ300 or Las310	SK Leung.			China. 		18k
+v135573         DSE Typerite	Aaron Climas			Aus
+v135577		Laser310 g1	SK Leung.			China. 		18k
+v135987		Laser310 g1	google.	 image search.				18k
+v136322		Laser310 g1	John Layt 	 				18k. Secam.30/08/25.
+v136585		Laser310 g1	China flea market.		China.		18k. PAL.20/06/25. Supplied by SK Leung. 	
+v138011		Laser310 g1	SK Leung. 					18k
+v138547  	VZ200   	David Calleja.(2022).  				8k	Re-advertised on FB:05/22. ebay '23,04/24. FB:05/24. 8k. DSE
+v138677		VZ200		Dave Everett.			Aus. 		8k.
+v139117		VZ200		Nigel Somerville. 				8k.
+v139304		VZ200		eBay. Apr24. 					8k.
+v139974		Laser310 g1	SK Leung.			China.		18k
+v140792		Laser200	QQ. Laser200 			China. 				Logo is orange instead of blue
+v142835  	VZ200           Google.						8k
+v143351  	Laser310 g1    	Alexandros Mpatsis.				18k
+v143838		Laser310 g1	Ingeniero RetresLabs.			SECAM. 	18k	16/07/25.
+v145007		Laser310 g1	Christophe Pousset.		France.		18k
+v145961		Laser310 g1	Christophe Pousset. SECAM	France.		18k
+v146546		Laser310 g1	Daniele Bene Tti.				18k
+v147387  	Laser310 g1    	Alexandros Mpatsis.				18k
+v147933		Laser310 g1	Gabor Orvos			Hungary		18k	09/08/26
+v147992		DSE TypeWrite	Google
+v148200		Laser310 g1	eBay						18k
+v148851		Laser310 g1	SK Leung.			China.		18k
+v151254		laser310 g1	Google. 			China website.	18k	
+v151294		Laser310 g1	SK Leung.			China.		18k
+v151321		VZ300 g1	Shane Broadbent.		Aus.		18k
+v151911		laser310 g1	eBay						18k
+v154217  	Laser310 g1	Google.						18k
+v154254  	Laser310 g1	Google.						18k
+v155158		Laser310 g1	eBay						18k
+v15524x		Laser310 g1	SK Leung.			China.   	18k		label ripped.			
+v155716 	Laser310 g1	LogicGeek - video on archvive.org		18k
+v160020		Laser310 g1	SK Leung.			China.		18k
+v160993  	Laser310 g1     Google.	  			Italy		18k
+v165008		Laser310 g1	Bill Yow.					18k
+v170750 	VZ300 g1	Guy Thomason			Aus.		18k
+v170775  	VZ300 g1	Andrew Laird			Aus.		18k
+v177050		Laser310 g1	FB		Secam				18k
+v176995		Laser310 g1	ebay						18k
+v177918 	Laser310 g1	SK Leung. 			China.		18k
+v179503		Laser310 g1	Thomas OderausVkommt.		Norway.		18k	16/04/25			
+v179276		Laser310 g1	ebay						18k	27/1/26
+v183031		Laser310 g1	Arpad virag.					18k
+v184530		Laser310 g1	Derek Christenson.		USA.		18k
+v187579     	Laser310 g1	Altinu Aletienun				18k	08/26
+v189022  	VZ300 g1  	Craig Procter.					18k
+v189041		VZ300		ebay via Andrew L.				18k
+v189189		VZ300 g1	ex-Peter Hill.					18k
+v189212		VZ300 g1	Andrew Round			Aus. 		18k	1/7/25.
+v189418 	vz300 g?	James Hannagan.					18k
+v190930		Laser310 g1	Kris Garrein.					18k
+v191065  	Laser310 g1     Google. image search.				18k
+v191294		Laser310 g1	Google. image search.				18k
+v192105		VZ300 g1	Andrew Laird.			Aus.		18k
+v192189		VZ300 g1	Hakan Bayar Kemal.		Aus.		18k
+v192293		VZ300 66k g3	SK Leung.			China.		66k.
+v192987		Laser310 g1	Google.  secam					18k
+v194217  	Laser310 g1     Google. image search.				18k
+v200502		VZ300 g1	Dave Maunder.			Aus. 		18k	April 1985. Tamworth DSE.
+v200540		VZ300 g1	eBay.						18k
+v200771 	VZ300 g?	Andrew Round			Aus. 		18k	1/7/25.
+v200887 	VZ300 g1	Bradley Goldsmith		Aus		18k.	7/07/26
+v201063		VZ300 g?	Gavin Maxwell.					18k
+v201124		VZ300 g?	Gregory Cumming			Aus.		18k	25/11/25.
+v201185  	VZ300 g3	Web.						18k
+v201236		VZ300 g?	Danny L'Estrange.				18k
+v201347		VZ300 g1	Dave Maunder.			Aus. 		18k		ex Mark Harris.
+v201671		VZ300 g?	Leslie Ayling 			Aus. 		18k	13/06/2025
+v201783		VZ300 g2	Ben Grimmett.			Aus. 		18k.
+v201996		VZ300 g1	Geoff Williams.			Aus. 		18k.
+v202058		VZ300 g2	eBay				Aus. 		18k.	03/2025.
+v202165		VZ300 g1	ebay				Aus.		18k.	07/2026.
+v202330		VZ300 g2	Andrew Laird 			Aus. 		18k. 		(ex-Barry Hubble)
+v202348 	vz300 g2	eBay. 				Aus. 		18k. 
+v202349		VZ300 g?	serial ripped,unclear if 2349	Aus. 		18k.
+v202435 	VZ300 g1	Steve Thorley.			Aus. 		18k.
+v203149 	VZ300 g1	Heath Glover.			Aus. 		18k.
+v203236		VZ300 g1	email.				Aus. 		18k.
+v203912 	VZ300 g1	Dave Maunder.			Aus. 		18k.	ex Jason Oakley
+v204254		VZ300 g3	Stephen Hart.			Aus. 		18k.
+v204284		VZ300 g?	Shaun Casser.			Aus. 		18k.
+v204348		VZ300 g2  	Darryn Hancock.			Aus. 		18k.
+v204468 	VZ300 g2	Andrew Laird.			Aus. 		18k.
+v204761		VZ300 g2	ACMs via Dave Everett		Aus. 		18k.	26/7/2025
+v204853		VZ300 g?	Ebay (advised by Andrew)	Aus.		18k.	27/2/2026
+v204891  	VZ300 g3     	Google/The Liberator				18k.
+v205250		VZ300 g2	Jason Oakley.			Aus. 		18k.
+v?20682?	VZ300 g2	Ian Salmon. 					18k.
+v208601		VZ300 g2	Brendan Murphy.			Aus. 		18k.
+v209294		VZ300 g2	Kris Garrein. 					18k.
+v209751  	VZ300 g1	Dean Bowerman. 					18k.
+v210889		Laser 500	Kris Garrein. 					18k.
+v213837		Laser 500	Google. 					18k.
+v216085		Laser 500	stephane Motschw. 				18k			Peritel/scart and Azerty
+v216537		VZ300 g2    	Steve Thorley 					18k.	12/6/1986	Purchase date : 12/6/1986
+v216633  	VZ300 g3     	eBay via FB.  					18k.
+v216886		VZ300 g2	Brendan Murphy.			Aus. 		18k.
+v219274		VZ300 g3	Adrian Gregg			Aus.		18k.	27/4/2026
+v217570		Laser 500	Bill Yow. 					18k.
+v223381		Laser 500	Google. 					18k.
+v223545 	VZ300 g3	Google. image search. 				18k.
+v223559		VZ300 g3	Stephen York. was Ebay via Jason. Aus.		18k.	04/05/2026
+v223789  	VZ300 g3	Craig Marshall. 				18k.
+v224657		VZ300 g3	Andrew Laird.			Aus. 		18k.
+v224796		VZ300 g3	Brian Mora.			Aus. 		18k.
+v224844		VZ300 g3 	eBay. 						18k.
+v225136		VZ300 g3	Brian Mora --> Robert Martin.  	Aus. 		18k.	05/2025
+v225151  	VZ300 g3   	Ingar Meins. 					18k.
+v225249		VZ300 g3	Ian Pople. 					18k.
+v225275		VZ300 g3	Dave Maunder.			Aus. 		18k.
+v225408		VZ300 g3	Brian Mora.			Aus. 		18k.
+v225484		VZ300 g3	Ian Mavric.			Aus. 		18k.	28/3/2025
+v225552		VZ300 g3	ex-Peter Hill. 					18k.
+v225988 	VZ300 g3 	Robert Baskerville. 				18k.
+v227191		VZ300 g3 	Kevin Parker. 					18k.
+v227314  	VZ300 g3	Brendan Murphy.			Aus. 		18k.
+v227491 	VZ300 g3	Adrian Greg.				 	18k.	~20/6/25
+v227748		VZ300 g3	Guy Thomason.			Aus. 		18k.
+v227778		Laser310 g3	QQ forum.			China. 		18k
+v228046		VZ300 g3	Geronimus. Ex-Dave Maunder. Ex-Ben Hobson. 	18k		Tamworth DSE 1987.
+v228102		VZ300 g3	Shane Broadbent.		Aus. 		18k.
+v228196		VZ300 g3     	Andrew Cole.		 	Aus. 		18k.			03/2025.
+v228381		VZ300 g3	Jonathan Gobin. 				18k.
+v228989  	VZ300 g3     	FB marketplace 					18k.
+v229032		Laser 500       Google. 					18k.
+v229631		VZ300 g3	Dean Thompson.			Aus. 		18k.
+v229751		VZ300 g3	Edward Jones. Matt O'Callaghan	Aus.		18k.		01/2026 					18k.
+v230356		VZ300 g3	Jason Oakley.			Aus. 		18k.
+v230413		VZ300 g3 	Ebay. 				Aus. 		18k.		01/2026	(has distinctive reset switch)				Aus. 		18k. Pal.		1/12/25	
+v230509  	VZ300 g3 	Kevin Parker. 					18k.
+v230839		VZ300 g3	Bradley Goldsmith		Aus		18k.		7/07/26
+v230958		VZ300 g3	Dave Maunder.			Aus. 		18k.
+v231184		VZ300 g3	ex-Peter Hill --> ? 				18k.
+v231251		VZ300 g3	ex-Peter Hill --> ? 				18k.
+v231711		VZ300 g3	Brett Armstrong			Aus		18k.		8/7/26
+v231849		VZ300 g3	Guy Thomason.			Aus. 		18k.
+v23185x		VZ300 g3	Youtube				China		18k		05/2026. missing last digit.
+v231903		VZ300 g3  	Kevin Parker. 					18k.
+v231910 	VZ300 g3	Google. image search. 				18k.
+v231965 	VZ300 g3   	Darryn Hancock. 				18k.
+v232207		VZ300 g3	ex-Peter Hill. --> ? 				18k.
+v232438		Laser 700	Leslie Ayling.			Aus. 		18k.
+v234050		VZ300 g3	FB market place. 				18k.
+v234256		VZ300 g3	ebay				Aus. 		18k. Pal.	09/2025
+v234907		VZ300 g3	Andrew Laird 			Aus. 		18k. (ex-Barry Hubble)
+v234951		VZ300 g2	Randall Crook.			Aus. 		18k.
+v235156		VZ300 g3	Macro Daemon. 					18k.
+v235311		VZ300 g3	Brian Mora. 			Aus.		18k.		05/2026
+v235180  	VZ300 g3   	Macro Daemon. 					18k.
+v235513		VZ300 g3 	Ryan Tremble. 					18k.
+v235541		VZ300 g3	ex-Peter Hill --> ? 				18k.
+v235584		VZ300 g3	Ben Beazley.			Aus.	 	18k.
+v235592		VZ300 g3	Ben Grimmett.			Aus. 		18k.
+v236100		VZ300 g3 	Google. 					18k.
+
+
+
+
+
+
+Datacasette
+-----------
+
+C010306		DR10 		Ebay	X-7207	ebay
+C010199		DR10 		Ebay	X-7207
+C011319.	DR10 		FB	X-7207	Shane Broadbent
+C011457		DR10 		Ebay	X-7207
+C011764		DR10 		FB	X-7207
+C023703		DR10 		FB	X-7207  Grant Holdom
+C084216		DR10		ebay
+C084287		DR10 		FB	X-7207	Hakan Bayar Kemal
+C108822		DR10		ebay	X-7207  Bradly Goldsmith
+C113060		DR10		FB		Nordic Retro (Youtube). Salora DR10.
+C114538		DR20 		EBAY	X-7207
+c009942		DR30		EBAY
+C022071		DR30 (slimline)	FB	X-7311	Kris Garrein
+C038192		DR30 (slimline)	FB	X-7311
+C192416		LASER DR10	
+
+
+Floppy Drives
+-------------
+116770. 	MOTAT NZ Mueseum
+		Dave Maunder
+		Dave Maunder
+		Dave Maunder
+
+
+
+Laser 3000
+-----------
+25358		Laser 3000  (Google)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
