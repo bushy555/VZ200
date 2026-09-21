@@ -1,0 +1,78 @@
+
+
+$5F00 - OpenFile
+-----------------
+Description	: opens selected file
+Call		: call 	5f00h		
+in		: HL = pointer to filename
+in		: a  = filehandle number. Starting typically at 1.
+Jump table	: 5ff0h
+
+
+$5F03 - Select Handle
+----------------------
+Description	: Selects Handle. Loads first frame into the ram buffer.
+Call		: call 	5f03h		
+in		: a  = filehandle number. Starting typically at 1.
+
+
+
+$5F06 - DrawFrame
+------------------
+Description	: Draw frame from buffer to video ram.
+Call		: call 	5f06h		
+Jump table	: 5FF6h
+
+
+$5F09 - FAT_NextSector 
+----------------------
+Description	: copies 512 bytes from ram buffer to designated memory location
+Call		: Call 5F09h
+In		: Word location at FB80h is designated destination memory location. 
+                : Setting FB80h to $7000 to copy first sector of 512 bytes over to screen from rambuffer.
+		; One entire screen in MODE(0) or first 512 bytes in MoDE(1)
+
+
+$5FF0 - Jump table
+-------------------
+$5FF0		; OpenFile
+$5FF3		; SD2VRAM
+$5FF6		; DrawFrame
+$5FF9		; Fat32_Root
+
+
+
+
+
+Example, taken from AHAFAST video.
+------------------------------------
+
+	ld 	a, 08H			;set hires mode
+	ld 	(6800h), a
+	ld	a, 1
+	call 	$5f00			; OpenFile
+	ld 	a, 1
+	call 	$5f03			; SelectHandle - This loads the first frame into RAMbuffer, not VRAM! 			
+					; Add an extra sector to the DAT file, or copy from buffer to vram
+infloop:ld 	HL,7000h
+	ld 	(SDbufferAddress),HL
+	call 	FAT_NextSector ;512 bytes to vram
+	ld 	HL,7200h
+	ld 	(SDbufferAddress),HL
+	call 	FAT_NextSector ;512 bytes to vram
+	ld 	HL,7400h
+	ld 	(SDbufferAddress),HL
+	call 	FAT_NextSector ;512 bytes to vram
+	ld 	HL,7600h
+	ld 	(SDbufferAddress),HL
+	call 	FAT_NextSector ;512 bytes to vram
+	jr 	infloop
+
+
+FILENAME:	
+	.db 	22h,"AHA",22h 	; filename to load
+
+SDbufferAddress	.equ 0FB80h;
+FAT_NextSector 	.equ 05F09h;
+	
+.end

@@ -1,0 +1,104 @@
+How to do a FACEBOOK video to VZ.   (Rough guide)
+=================================================
+
+Get Facebook video into MP4/AVI.
+-------------------------------
+Since facebook is next to useless in saving or grabbing or recording a posted video, need to take things into 
+your own hands, by finding a cool freeware video grabber that will record straight to an AVI / MP4 video file.
+A million utils come back when you do a google; most are utterly crapware in that they advertise as free and 
+free download, and will install, but you go to run them and will want you to make payment. At this point, you
+then find the contact details of the website, and fully *BLAST* them about their crapp crappy greedy money crap
+software. Get stuck into them.
+From memory Windows 10 and 11 might have its own screen recording software now. I try not to use Win 10/11 so
+Im only having an educated guess here.  Find a screen recorder, Im sure that someone reputible such as NCH Software
+might do a half decent recorder.
+Find something that will work, installed. Select the area around the Facebook video post. Play the video and record it.
+If the video plays two or three times as a loop, may as well try to record all two or three looped animations.
+
+
+Extraction.
+-----------
+Do a few googles on online free MP4toBMP or AVItoVMP. You will eventually find one that will work for nix. 
+There are thousands of these as well. Upload your AVI or MP4, and will be able to download an extraction of the
+Facebook animation as a bunch of BMP files. Or PNG if you are that way inclinded.
+
+Failing all of this, grab the GNU freeware util: FFMPEG.
+
+From Ben's original doco:
+
+Command line:
+
+FFMPEG -i source.mp4 -r 12 -f image2 -vf format=gray -s 128x64 .\output\%d.bmp
+
+>  r 12 = frame rate, 12 frames per second. Adjust to suit. 
+>  This will be higer when I tidy up the code. Source can be a range of video formats. 
+>  Make an ouput sub-directory.
+>  After running this, you'll get hundreds/thousands of bitmap files in the output sub-folder.
+
+
+
+Cleanup.
+---------
+Go through the tens/hundreds/thousands of BMP files, and mark the ones you want to keep for the animation.
+Delete those that you don't want.
+I mentioned to record a looped animation a few times; this is in case within the first loop a recorded 
+split screen , or partial displayed screen, has been recorded. You will most likely be lucky to get a 
+cleaner recorded , but same image, within the recorded second looped animation. If this is the case,
+grab the same recorded BMP image from within the second looped lot of BMP's and replace it in the first 
+lot of BMPs (...if aframe is split, or half recorded or something like it).
+
+This process will perhaps take the most time.
+
+Cleanup 2
+---------
+Depending on the number of images,  simple animation may have 20 to 50 frames.
+Can easily handle manipulation with these numbers, such as a 128x96 frames and manually copy / paste 
+a section from a specific X & Y axis into, say 128x64.  A few hundred images and copy/paste is perhaps 
+getting  a bit silly.
+
+May need to use Paint SHop Pro, to resize each frame. And/OR reduce the colour set by CTRL-SHIFT-6 . 
+I forget the actual workflow process, but this can be done before or after Dithertron.   
+In Paint Shop Pro, resize / recolour / resave-as Windows BMP.
+Recolouring to 4 colour will put the colour pallet out-of-whack.
+Down further below, oince the DAT file is created, and use 4-color-maniupulator to change colours 
+within the outputed stacked DAT file. Works.  
+16-bit Util: STRIP117.EXE
+
+
+Use www.dithertron.com  (Google : "Dithertron") select 6847 and either 128x64 or 128x96 or 128x192.
+Load in each frame image, and save as PNG.  Dithertron can clean up the recorded colours close to that 
+of the 6847. 
+
+
+STACKER
+-------
+Use the BMPtoJVD 4 colour Stacker.  This loads in all frames, sarting from 1.BMP, 2.BMP, 3.BMP etc and 
+adds them together (stacks them) as one contiguous / continuous file.
+COPY /B 1.BMP + 2.BMP + 3.BMP OUT.DAT  might also work. Maybe the BMP header will get in the way(?)
+
+
+LOADER
+-------
+Simply use the AHAFAST.ASM loader. Change the inputted read filename.
+Assemble to a .VZ file
+
+
+OUTPUT & VZ
+-----------
+Copy the .VZ file and the .DAT file to a SD card, chuck SD card into the VZ SD Loader.
+Boot, and then:
+LOAD "FILE"			....sit back and watch.
+
+
+Colours
+---------
+Then you work out that the colours are all wrong, or yellow & blue need to be swapped.
+This is where the 4-colour-manipulated util will work to move/swap/change colours within the 
+video DAT file, from one colour to another.
+To do:  make or allow for a fifth temp colour so that individual specific colours can be moved.
+
+After swapping colours, recopy, re-watch.
+
+
+
+

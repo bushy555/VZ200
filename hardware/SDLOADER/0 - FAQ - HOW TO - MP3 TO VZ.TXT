@@ -1,0 +1,49 @@
+How to do a MP3 song to VZ.
+1) Get MP3 song.
+
+2) Convert to WAV file. 
+   I use a windows util program called Format Factory.
+   Audacity will work just as fine.
+
+3) Split the WAV file into 500,000 byte segments. 
+   I use a cool old-school 1990's 16-bit windows program called 'split and join'.
+   This splits the WAV file into a number of 500,000 chunks.
+   Why? Because of step 5.
+
+4) Run Renamer. This is only for the above SPLIT & JOIN program.
+   The output format of the filenames is convoluted.
+
+5) Run old-school 16-bit command line util : WAV2DB.EXE
+   This creates an .ASM source file full of defined byte values read in from the WAV file.
+   This program can only handle 500k or 512k as an input .WAV file. Hence the split in step 3.
+   There is probably a far better and newer util to do this. I have to find it.
+
+6) Edit each of the .ASM sources that relate to each of the 500k segments.
+   Remove the second line which is a defined word with the length of sampled WAV.
+   This is not needed, so delete it.
+   Depending on your assembler,  " .DB " may be acceptable.
+   I use PASMO, and is easier just to have "DB".
+   So I use notepad to simply find & replace all periods / full stops and replace with nothing.
+   Save them all.
+
+7) Run 2ASMER.  Assembles all of the 500k asm source listings in one go.
+   Then it will join all of the object files into one assembled sample .DAT file.
+
+8) Name the sample .DAT file appropriately to that of what the calling player program wants.
+
+9) Find an existing player. Edit it and change source WAV filename within. Assemble player.
+
+10) copy the Player and the .DAT file on to your SD Loader, run the player and enjoy the tunes.
+
+
+
+
+;	WAV value		2bit	: Output to 
+;	range	  	output	:  $6800      (in binary)        Cassette port
+; --------------------------------------------------------------------------------
+; 	0-63	  	00	: 00          00000000              00   00000000
+;	64-127	  	01	: 01	      00000001              02   00000010
+;	128-191	  	10	: 32          00100000              04   00000100
+;	192-255	  	11	: 33	      00100001              06   00000110
+
+
