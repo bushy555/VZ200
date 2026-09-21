@@ -1,0 +1,170 @@
+ROM Changes required in VZ300 ROM V2.0 to support 64x16 screen mode
+
+
+
+RAM:0317 01 20 00                    ld      bc, 32				$0020 => $0040
+
+RAM:0353 E6 1F                       and     1Fh				$1F => $3F			# Not reachable?
+RAM:0355 E6 1F                       and     1Fh				$1F => $3F
+
+RAM:03EF FE 71                       cp      71h ; 'q'				$71 => $73
+RAM:03F4 FE E0                       cp      0E0h				$E0 => $C0
+
+RAM:043A D6 20                       sub     32					$20 => $40
+
+RAM:045C 3E 40                       ld      a, 40h ; '@'			$40 => $80
+RAM:0466 06 20                       ld      b, 20h ; ' '			$20 => $40
+
+
+RAM:0482 01 20 00                    ld      bc, 20h ; ' '			$20 => $40
+RAM:0488 06 40                       ld      b, 40h ; '@'			$40 => $80
+RAM:048C 06 20                       ld      b, 20h ; ' '			$20 => $40
+
+RAM:0556 C6 20                       add     a, 20h ; ' '			$20 => $40
+
+RAM:2079 FE 02                       cp      2					$02 => $04			
+RAM:2087 E6 1F                       and     1Fh				$1F => $3F
+
+
+RAM:309B 01 00 02                    ld      bc, 512				$0200 => $0400			; only 512 bytes in normal 32x16 text mode
+
+RAM:30D7 FE 20                       cp      32					$20 => $40
+RAM:311F 01 20 00                    ld      bc, 20h ; ' '			$20 => $40			; go to next line
+RAM:3124 FE 72                       cp      72h ; 'r'				$72 => $74			; past end of text screen? $7000-$71FF
+
+RAM:31C3 FE 20                       cp      32					$20 => $40			; past end of screen line?
+
+RAM:31FD FE 72                       cp      72h ; 'r'				$72 => $74
+RAM:320D FE 72                       cp      72h ; 'r'				$72 => $74
+RAM:3233 3E 1F                       ld      a, 31				$1F => $3F
+RAM:3259 01 20 00                    ld      bc, 32				$20 => $40			; 1 line of chars
+RAM:3273 01 20 00                    ld      bc, 32				$20 => $40			; 1 line of chars
+RAM:327B FE 72                       cp      72h ; 'r'				$72 => $74			; if a linefeed would put us past end of screen mem, scroll (maybe twice)
+RAM:3298 01 00 02                    ld      bc, 200h				$0200 => $0400			; only clear the text area $7000-$71FF
+RAM:32D0 FE 1F                       cp      31					$1F => $3F
+RAM:32DC 01 1F 00                    ld      bc, 31				$1F => $3F
+RAM:32EC 3E 1F                       ld      a, 31				$1F => $3F			; 1 line
+RAM:330D 01 3F 00                    ld      bc, 63				$3F => $7F			; two lines
+RAM:331C 3E 3F                       ld      a, 63				$3F => $7F			 ; 2 lines
+
+RAM:3330 FE 71                       cp      71h ; 'q'				$71 => $73			; See if Cursor address is somewhere on *last* screen line
+RAM:3335 FE E0                       cp      0E0h				$E0 => $C0
+
+RAM:3367 01 40 00                    ld      bc, 64				$0040 => $0080			; 2 screen lines worth
+
+RAM:336D 21 00 72                    ld      hl, byte_7200			$7200 => $7400
+
+RAM:3374 21 DF 71                    ld      hl, byte_71DF			$71DF => $73DF
+RAM:3377 11 FF 71                    ld      de, byte_71FF			$71FF => $73FF
+
+
+RAM:33DC FE 1F                       cp      31					$1F => $3F
+RAM:33E0 3E 1F                       ld      a, 31				$1F => $3F
+
+RAM:33F3 11 00 70                    ld      de, SCREEN_START							; start of 2K screen memory area
+RAM:33F6 21 20 70                    ld      hl, SCREEN_LINE_1			$7020 => 7040
+
+RAM:33F9 01 E0 01                    ld      bc, 1E0h				$01E0 => $03C0			; 15 lines of 32 chars
+RAM:3420 21 E0 71                    ld      hl, LAST_SCREEN_LINE		$71E0 => $73C0			; start of last screen line
+
+RAM:35C8 21 FF 71                    ld      hl, byte_71FF			$71FF => $73FF
+RAM:35CE 3E 1F                       ld      a, 1Fh				$1F => $3F
+
+
+
+RAM:3720 21 FF 71                    ld      hl, byte_71FF			$71FF => $73FF
+RAM:3723 22 20 78                    ld      (VIDEO_CURSOR_ADDRESS), hl
+RAM:3726 3E 1F                       ld      a, 1Fh				$1F => $3F
+RAM:3728 32 A6 78                    ld      (CURSOR_COLUMN), a
+
+RAM:37F9 11 E0 71                    ld      de, LAST_SCREEN_LINE		$71E0 => $73C0
+RAM:37FC 06 20                       ld      b, 32				$20 => $40
+
+RAM:3819 11 E9 71                    ld      de, byte_71E9			$71E9 => $73E9
+
+RAM:3F0E 11 E0 71                    ld      de, LAST_SCREEN_LINE		$71E0 => $73C0
+
+RAM:3F8C 01 00 02                    ld      bc, 200h				$0200 => $0400
+
+
+
+
+=================================================================
+
+Need to fix the maths for this routine
+
+old line starts = 
+7000, 7020, 7040 ... 71C0, 71E0
+
+new line starts = 
+7000, 7040, 7080 ... 7380, 73C0
+
+
+relevant old bits = 0000 0001 1110 0000
+relevant new bits = 0000 0011 1100 0000
+
+RAM:33A8             ; get "dirty bit" for current line => A
+RAM:33A8
+RAM:33A8             GET_CURR_LINE_DIRTY:                    ; CODE XREF: RAM:0431
+RAM:33A8                                                     ; RAM:0452 ...
+RAM:33A8 3A A6 78                    ld      a, (CURSOR_COLUMN)
+RAM:33AB 4F                          ld      c, a
+RAM:33AC AF                          xor     a
+RAM:33AD 47                          ld      b, a
+RAM:33AE 2A 20 78                    ld      hl, (VIDEO_CURSOR_ADDRESS)
+RAM:33B1 ED 42                       sbc     hl, bc          ; HL = start of current line now
+RAM:33B3 E5                          push    hl
+RAM:33B4 C1                          pop     bc              ; HL => BC
+RAM:33B5 78                          ld      a, b            ; BC = 7000, 7020, 7040....71E0
+
+RAM:33B6 E6 0F                       and     0Fh             ; a = 0 or 1
+RAM:33B8 CB 3F                       srl     a               ; a[0] to Carry
+RAM:33BA 47                          ld      b, a            ; B now == ZERO
+RAM:33BB CB 19                       rr      c               ; carry to C[7] and /2	rotate right through carry
+RAM:33BD CB 39                       srl     c               ; /4
+RAM:33BF CB 39                       srl     c               ; /8
+RAM:33C1 CB 39                       srl     c               ; /16
+RAM:33C3 CB 39                       srl     c               ; /32  BC now == 0-F
+RAM:33C5 21 D7 7A                    ld      hl, LINE_DIRTY_ARRAY
+RAM:33C8 09                          add     hl, bc          ; BC index into table
+RAM:33C9 7E                          ld      a, (hl)         ; get "dirty bit" for this line
+RAM:33CA C9                          ret
+
+
+New routine:
+
+33A8                          .ORG   $33a8   
+33A8   3A 4E 00               LD   a,(78a6)		; ld a,(CURSOR_COLUMN)
+33AB   4F                     LD   c,a   
+33AC   AF                     XOR   a   
+33AD   47                     LD   b,a			; BC = 00+ Cursor Column
+33AE   2A 8C 1E               LD   hl,(7820)		; ld HL, (VIDEO_CURSOR_ADDRESS)
+33B1   ED 42                  SBC   hl,bc		; HL = start of current line
+33B3   E5                     PUSH   hl   
+33B4   C1                     POP   bc			; HL => BC.  B = 70 ... 73, C = 20,40,80,C0
+33B5   78                     LD   a,b   ; 
+
+33B6   CB 11                  RL   c			; Shift top 2 bits of C into A
+33B8   17                     RLA			; and
+33B9   CB 11                  RL   c   
+33BB   17                     RLA      
+33BC   E6 0F                  AND   $0f			; Relevant 4 bits now in A
+33BE   4F                     LD   c,a   
+33BF   AF                     XOR   a   
+33C0   47                     LD   b,a			; BC = index to dirty byte table 0 .. F
+33C1   21 D7 7A               LD   hl,LINE_DIRTY_ARRAY	; Dirty byte table array
+33C4   09                     ADD   hl,bc   
+33C5   7E                     LD   a,(hl)		; Dirty byte for current line
+33C6   C9                     RET      
+33C7   00                     NOP      
+33C8   00                     NOP      
+33C9   00                     NOP      
+33CA   00                     NOP      
+
+
+SRL  = logical shift right	0 => 7:0 => C
+SLA  = Arithmetic shift left    C <= 7:0 <= 0
+
+RR c = rotate right s thru C	C => 7:0 => C
+RL c = rotate left s thru C	C <= 7:0 <= C
+

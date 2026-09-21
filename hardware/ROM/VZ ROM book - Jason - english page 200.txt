@@ -1,0 +1,130 @@
+page 200
+
+2D05	57			LD		D,A			; Format-flag = 0
+2D06	CD 49 2E	CALL	2E49H		; '+' Exclude outside number
+2D09	57			LD		D,A 		; Format-flag in D
+2D0A	7E			LD		D,(HL)		; Load characters from string
+2D0B	23			INC		HL			; Add 1 to string pointer
+2D0C	FE 21		CP		"!"			; Exclamation mark?
+2D0E	CA 14 2E 	JP		Z,2E14H		; Yes. Print the sign of the string.
+2D11	FE 23		CP		"#"			; Number/hash sign?
+2D13	28 37		JR		Z,2D4CH		; Yes. Analyse number field.
+2D15	05			DEC		B			; Decrease string length
+2D16	CA FE 2D	JP		Z,2DFEH		; B = 0? End of string.
+2D19	FE 2B		CP		'+'			; Plus?
+2D1B	3E 08		LD		A,8			; Format-flag = 8
+2D1D	28 E7		JR		Z,2D06H		; Yes. Jump back.
+2D1F	2B			DEC		HL			; Reload characters
+2D20	7E			LD		A,(HL)		
+2D21	23			INC		HL
+2D22	FE 2E		CP		'.'			; Fullstop?
+2D24	28 40		JR		Z,2D66H		; Yes. Determine decimal places
+2D26	FE 25		CP		'%'			; Percent?
+2D28	28 BD		JR		Z,2CE7H		; Yes. Format string.
+2D2A	BE			CP		(HL)		; Next sign?
+2D2B	20 D0		JR		NZ,2CFDH	; No. Go further
+2D2D	FE 24		CP		'$'			; Dollar sign?
+2D2F	28 14		JR		Z,2D45H		; Yes. Set format-flag
+2D31	FE 2A		CP		'*'			; Asterisk?
+2D33	20 C8		JR		NZ,2CFDH	; No. Go further
+2D35	78			LD		A,B			; Last character still in the formas string
+2D36	FE 02		CP		2			
+2D38	23			INC		HL			; Increase string pointer to next character
+2D39	38 03		JR		C,2D3EH		; No
+2D3B	7E			LD		A,(HL)		; Load character
+2D3C	FE 24		CP		'$'			; Dollar sign?
+2D3E	3E 20		LD		A,20H		; Bit 5 of the format flag for '*' = 1
+2D40	20 07		JR		NZ,2D49H	; No
+2D42	05			DEC 	B			; Subtract 1 from string length
+2D43	1C			INC		E			; Add 1 to number field length
+2D44	FE			DEFB	0EFH		; CP 0AFH Dummy-command
+2D45	AF			XOR		A			; Reset format-flag
+2D46	C6 10		ADD		A,10H		; Set bit 4 of format-flag to 1 for '$'
+2D48	23			INC		HL			; Add 1 to string pointer
+2D49	1C			INC		E			; Add 1 to number field length
+2D4A	82			ADD		A,D			; Link format-flag to the last
+2D4B	57			LD		D,A			; and in D
+2D4C	1C			INC		E			; Add 1 to number field length
+2D4D	0E 00		LD		C,00H		; Set number of decimal places to 0
+2D4F	05			DEC		B			; Subtract 1 from string length
+2D50	28 47		JR		Z,2D99H		; Is it zero? Yes. Format string is evaluated.
+2D52	7E			LD		A,(HL)		; Load the sign
+2D53	23			INC		HL			; Add 1 to string pointer
+2D54	FE 2E		CP		'.'			; Compare with period
+2D56	28 18		JR		Z,2D70H		; Determine number of decimal places
+2D58	FE 23		CP		'#'			; Hash-sign?
+2D5A	28 F0		JR		Z,2D4CH		; Yes. Continue to evaluate numeric field
+2D5C	FE 2C		CP		','			; Comma?
+2D5E	20 1A		JR		NZ,2D7AH	; No. Evaluate numeric field parameters
+2D60	7A			LD		A,D			; Set bit 6 of the format-flag for ',' 
+2D61	F6 40		OR		40H			
+2D63	57			LD		D,A
+2D64	18 E6		JR		2D4CH		; Continue at 2D4CH
+
+					; Determine the number of decimal places
+2D66	7E			LD		A,(HL)		; Load the sign
+2D67	FE 23		CP		'#'			; Hash-sign?
+2D69	3E 2E		LD		A,'.'		
+2D6B	20 90		JR		NZ,2CFDH	; No. Output period.
+2D6D	0E 01		LD		C,01H		; Decimal-places counter
+2D6F	23			INC		HL			; Add 1 to string pointer
+2D70	0C			INC		C			; Add 1 to decimal-places counter
+2D71	05			DEC		B			; Subtract 1 from string length
+2D72	28 25		JR		Z,2D99H		; Is it zero? Yes. Format string end.
+2D74	7E			LD		A,(HL)		; Load the sign
+2D75	23			INC		HL			; Add 1 to string pointer
+2D76	FE 23		CP		'#'			; Is it a hash-sign?
+2D78	28 F6		JR		Z,2D70H		; Yes!
+
+					; Evaluate the number field end parameters
+2D7A	D5			PUSH	DE			; Put the format flag on the stack
+2D7B	11 97 2D	LD		DE,2D97H	; Set return address
+2D7E	D5			PUSH	DE
+2D7F	54			LD		D,H			; Put the string pointer in DE
+2D80	5D			LD		E,L
+2D81	FE 5B		CP		5BH			; Is the last character an up-arrow?
+2D83	C0			RET		NZ			; No. Continue at 2D97H
+2D84	BE			CP		(HL)		; And the next 3 characters
+2D85	C0			RET		NZ			; No!
+2D86	23			INC		HL			
+2D87	BE			CP		(HL)
+2D88	C0			RET		NZ			; No!
+2D89	23			INC		HL	
+2D8A	BE			CP		(HL)		
+2D8B	C0			RET		NZ			; No!
+2D8C	23			INC		HL	
+2D8D	78			LD		A,B			; Is string-length less than 4?
+2D8E	D6 04		SUB		04H			
+2D90	D8			RET		C			; Ignore the 4 arrows
+2D91	D1			POP		DE			; Return address from stack
+2D92	D1			POP		DE			; Load format-flag
+2D93	47			LD		B,A			; Subtract 4 from string length
+2D94	14			INC		D			; Set bit 1 of the format flag for exponent output
+2D95	23			INC		HL			; Add 1 to string pointer
+2D96	CA			DEFB	0CAH		; JP Z,D1EB Dummy-command
+2D97	EB			EX		DE,HL		; Put string pointer back in HL
+2D98	D1			POP		DE			; Load format-flag
+2D99	7A			LD		A,D			; Put format-flag in A
+2D9A	2B			DEC		HL			; Subtract 1 from string pointer
+2D9B	1C			INC		E			; Add 1 to number field length
+2D9C	E6 08		AND		08H			; '+' bit set?
+2D9E	20 15		JR		NZ,2DB5H	; Yes!
+2DA0	1D			DEC		E			; Add 1 to number field length
+2DA1	78			LD		A,B			; Is string length zero?
+2DA2	B7			OR		A			
+2DA3	28 10		JR		Z,2DB5H		; Format string is evaluated
+2DA5	7E			LD		A,(HL)		; Load the sign into A
+2DA6	D6 2D		SUB		'-'			; Is it a hyphen?
+2DA8	28 06		JR		Z,2DB0H		; Yes!
+2DAA	FE FE		CP		0FEH		; Plus-sign?
+2DAC	20 07		JR		NZ,2DB5H	; No. Output it.
+2DAE	3E 08		LD		A,08H		; Set Bit 3 for format-flags '+' to 1.
+2DB0	C6 04		ADD		A,04H		; Set Bit 2 for format-flags sign after the number to 1.
+2DB2	82			ADD		A,D			; Link it to the format-flag overall
+2DB3	57			LD		D,A			; And in D
+2DB4	05			DEC		B			; Subtract 1 from string length
+2DB5	E1			POP		HL			; Load the program pointer
+2DB6	F1			POP		AF			; Reload the flags
+2DB7	28 50		JR		Z,2E09H		; End of the instruction? Yes. Done.
+2DB9	C5			PUSH	BC			; Put string length and decimal places on the stack
+2DBA	D5			PUSH 	DE			; Put format-flag and number field length on the stack
