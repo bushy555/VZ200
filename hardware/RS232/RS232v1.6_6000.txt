@@ -1,0 +1,1477 @@
+﻿ROM:6000 AA                          db 0AAh
+ROM:6001 55                          db 55h
+ROM:6002 E7                          db 0E7h
+ROM:6003 18                          db 18h
+ROM:6004             ; ---------------------------------------------------------------------------
+ROM:6004 C3 84 61                    jp      loc_6184
+ROM:6004             ; ---------------------------------------------------------------------------
+ROM:6007 4F 4E 20 4F+aOnOfffullhalf: .ascii 'ON OFFFULLHALF' ; DATA XREF: sub_6221+E↓o
+ROM:6007 46 46 46 55+                                        ; sub_6221+8↓o ...
+ROM:6015 0C          unk_6015:       db  0Ch                 ; DATA XREF: ROM:619C↓o
+ROM:6016 56 5A 2D 32+aVz200300Rs232V:.ascii 'VZ-200/300 RS-232 - VERSION 1.6\r(C) 1987 DICK SMITH ELECTRON'
+ROM:6016 30 30 2F 33+                .ascii 'ICS\r-------------------------------\r0] ENTER TERMINAL\r1] F'
+ROM:6016 30 30 20 52+                .ascii 'ULL/HALF DUPLEX:',0
+ROM:609D 46 55 4C 4C+aFull2TogglePri:.ascii 'FULL\r2] TOGGLE PRINTER  :OFF\r3] SET # DATA BITS :8  \r4] SE'
+ROM:609D 0D 32 5D 20+                                        ; DATA XREF: ROM:6188↓o
+ROM:609D 54 4F 47 47+                .ascii 'T # STOP BITS :1  \r5] SET PARITY      :N  \r6] ADD LF TO CR '
+ROM:609D 4C 45 20 50+                .ascii '   :OFF\r\r******* WHEN IN TERMINAL ********  SHIFT - X TO EX'
+ROM:609D 52 49 4E 54+                .ascii 'IT TERMINAL  *********************************',0
+ROM:617C 00                          db    0
+ROM:617D 00                          db    0
+ROM:617E 00                          db    0
+ROM:617F 00                          db    0
+ROM:6180 00                          db    0
+ROM:6181 00                          db    0
+ROM:6182 00                          db    0
+ROM:6183 00                          db    0
+ROM:6184             ; ---------------------------------------------------------------------------
+ROM:6184
+ROM:6184             loc_6184:                               ; CODE XREF: ROM:6004↑j
+ROM:6184 F3                          di
+ROM:6185 31 00 90                    ld      sp, 9000h
+ROM:6188 21 9D 60                    ld      hl, aFull2TogglePri ; "FULL\r2] TOGGLE PRINTER  :OFF\r3] SET #"...
+ROM:618B 11 00 80                    ld      de, 8000h
+ROM:618E 01 E7 00                    ld      bc, 0E7h
+ROM:6191 ED B0                       ldir
+ROM:6193
+ROM:6193             loc_6193:                               ; DATA XREF: ROM:61AF↓o
+ROM:6193 3A E1 80                    ld      a, (byte_80E1)
+ROM:6196 F5                          push    af
+ROM:6197 3E 01                       ld      a, 1
+ROM:6199 32 E1 80                    ld      (byte_80E1), a
+ROM:619C 21 15 60                    ld      hl, unk_6015
+ROM:619F CD 4D 63                    call    PRINT_MSG
+ROM:61A2 21 00 80                    ld      hl, 8000h
+ROM:61A5 CD 4D 63                    call    PRINT_MSG
+ROM:61A8 F1                          pop     af
+ROM:61A9 32 E1 80                    ld      (byte_80E1), a
+ROM:61AC CD 50 34                    call    loc_3450
+ROM:61AF 21 93 61                    ld      hl, loc_6193
+ROM:61B2 E5                          push    hl
+ROM:61B3
+ROM:61B3             loc_61B3:                               ; CODE XREF: ROM:61B7↓j
+ROM:61B3                                                     ; ROM:61BB↓j ...
+ROM:61B3 CD 66 64                    call    sub_6466
+ROM:61B6 B7                          or      a
+ROM:61B7 28 FA                       jr      z, loc_61B3
+ROM:61B9 D6 30                       sub     30h ; '0'
+ROM:61BB 38 F6                       jr      c, loc_61B3
+ROM:61BD FE 07                       cp      7
+ROM:61BF 30 F2                       jr      nc, loc_61B3
+ROM:61C1 21 CE 61                    ld      hl, off_61CE
+ROM:61C4 87                          add     a, a
+ROM:61C5 5F                          ld      e, a
+ROM:61C6 16 00                       ld      d, 0
+ROM:61C8 19                          add     hl, de
+ROM:61C9 5E                          ld      e, (hl)
+ROM:61CA 23                          inc     hl
+ROM:61CB 56                          ld      d, (hl)
+ROM:61CC EB                          ex      de, hl
+ROM:61CD E9                          jp      (hl)
+ROM:61CD             ; ---------------------------------------------------------------------------
+ROM:61CE 56 62       off_61CE:       dw TERMINAL_MODE        ; DATA XREF: ROM:61C1↑o
+ROM:61D0 DC 61                       dw FULL_HALF_DUPLEX
+ROM:61D2 F7 61                       dw PRINTER_TOGGLE
+ROM:61D4 38 62                       dw SET_DATA_BITS
+ROM:61D6 47 62                       dw STOP_BITS
+ROM:61D8 0B 62                       dw PARITY_ON_OFF
+ROM:61DA 01 62                       dw ADD_CR_to_LF
+ROM:61DC             ; ---------------------------------------------------------------------------
+ROM:61DC
+ROM:61DC             FULL_HALF_DUPLEX:                       ; DATA XREF: ROM:61D0↑o
+ROM:61DC 3A E0 80                    ld      a, (byte_80E0)
+ROM:61DF B7                          or      a
+ROM:61E0 3E 01                       ld      a, 1
+ROM:61E2 21 11 60                    ld      hl,  aOnOfffullhalf+0Ah ; "HALF"
+ROM:61E5 28 04                       jr      z, loc_61EB
+ROM:61E7 AF                          xor     a
+ROM:61E8 21 0D 60                    ld      hl,  aOnOfffullhalf+6 ; "FULLHALF"
+ROM:61EB
+ROM:61EB             loc_61EB:                               ; CODE XREF: ROM:61E5↑j
+ROM:61EB 32 E0 80                    ld      (byte_80E0), a
+ROM:61EE 11 00 80                    ld      de, 8000h
+ROM:61F1 01 04 00                    ld      bc, 4
+ROM:61F4 ED B0                       ldir
+ROM:61F6 C9                          ret
+ROM:61F7             ; ---------------------------------------------------------------------------
+ROM:61F7
+ROM:61F7             PRINTER_TOGGLE:                         ; DATA XREF: ROM:61D2↑o
+ROM:61F7 21 DF 80                    ld      hl, 80DFh
+ROM:61FA 11 19 80                    ld      de, 8019h
+ROM:61FD CD 21 62                    call    sub_6221
+ROM:6200 C9                          ret
+ROM:6201             ; ---------------------------------------------------------------------------
+ROM:6201
+ROM:6201             ADD_CR_to_LF:                           ; DATA XREF: ROM:61DA↑o
+ROM:6201 21 E1 80                    ld      hl, 80E1h
+ROM:6204 11 79 80                    ld      de, 8079h
+ROM:6207 CD 21 62                    call    sub_6221
+ROM:620A C9                          ret
+ROM:620B             ; ---------------------------------------------------------------------------
+ROM:620B
+ROM:620B             PARITY_ON_OFF:                          ; DATA XREF: ROM:61D8↑o
+ROM:620B 3A 61 80                    ld      a, (byte_8061)
+ROM:620E FE 4E                       cp      4Eh ; 'N'
+ROM:6210 0E 45                       ld      c, 45h ; 'E'
+ROM:6212 28 08                       jr      z, loc_621C
+ROM:6214 FE 45                       cp      45h ; 'E'
+ROM:6216 0E 4F                       ld      c, 4Fh ; 'O'
+ROM:6218 28 02                       jr      z, loc_621C
+ROM:621A 0E 4E                       ld      c, 4Eh ; 'N'
+ROM:621C
+ROM:621C             loc_621C:                               ; CODE XREF: ROM:6212↑j
+ROM:621C                                                     ; ROM:6218↑j
+ROM:621C 79                          ld      a, c
+ROM:621D 32 61 80                    ld      (byte_8061), a
+ROM:6220 C9                          ret
+ROM:6221
+ROM:6221             ; =============== S U B R O U T I N E =======================================
+ROM:6221
+ROM:6221
+ROM:6221             sub_6221:                               ; CODE XREF: ROM:61FD↑p
+ROM:6221                                                     ; ROM:6207↑p
+ROM:6221 7E                          ld      a, (hl)
+ROM:6222 B7                          or      a
+ROM:6223 3E 01                       ld      a, 1
+ROM:6225 28 01                       jr      z, loc_6228
+ROM:6227 AF                          xor     a
+ROM:6228
+ROM:6228             loc_6228:                               ; CODE XREF: sub_6221+4↑j
+ROM:6228 77                          ld      (hl), a
+ROM:6229 21 0A 60                    ld      hl,  aOnOfffullhalf+3 ; "OFFFULLHALF"
+ROM:622C B7                          or      a
+ROM:622D 28 03                       jr      z, loc_6232
+ROM:622F 21 07 60                    ld      hl, aOnOfffullhalf ; "ON OFFFULLHALF"
+ROM:6232
+ROM:6232             loc_6232:                               ; CODE XREF: sub_6221+C↑j
+ROM:6232 01 03 00                    ld      bc, 3
+ROM:6235 ED B0                       ldir
+ROM:6237 C9                          ret
+ROM:6237             ; End of function sub_6221
+ROM:6237
+ROM:6238             ; ---------------------------------------------------------------------------
+ROM:6238
+ROM:6238             SET_DATA_BITS:                          ; DATA XREF: ROM:61D4↑o
+ROM:6238 3A 31 80                    ld      a, (byte_8031)
+ROM:623B FE 37                       cp      37h ; '7'
+ROM:623D 3E 38                       ld      a, 38h ; '8'
+ROM:623F 28 02                       jr      z, loc_6243
+ROM:6241 3E 37                       ld      a, 37h ; '7'
+ROM:6243
+ROM:6243             loc_6243:                               ; CODE XREF: ROM:623F↑j
+ROM:6243 32 31 80                    ld      (byte_8031), a
+ROM:6246 C9                          ret
+ROM:6247             ; ---------------------------------------------------------------------------
+ROM:6247
+ROM:6247             STOP_BITS:                              ; DATA XREF: ROM:61D6↑o
+ROM:6247 3A 49 80                    ld      a, (byte_8049)
+ROM:624A FE 31                       cp      31h ; '1'
+ROM:624C 3E 32                       ld      a, 32h ; '2'
+ROM:624E 28 02                       jr      z, loc_6252
+ROM:6250 3E 31                       ld      a, 31h ; '1'
+ROM:6252
+ROM:6252             loc_6252:                               ; CODE XREF: ROM:624E↑j
+ROM:6252 32 49 80                    ld      (byte_8049), a
+ROM:6255 C9                          ret
+ROM:6256             ; ---------------------------------------------------------------------------
+ROM:6256
+ROM:6256             TERMINAL_MODE:                          ; DATA XREF: ROM:off_61CE↑o
+ROM:6256 CD 56 63                    call    sub_6356
+ROM:6259
+ROM:6259             loc_6259:                               ; CODE XREF: ROM:6270↓j
+ROM:6259                                                     ; ROM:6280↓j ...
+ROM:6259 CD 1D 63                    call    sub_631D
+ROM:625C 20 0E                       jr      nz, loc_626C
+ROM:625E CD 8F 62                    call    sub_628F
+ROM:6261 CD 6E 63                    call    sub_636E
+ROM:6264 4F                          ld      c, a
+ROM:6265 3A DF 80                    ld      a, (byte_80DF)
+ROM:6268 B7                          or      a
+ROM:6269 C4 53 64                    call    nz, sub_6453
+ROM:626C
+ROM:626C             loc_626C:                               ; CODE XREF: ROM:625C↑j
+ROM:626C CD 66 64                    call    sub_6466
+ROM:626F B7                          or      a
+ROM:6270 28 E7                       jr      z, loc_6259
+ROM:6272 FE 65                       cp      65h ; 'e'
+ROM:6274 C8                          ret     z
+ROM:6275 F5                          push    af
+ROM:6276 CD C6 62                    call    sub_62C6
+ROM:6279 F1                          pop     af
+ROM:627A 4F                          ld      c, a
+ROM:627B 3A E0 80                    ld      a, (byte_80E0)
+ROM:627E B7                          or      a
+ROM:627F 79                          ld      a, c
+ROM:6280 28 D7                       jr      z, loc_6259
+ROM:6282 CD 6E 63                    call    sub_636E
+ROM:6285 4F                          ld      c, a
+ROM:6286 3A DF 80                    ld      a, (byte_80DF)
+ROM:6289 B7                          or      a
+ROM:628A C4 53 64                    call    nz, sub_6453
+ROM:628D 18 CA                       jr      loc_6259
+ROM:628F
+ROM:628F             ; =============== S U B R O U T I N E =======================================
+ROM:628F
+ROM:628F
+ROM:628F             sub_628F:                               ; CODE XREF: ROM:625E↑p
+ROM:628F CD 2E 63                    call    sub_632E
+ROM:6292 CD 23 63                    call    sub_6323
+ROM:6295 3A 31 80                    ld      a, (byte_8031)
+ROM:6298 D6 30                       sub     30h ; '0'
+ROM:629A 5F                          ld      e, a
+ROM:629B 06 08                       ld      b, 8
+ROM:629D 0E 00                       ld      c, 0
+ROM:629F
+ROM:629F             loc_629F:                               ; CODE XREF: sub_628F:loc_62B7↓j
+ROM:629F 78                          ld      a, b
+ROM:62A0 FE 01                       cp      1
+ROM:62A2 20 07                       jr      nz, loc_62AB
+ROM:62A4 7B                          ld      a, e
+ROM:62A5 FE 08                       cp      8
+ROM:62A7 28 0E                       jr      z, loc_62B7
+ROM:62A9 18 0E                       jr      loc_62B9
+ROM:62AB             ; ---------------------------------------------------------------------------
+ROM:62AB
+ROM:62AB             loc_62AB:                               ; CODE XREF: sub_628F+13↑j
+ROM:62AB 3A 00 50                    ld      a, (byte_5000)
+ROM:62AE E6 80                       and     80h
+ROM:62B0 B1                          or      c
+ROM:62B1 4F                          ld      c, a
+ROM:62B2 CB 39                       srl     c
+ROM:62B4 CD 23 63                    call    sub_6323
+ROM:62B7
+ROM:62B7             loc_62B7:                               ; CODE XREF: sub_628F+18↑j
+ROM:62B7 10 E6                       djnz    loc_629F
+ROM:62B9
+ROM:62B9             loc_62B9:                               ; CODE XREF: sub_628F+1A↑j
+ROM:62B9 CD 3A 63                    call    loc_633A
+ROM:62BC 3A 61 80                    ld      a, (byte_8061)
+ROM:62BF FE 4E                       cp      4Eh ; 'N'
+ROM:62C1 C4 23 63                    call    nz, sub_6323
+ROM:62C4 79                          ld      a, c
+ROM:62C5 C9                          ret
+ROM:62C5             ; End of function sub_628F
+ROM:62C5
+ROM:62C6
+ROM:62C6             ; =============== S U B R O U T I N E =======================================
+ROM:62C6
+ROM:62C6
+ROM:62C6             sub_62C6:                               ; CODE XREF: ROM:6276↑p
+ROM:62C6 F5                          push    af
+ROM:62C7 3E FF                       ld      a, 0FFh
+ROM:62C9 32 00 58                    ld      (byte_5800), a
+ROM:62CC CD 23 63                    call    sub_6323
+ROM:62CF 3A 31 80                    ld      a, (byte_8031)
+ROM:62D2 D6 30                       sub     30h ; '0'
+ROM:62D4 47                          ld      b, a
+ROM:62D5 F1                          pop     af
+ROM:62D6 F5                          push    af
+ROM:62D7 4F                          ld      c, a
+ROM:62D8
+ROM:62D8             loc_62D8:                               ; CODE XREF: sub_62C6+20↓j
+ROM:62D8 CB 39                       srl     c
+ROM:62DA 3E 00                       ld      a, 0
+ROM:62DC 38 02                       jr      c, loc_62E0
+ROM:62DE 3E 80                       ld      a, 80h
+ROM:62E0
+ROM:62E0             loc_62E0:                               ; CODE XREF: sub_62C6+16↑j
+ROM:62E0 32 00 58                    ld      (byte_5800), a
+ROM:62E3 CD 23 63                    call    sub_6323
+ROM:62E6 10 F0                       djnz    loc_62D8
+ROM:62E8 F1                          pop     af
+ROM:62E9 4F                          ld      c, a
+ROM:62EA 3A 61 80                    ld      a, (byte_8061)
+ROM:62ED FE 4E                       cp      4Eh ; 'N'
+ROM:62EF 28 1C                       jr      z, loc_630D
+ROM:62F1 79                          ld      a, c
+ROM:62F2 B7                          or      a
+ROM:62F3 3A 61 80                    ld      a, (byte_8061)
+ROM:62F6 E2 03 63                    jp      po, loc_6303
+ROM:62F9 FE 45                       cp      45h ; 'E'
+ROM:62FB
+ROM:62FB             loc_62FB:                               ; CODE XREF: sub_62C6+3F↓j
+ROM:62FB 3E 80                       ld      a, 80h
+ROM:62FD 28 08                       jr      z, loc_6307
+ROM:62FF 3E 00                       ld      a, 0
+ROM:6301 18 04                       jr      loc_6307
+ROM:6303             ; ---------------------------------------------------------------------------
+ROM:6303
+ROM:6303             loc_6303:                               ; CODE XREF: sub_62C6+30↑j
+ROM:6303 FE 4F                       cp      4Fh ; 'O'
+ROM:6305 18 F4                       jr      loc_62FB
+ROM:6307             ; ---------------------------------------------------------------------------
+ROM:6307
+ROM:6307             loc_6307:                               ; CODE XREF: sub_62C6+37↑j
+ROM:6307                                                     ; sub_62C6+3B↑j
+ROM:6307 32 00 58                    ld      (byte_5800), a
+ROM:630A CD 23 63                    call    sub_6323
+ROM:630D
+ROM:630D             loc_630D:                               ; CODE XREF: sub_62C6+29↑j
+ROM:630D 3A 49 80                    ld      a, (byte_8049)
+ROM:6310 D6 30                       sub     30h ; '0'
+ROM:6312 47                          ld      b, a
+ROM:6313
+ROM:6313             loc_6313:                               ; CODE XREF: sub_62C6+54↓j
+ROM:6313 AF                          xor     a
+ROM:6314 32 00 58                    ld      (byte_5800), a
+ROM:6317 CD 23 63                    call    sub_6323
+ROM:631A 10 F7                       djnz    loc_6313
+ROM:631C C9                          ret
+ROM:631C             ; End of function sub_62C6
+ROM:631C
+ROM:631D
+ROM:631D             ; =============== S U B R O U T I N E =======================================
+ROM:631D
+ROM:631D
+ROM:631D             sub_631D:                               ; CODE XREF: ROM:loc_6259↑p
+ROM:631D 3A 00 50                    ld      a, (byte_5000)
+ROM:6320 CB 7F                       bit     7, a
+ROM:6322 C9                          ret
+ROM:6322             ; End of function sub_631D
+ROM:6322
+ROM:6323
+ROM:6323             ; =============== S U B R O U T I N E =======================================
+ROM:6323
+ROM:6323
+ROM:6323             sub_6323:                               ; CODE XREF: sub_628F+3↑p
+ROM:6323                                                     ; sub_628F+25↑p ...
+ROM:6323 F5                          push    af
+ROM:6324 C5                          push    bc
+ROM:6325 CD 2E 63                    call    sub_632E
+ROM:6328 CD 2E 63                    call    sub_632E
+ROM:632B C1                          pop     bc
+ROM:632C F1                          pop     af
+ROM:632D C9                          ret
+ROM:632D             ; End of function sub_6323
+ROM:632D
+ROM:632E
+ROM:632E             ; =============== S U B R O U T I N E =======================================
+ROM:632E
+ROM:632E
+ROM:632E             sub_632E:                               ; CODE XREF: sub_628F↑p
+ROM:632E                                                     ; sub_6323+2↑p ...
+ROM:632E C5                          push    bc
+ROM:632F 3E 23                       ld      a, 23h ; '#'
+ROM:6331
+ROM:6331             loc_6331:                               ; CODE XREF: sub_632E+8↓j
+ROM:6331                                                     ; ROM:6340↓j
+ROM:6331 06 0B                       ld      b, 0Bh
+ROM:6333
+ROM:6333             loc_6333:                               ; CODE XREF: sub_632E:loc_6333↓j
+ROM:6333 10 FE                       djnz    $
+ROM:6335 3D                          dec     a
+ROM:6336 20 F9                       jr      nz, loc_6331
+ROM:6338 C1                          pop     bc
+ROM:6339 C9                          ret
+ROM:6339             ; End of function sub_632E
+ROM:6339
+ROM:633A             ; ---------------------------------------------------------------------------
+ROM:633A
+ROM:633A             loc_633A:                               ; CODE XREF: sub_628F:loc_62B9↑p
+ROM:633A CD 2E 63                    call    sub_632E
+ROM:633D C5                          push    bc
+ROM:633E 3E 22                       ld      a, 22h ; '"'
+ROM:6340 18 EF                       jr      loc_6331
+ROM:6342             ; ---------------------------------------------------------------------------
+ROM:6342 F5                          push    af
+ROM:6343 C5                          push    bc
+ROM:6344 01 FF 4F                    ld      bc, 4FFFh
+ROM:6347 CD 60 00                    call    loc_5D+3
+ROM:634A C1                          pop     bc
+ROM:634B F1                          pop     af
+ROM:634C C9                          ret
+ROM:634D
+ROM:634D             ; =============== S U B R O U T I N E =======================================
+ROM:634D
+ROM:634D
+ROM:634D             PRINT_MSG:                              ; CODE XREF: ROM:619F↑p
+ROM:634D                                                     ; ROM:61A5↑p ...
+ROM:634D 7E                          ld      a, (hl)
+ROM:634E B7                          or      a
+ROM:634F C8                          ret     z
+ROM:6350 CD 6E 63                    call    sub_636E
+ROM:6353 23                          inc     hl
+ROM:6354 18 F7                       jr      PRINT_MSG
+ROM:6354             ; End of function PRINT_MSG
+ROM:6354
+ROM:6356
+ROM:6356             ; =============== S U B R O U T I N E =======================================
+ROM:6356
+ROM:6356
+ROM:6356             sub_6356:                               ; CODE XREF: ROM:TERMINAL_MODE↑p
+ROM:6356                                                     ; sub_637A+6↓j
+ROM:6356 21 00 70                    ld      hl, 7000h
+ROM:6359 22 E5 80                    ld      (word_80E5), hl
+ROM:635C 11 01 70                    ld      de, 7001h
+ROM:635F 01 FF 01                    ld      bc, 1FFh
+ROM:6362 36 60                       ld      (hl), 60h ; '`'
+ROM:6364 ED B0                       ldir
+ROM:6366 AF                          xor     a
+ROM:6367 32 E4 80                    ld      (byte_80E4), a
+ROM:636A 32 00 68                    ld      (byte_6800), a
+ROM:636D C9                          ret
+ROM:636D             ; End of function sub_6356
+ROM:636D
+ROM:636E
+ROM:636E             ; =============== S U B R O U T I N E =======================================
+ROM:636E
+ROM:636E
+ROM:636E             sub_636E:                               ; CODE XREF: ROM:6261↑p
+ROM:636E                                                     ; ROM:6282↑p ...
+ROM:636E F5                          push    af
+ROM:636F E5                          push    hl
+ROM:6370 C5                          push    bc
+ROM:6371 D5                          push    de
+ROM:6372 CD 7A 63                    call    sub_637A
+ROM:6375 D1                          pop     de
+ROM:6376 C1                          pop     bc
+ROM:6377 E1                          pop     hl
+ROM:6378 F1                          pop     af
+ROM:6379 C9                          ret
+ROM:6379             ; End of function sub_636E
+ROM:6379
+ROM:637A
+ROM:637A             ; =============== S U B R O U T I N E =======================================
+ROM:637A
+ROM:637A
+ROM:637A             sub_637A:                               ; CODE XREF: sub_636E+4↑p
+ROM:637A ED 5B E5 80                 ld      de, (word_80E5)
+ROM:637E FE 0C                       cp      0Ch
+ROM:6380 28 D4                       jr      z, sub_6356
+ROM:6382 FE 0D                       cp      0Dh
+ROM:6384 28 7E                       jr      z, sub_6404
+ROM:6386 FE 08                       cp      8
+ROM:6388 28 35                       jr      z, loc_63BF
+ROM:638A FE 09                       cp      9
+ROM:638C 28 16                       jr      z, loc_63A4
+ROM:638E FE 0A                       cp      0Ah
+ROM:6390 28 4A                       jr      z, loc_63DC
+ROM:6392 FE 07                       cp      7
+ROM:6394 CA 50 34                    jp      z, loc_3450
+ROM:6397 CB 7F                       bit     7, a
+ROM:6399 20 08                       jr      nz, loc_63A3
+ROM:639B FE 20                       cp      20h ; ' '
+ROM:639D F8                          ret     m
+ROM:639E CD 5D 64                    call    sub_645D
+ROM:63A1 CB F7                       set     6, a
+ROM:63A3
+ROM:63A3             loc_63A3:                               ; CODE XREF: sub_637A+1F↑j
+ROM:63A3 12                          ld      (de), a
+ROM:63A4
+ROM:63A4             loc_63A4:                               ; CODE XREF: sub_637A+12↑j
+ROM:63A4 13                          inc     de
+ROM:63A5 ED 53 E5 80                 ld      (word_80E5), de
+ROM:63A9 3A E4 80                    ld      a, (byte_80E4)
+ROM:63AC 3C                          inc     a
+ROM:63AD 32 E4 80                    ld      (byte_80E4), a
+ROM:63B0 FE 20                       cp      20h ; ' '
+ROM:63B2 F8                          ret     m
+ROM:63B3 CD F3 63                    call    sub_63F3
+ROM:63B6 3A DF 80                    ld      a, (byte_80DF)
+ROM:63B9 B7                          or      a
+ROM:63BA C8                          ret     z
+ROM:63BB CD 49 64                    call    sub_6449
+ROM:63BE C9                          ret
+ROM:63BF             ; ---------------------------------------------------------------------------
+ROM:63BF
+ROM:63BF             loc_63BF:                               ; CODE XREF: sub_637A+E↑j
+ROM:63BF 3A E4 80                    ld      a, (byte_80E4)
+ROM:63C2 B7                          or      a
+ROM:63C3 28 0A                       jr      z, loc_63CF
+ROM:63C5 3D                          dec     a
+ROM:63C6
+ROM:63C6             loc_63C6:                               ; CODE XREF: sub_637A+60↓j
+ROM:63C6 32 E4 80                    ld      (byte_80E4), a
+ROM:63C9 1B                          dec     de
+ROM:63CA ED 53 E5 80                 ld      (word_80E5), de
+ROM:63CE C9                          ret
+ROM:63CF             ; ---------------------------------------------------------------------------
+ROM:63CF
+ROM:63CF             loc_63CF:                               ; CODE XREF: sub_637A+49↑j
+ROM:63CF E5                          push    hl
+ROM:63D0 21 00 70                    ld      hl, 7000h
+ROM:63D3 B7                          or      a
+ROM:63D4 ED 52                       sbc     hl, de
+ROM:63D6 E1                          pop     hl
+ROM:63D7 C8                          ret     z
+ROM:63D8 3E 1F                       ld      a, 1Fh
+ROM:63DA 18 EA                       jr      loc_63C6
+ROM:63DC             ; ---------------------------------------------------------------------------
+ROM:63DC
+ROM:63DC             loc_63DC:                               ; CODE XREF: sub_637A+16↑j
+ROM:63DC 3A E4 80                    ld      a, (byte_80E4)
+ROM:63DF 4F                          ld      c, a
+ROM:63E0 06 00                       ld      b, 0
+ROM:63E2 C5                          push    bc
+ROM:63E3 CD F3 63                    call    sub_63F3
+ROM:63E6 C1                          pop     bc
+ROM:63E7 EB                          ex      de, hl
+ROM:63E8 09                          add     hl, bc
+ROM:63E9 EB                          ex      de, hl
+ROM:63EA ED 53 E5 80                 ld      (word_80E5), de
+ROM:63EE 79                          ld      a, c
+ROM:63EF 32 E4 80                    ld      (byte_80E4), a
+ROM:63F2 C9                          ret
+ROM:63F2             ; End of function sub_637A
+ROM:63F2
+ROM:63F3
+ROM:63F3             ; =============== S U B R O U T I N E =======================================
+ROM:63F3
+ROM:63F3
+ROM:63F3             sub_63F3:                               ; CODE XREF: sub_637A+39↑p
+ROM:63F3                                                     ; sub_637A+69↑p
+ROM:63F3 3A E1 80                    ld      a, (byte_80E1)
+ROM:63F6 F5                          push    af
+ROM:63F7 3E 01                       ld      a, 1
+ROM:63F9 32 E1 80                    ld      (byte_80E1), a
+ROM:63FC CD 04 64                    call    sub_6404
+ROM:63FF F1                          pop     af
+ROM:6400 32 E1 80                    ld      (byte_80E1), a
+ROM:6403 C9                          ret
+ROM:6403             ; End of function sub_63F3
+ROM:6403
+ROM:6404
+ROM:6404             ; =============== S U B R O U T I N E =======================================
+ROM:6404
+ROM:6404
+ROM:6404             sub_6404:                               ; CODE XREF: sub_637A+A↑j
+ROM:6404                                                     ; sub_63F3+9↑p
+ROM:6404 E5                          push    hl
+ROM:6405 EB                          ex      de, hl
+ROM:6406 3A E4 80                    ld      a, (byte_80E4)
+ROM:6409 5F                          ld      e, a
+ROM:640A 16 00                       ld      d, 0
+ROM:640C B7                          or      a
+ROM:640D ED 52                       sbc     hl, de
+ROM:640F 3A E1 80                    ld      a, (byte_80E1)
+ROM:6412 B7                          or      a
+ROM:6413 28 04                       jr      z, loc_6419
+ROM:6415 11 20 00                    ld      de, 20h ; ' '
+ROM:6418 19                          add     hl, de
+ROM:6419
+ROM:6419             loc_6419:                               ; CODE XREF: sub_6404+F↑j
+ROM:6419 EB                          ex      de, hl
+ROM:641A 21 00 72                    ld      hl, 7200h
+ROM:641D B7                          or      a
+ROM:641E ED 52                       sbc     hl, de
+ROM:6420 28 0A                       jr      z, loc_642C
+ROM:6422
+ROM:6422             loc_6422:                               ; CODE XREF: sub_6404+43↓j
+ROM:6422 ED 53 E5 80                 ld      (word_80E5), de
+ROM:6426 AF                          xor     a
+ROM:6427 32 E4 80                    ld      (byte_80E4), a
+ROM:642A E1                          pop     hl
+ROM:642B C9                          ret
+ROM:642C             ; ---------------------------------------------------------------------------
+ROM:642C
+ROM:642C             loc_642C:                               ; CODE XREF: sub_6404+1C↑j
+ROM:642C 21 20 70                    ld      hl, 7020h
+ROM:642F 11 00 70                    ld      de, 7000h
+ROM:6432 01 E0 01                    ld      bc, 1E0h
+ROM:6435 ED B0                       ldir
+ROM:6437 21 E0 71                    ld      hl, 71E0h
+ROM:643A 11 E1 71                    ld      de, 71E1h
+ROM:643D 01 1F 00                    ld      bc, 1Fh
+ROM:6440 36 60                       ld      (hl), 60h ; '`'
+ROM:6442 ED B0                       ldir
+ROM:6444 11 E0 71                    ld      de, 71E0h
+ROM:6447 18 D9                       jr      loc_6422
+ROM:6447             ; End of function sub_6404
+ROM:6447
+ROM:6449
+ROM:6449             ; =============== S U B R O U T I N E =======================================
+ROM:6449
+ROM:6449
+ROM:6449             sub_6449:                               ; CODE XREF: sub_637A+41↑p
+ROM:6449 CD C4 05                    call    sub_5C4
+ROM:644C CB 47                       bit     0, a
+ROM:644E C0                          ret     nz
+ROM:644F CD E2 3A                    call    sub_3AE2
+ROM:6452 C9                          ret
+ROM:6452             ; End of function sub_6449
+ROM:6452
+ROM:6453
+ROM:6453             ; =============== S U B R O U T I N E =======================================
+ROM:6453
+ROM:6453
+ROM:6453             sub_6453:                               ; CODE XREF: ROM:6269↑p
+ROM:6453                                                     ; ROM:628A↑p
+ROM:6453
+ROM:6453             ; FUNCTION CHUNK AT ROM:058D SIZE 00000012 BYTES
+ROM:6453             ; FUNCTION CHUNK AT ROM:05AD SIZE 00000017 BYTES
+ROM:6453
+ROM:6453 CD C4 05                    call    sub_5C4
+ROM:6456 CB 47                       bit     0, a
+ROM:6458 C0                          ret     nz
+ROM:6459 79                          ld      a, c
+ROM:645A C3 8D 05                    jp      loc_58D
+ROM:645A             ; End of function sub_6453
+ROM:645A
+ROM:645D
+ROM:645D             ; =============== S U B R O U T I N E =======================================
+ROM:645D
+ROM:645D
+ROM:645D             sub_645D:                               ; CODE XREF: sub_637A+24↑p
+ROM:645D FE 61                       cp      61h ; 'a'
+ROM:645F D8                          ret     c
+ROM:6460 FE 7B                       cp      7Bh ; '{'
+ROM:6462 D0                          ret     nc
+ROM:6463 E6 5F                       and     5Fh ; '_'
+ROM:6465 C9                          ret
+ROM:6465             ; End of function sub_645D
+ROM:6465
+ROM:6466
+ROM:6466             ; =============== S U B R O U T I N E =======================================
+ROM:6466
+ROM:6466
+ROM:6466             sub_6466:                               ; CODE XREF: ROM:loc_61B3↑p
+ROM:6466                                                     ; ROM:loc_626C↑p
+ROM:6466 21 FE 68                    ld      hl, 68FEh
+ROM:6469 0E 08                       ld      c, 8
+ROM:646B
+ROM:646B             loc_646B:                               ; CODE XREF: sub_6466+12↓j
+ROM:646B 06 06                       ld      b, 6
+ROM:646D 7E                          ld      a, (hl)
+ROM:646E F6 04                       or      4
+ROM:6470
+ROM:6470             loc_6470:                               ; CODE XREF: sub_6466+D↓j
+ROM:6470 1F                          rra
+ROM:6471 30 59                       jr      nc, loc_64CC
+ROM:6473 10 FB                       djnz    loc_6470
+ROM:6475 CB 05                       rlc     l
+ROM:6477 0D                          dec     c
+ROM:6478 20 F1                       jr      nz, loc_646B
+ROM:647A 06 04                       ld      b, 4
+ROM:647C 21 DF 68                    ld      hl, 68DFh
+ROM:647F 7E                          ld      a, (hl)
+ROM:6480 CB 57                       bit     2, a
+ROM:6482 28 3E                       jr      z, loc_64C2
+ROM:6484 CB 05                       rlc     l
+ROM:6486 7E                          ld      a, (hl)
+ROM:6487 CB 57                       bit     2, a
+ROM:6489 28 3B                       jr      z, loc_64C6
+ROM:648B CB 05                       rlc     l
+ROM:648D 7E                          ld      a, (hl)
+ROM:648E CB 57                       bit     2, a
+ROM:6490 28 38                       jr      z, loc_64CA
+ROM:6492 CB 05                       rlc     l
+ROM:6494 CB 05                       rlc     l
+ROM:6496 7E                          ld      a, (hl)
+ROM:6497 CB 57                       bit     2, a
+ROM:6499 28 11                       jr      z, loc_64AC
+ROM:649B CB 05                       rlc     l
+ROM:649D 7E                          ld      a, (hl)
+ROM:649E CB 57                       bit     2, a
+ROM:64A0 28 11                       jr      z, loc_64B3
+ROM:64A2 3E FF                       ld      a, 0FFh
+ROM:64A4 32 E2 80                    ld      (byte_80E2), a
+ROM:64A7 AF                          xor     a
+ROM:64A8 32 E3 80                    ld      (byte_80E3), a
+ROM:64AB C9                          ret
+ROM:64AC             ; ---------------------------------------------------------------------------
+ROM:64AC
+ROM:64AC             loc_64AC:                               ; CODE XREF: sub_6466+33↑j
+ROM:64AC 3A E3 80                    ld      a, (byte_80E3)
+ROM:64AF CB D7                       set     2, a
+ROM:64B1 18 05                       jr      loc_64B8
+ROM:64B3             ; ---------------------------------------------------------------------------
+ROM:64B3
+ROM:64B3             loc_64B3:                               ; CODE XREF: sub_6466+3A↑j
+ROM:64B3 3A E3 80                    ld      a, (byte_80E3)
+ROM:64B6 CB CF                       set     1, a
+ROM:64B8
+ROM:64B8             loc_64B8:                               ; CODE XREF: sub_6466+4B↑j
+ROM:64B8 32 E3 80                    ld      (byte_80E3), a
+ROM:64BB 3E FF                       ld      a, 0FFh
+ROM:64BD 32 E2 80                    ld      (byte_80E2), a
+ROM:64C0
+ROM:64C0             loc_64C0:                               ; CODE XREF: sub_6466+91↓j
+ROM:64C0 AF                          xor     a
+ROM:64C1 C9                          ret
+ROM:64C2             ; ---------------------------------------------------------------------------
+ROM:64C2
+ROM:64C2             loc_64C2:                               ; CODE XREF: sub_6466+1C↑j
+ROM:64C2 0E 03                       ld      c, 3
+ROM:64C4 18 06                       jr      loc_64CC
+ROM:64C6             ; ---------------------------------------------------------------------------
+ROM:64C6
+ROM:64C6             loc_64C6:                               ; CODE XREF: sub_6466+23↑j
+ROM:64C6 0E 02                       ld      c, 2
+ROM:64C8 18 02                       jr      loc_64CC
+ROM:64CA             ; ---------------------------------------------------------------------------
+ROM:64CA
+ROM:64CA             loc_64CA:                               ; CODE XREF: sub_6466+2A↑j
+ROM:64CA 0E 01                       ld      c, 1
+ROM:64CC
+ROM:64CC             loc_64CC:                               ; CODE XREF: sub_6466+B↑j
+ROM:64CC                                                     ; sub_6466+5E↑j ...
+ROM:64CC 21 06 65                    ld      hl, aTwEqrgsDafbxCz ; "TW EQRGS DAFBX CZV52 314N. , M69-807YO"...
+ROM:64CF 1E 00                       ld      e, 0
+ROM:64D1 3A E3 80                    ld      a, (byte_80E3)
+ROM:64D4 CB 57                       bit     2, a
+ROM:64D6 28 04                       jr      z, loc_64DC
+ROM:64D8 1E 60                       ld      e, 60h ; '`'
+ROM:64DA 18 06                       jr      loc_64E2
+ROM:64DC             ; ---------------------------------------------------------------------------
+ROM:64DC
+ROM:64DC             loc_64DC:                               ; CODE XREF: sub_6466+70↑j
+ROM:64DC CB 4F                       bit     1, a
+ROM:64DE 28 02                       jr      z, loc_64E2
+ROM:64E0 1E 30                       ld      e, 30h ; '0'
+ROM:64E2
+ROM:64E2             loc_64E2:                               ; CODE XREF: sub_6466+74↑j
+ROM:64E2                                                     ; sub_6466+78↑j
+ROM:64E2 3E 08                       ld      a, 8
+ROM:64E4 91                          sub     c
+ROM:64E5 4F                          ld      c, a
+ROM:64E6 3E 06                       ld      a, 6
+ROM:64E8 90                          sub     b
+ROM:64E9 47                          ld      b, a
+ROM:64EA CD FB 64                    call    sub_64FB
+ROM:64ED 83                          add     a, e
+ROM:64EE 06 00                       ld      b, 0
+ROM:64F0 4F                          ld      c, a
+ROM:64F1 09                          add     hl, bc
+ROM:64F2 7E                          ld      a, (hl)
+ROM:64F3 21 E2 80                    ld      hl, 80E2h
+ROM:64F6 BE                          cp      (hl)
+ROM:64F7 28 C7                       jr      z, loc_64C0
+ROM:64F9 77                          ld      (hl), a
+ROM:64FA C9                          ret
+ROM:64FA             ; End of function sub_6466
+ROM:64FA
+ROM:64FB
+ROM:64FB             ; =============== S U B R O U T I N E =======================================
+ROM:64FB
+ROM:64FB
+ROM:64FB             sub_64FB:                               ; CODE XREF: sub_6466+84↑p
+ROM:64FB AF                          xor     a
+ROM:64FC B9                          cp      c
+ROM:64FD 28 05                       jr      z, loc_6504
+ROM:64FF
+ROM:64FF             loc_64FF:                               ; CODE XREF: sub_64FB+7↓j
+ROM:64FF C6 06                       add     a, 6
+ROM:6501 0D                          dec     c
+ROM:6502 20 FB                       jr      nz, loc_64FF
+ROM:6504
+ROM:6504             loc_6504:                               ; CODE XREF: sub_64FB+2↑j
+ROM:6504 80                          add     a, b
+ROM:6505 C9                          ret
+ROM:6505             ; End of function sub_64FB
+ROM:6505
+ROM:6505             ; ---------------------------------------------------------------------------
+ROM:6506 54 57 20 45+aTwEqrgsDafbxCz:.ascii 'TW EQRGS DAFBX CZV52 314N. , M69-807YO\rIPUHL:K;J',0
+ROM:6506 51 52 47 53+                                        ; DATA XREF: sub_6466:loc_64CC↑o
+ROM:6537 00                          db    0
+ROM:6538 00                          db    0
+ROM:6539 00                          db    0
+ROM:653A 00                          db    0
+ROM:653B 00                          db    0
+ROM:653C 00                          db    0
+ROM:653D 00                          db    0
+ROM:653E 00                          db    0
+ROM:653F 00                          db    0
+ROM:6540 00                          db    0
+ROM:6541 00                          db    0
+ROM:6542 00                          db    0
+ROM:6543 65                          db  65h ; e
+ROM:6544 00                          db    0
+ROM:6545 00                          db    0
+ROM:6546 00                          db    0
+ROM:6547 00                          db    0
+ROM:6548 25                          db  25h ; %
+ROM:6549 22                          db  22h ; "
+ROM:654A 20                          db  20h
+ROM:654B 23                          db  23h ; #
+ROM:654C 21                          db  21h ; !
+ROM:654D 24                          db  24h ; $
+ROM:654E 5E                          db  5Eh ; ^
+ROM:654F 3E                          db  3Eh ; >
+ROM:6550 00                          db    0
+ROM:6551 3C                          db  3Ch ; <
+ROM:6552 00                          db    0
+ROM:6553 5C                          db  5Ch ; \
+ROM:6554 26                          db  26h ; &
+ROM:6555 29                          db  29h ; )
+ROM:6556 3D                          db  3Dh ; =
+ROM:6557 28                          db  28h ; (
+ROM:6558 40                          db  40h ; @
+ROM:6559 27                          db  27h ; '
+ROM:655A 00                          db    0
+ROM:655B 5B                          db  5Bh ; [
+ROM:655C 0D                          db  0Dh
+ROM:655D 00                          db    0
+ROM:655E 5D                          db  5Dh ; ]
+ROM:655F 00                          db    0
+ROM:6560 00                          db    0
+ROM:6561 3F                          db  3Fh ; ?
+ROM:6562 2A                          db  2Ah ; *
+ROM:6563 2F                          db  2Fh ; /
+ROM:6564 2B                          db  2Bh ; +
+ROM:6565 00                          db    0
+ROM:6566 14                          db  14h
+ROM:6567 17                          db  17h
+ROM:6568 00                          db    0
+ROM:6569 05                          db    5
+ROM:656A 11                          db  11h
+ROM:656B 12                          db  12h
+ROM:656C 07                          db    7
+ROM:656D 13                          db  13h
+ROM:656E 00                          db    0
+ROM:656F 00                          db    0
+ROM:6570 01                          db    1
+ROM:6571 06                          db    6
+ROM:6572 02                          db    2
+ROM:6573 16                          db  16h
+ROM:6574 00                          db    0
+ROM:6575 03                          db    3
+ROM:6576 1A                          db  1Ah
+ROM:6577 16                          db  16h
+ROM:6578 00                          db    0
+ROM:6579 00                          db    0
+ROM:657A 00                          db    0
+ROM:657B 00                          db    0
+ROM:657C 00                          db    0
+ROM:657D 00                          db    0
+ROM:657E 0E                          db  0Eh
+ROM:657F 00                          db    0
+ROM:6580 00                          db    0
+ROM:6581 00                          db    0
+ROM:6582 00                          db    0
+ROM:6583 0D                          db  0Dh
+ROM:6584 00                          db    0
+ROM:6585 00                          db    0
+ROM:6586 00                          db    0
+ROM:6587 00                          db    0
+ROM:6588 00                          db    0
+ROM:6589 00                          db    0
+ROM:658A 19                          db  19h
+ROM:658B 0F                          db  0Fh
+ROM:658C 00                          db    0
+ROM:658D 09                          db    9
+ROM:658E 10                          db  10h
+ROM:658F 15                          db  15h
+ROM:6590 08                          db    8
+ROM:6591 0C                          db  0Ch
+ROM:6592 00                          db    0
+ROM:6593 0B                          db  0Bh
+ROM:6594 00                          db    0
+ROM:6595 0A                          db  0Ah
+ROM:6596 FF                          db 0FFh
+ROM:6597 FF                          db 0FFh
+ROM:6598 FF                          db 0FFh
+ROM:6599 FF                          db 0FFh
+ROM:659A FF                          db 0FFh
+ROM:659B FF                          db 0FFh
+ROM:659C FF                          db 0FFh
+ROM:659D FF                          db 0FFh
+ROM:659E FF                          db 0FFh
+ROM:659F FF                          db 0FFh
+ROM:65A0 FF                          db 0FFh
+ROM:65A1 FF                          db 0FFh
+ROM:65A2 FF                          db 0FFh
+ROM:65A3 FF                          db 0FFh
+ROM:65A4 FF                          db 0FFh
+ROM:65A5 FF                          db 0FFh
+ROM:65A6 FF                          db 0FFh
+ROM:65A7 FF                          db 0FFh
+ROM:65A8 FF                          db 0FFh
+ROM:65A9 FF                          db 0FFh
+ROM:65AA FF                          db 0FFh
+ROM:65AB FF                          db 0FFh
+ROM:65AC FF                          db 0FFh
+ROM:65AD FF                          db 0FFh
+ROM:65AE FF                          db 0FFh
+ROM:65AF FF                          db 0FFh
+ROM:65B0 FF                          db 0FFh
+ROM:65B1 FF                          db 0FFh
+ROM:65B2 FF                          db 0FFh
+ROM:65B3 FF                          db 0FFh
+ROM:65B4 FF                          db 0FFh
+ROM:65B5 FF                          db 0FFh
+ROM:65B6 FF                          db 0FFh
+ROM:65B7 FF                          db 0FFh
+ROM:65B8 FF                          db 0FFh
+ROM:65B9 FF                          db 0FFh
+ROM:65BA FF                          db 0FFh
+ROM:65BB FF                          db 0FFh
+ROM:65BC FF                          db 0FFh
+ROM:65BD FF                          db 0FFh
+ROM:65BE FF                          db 0FFh
+ROM:65BF FF                          db 0FFh
+ROM:65C0 FF                          db 0FFh
+ROM:65C1 FF                          db 0FFh
+ROM:65C2 FF                          db 0FFh
+ROM:65C3 FF                          db 0FFh
+ROM:65C4 FF                          db 0FFh
+ROM:65C5 FF                          db 0FFh
+ROM:65C6 FF                          db 0FFh
+ROM:65C7 FF                          db 0FFh
+ROM:65C8 FF                          db 0FFh
+ROM:65C9 FF                          db 0FFh
+ROM:65CA FF                          db 0FFh
+ROM:65CB FF                          db 0FFh
+ROM:65CC FF                          db 0FFh
+ROM:65CD FF                          db 0FFh
+ROM:65CE FF                          db 0FFh
+ROM:65CF FF                          db 0FFh
+ROM:65D0 FF                          db 0FFh
+ROM:65D1 FF                          db 0FFh
+ROM:65D2 FF                          db 0FFh
+ROM:65D3 FF                          db 0FFh
+ROM:65D4 FF                          db 0FFh
+ROM:65D5 FF                          db 0FFh
+ROM:65D6 FF                          db 0FFh
+ROM:65D7 FF                          db 0FFh
+ROM:65D8 FF                          db 0FFh
+ROM:65D9 FF                          db 0FFh
+ROM:65DA FF                          db 0FFh
+ROM:65DB FF                          db 0FFh
+ROM:65DC FF                          db 0FFh
+ROM:65DD FF                          db 0FFh
+ROM:65DE FF                          db 0FFh
+ROM:65DF FF                          db 0FFh
+ROM:65E0 FF                          db 0FFh
+ROM:65E1 FF                          db 0FFh
+ROM:65E2 FF                          db 0FFh
+ROM:65E3 FF                          db 0FFh
+ROM:65E4 FF                          db 0FFh
+ROM:65E5 FF                          db 0FFh
+ROM:65E6 FF                          db 0FFh
+ROM:65E7 FF                          db 0FFh
+ROM:65E8 FF                          db 0FFh
+ROM:65E9 FF                          db 0FFh
+ROM:65EA FF                          db 0FFh
+ROM:65EB FF                          db 0FFh
+ROM:65EC FF                          db 0FFh
+ROM:65ED FF                          db 0FFh
+ROM:65EE FF                          db 0FFh
+ROM:65EF FF                          db 0FFh
+ROM:65F0 FF                          db 0FFh
+ROM:65F1 FF                          db 0FFh
+ROM:65F2 FF                          db 0FFh
+ROM:65F3 FF                          db 0FFh
+ROM:65F4 FF                          db 0FFh
+ROM:65F5 FF                          db 0FFh
+ROM:65F6 FF                          db 0FFh
+ROM:65F7 FF                          db 0FFh
+ROM:65F8 FF                          db 0FFh
+ROM:65F9 FF                          db 0FFh
+ROM:65FA FF                          db 0FFh
+ROM:65FB FF                          db 0FFh
+ROM:65FC FF                          db 0FFh
+ROM:65FD FF                          db 0FFh
+ROM:65FE FF                          db 0FFh
+ROM:65FF FF                          db 0FFh
+ROM:6600 FF                          db 0FFh
+ROM:6601 FF                          db 0FFh
+ROM:6602 FF                          db 0FFh
+ROM:6603 FF                          db 0FFh
+ROM:6604 FF                          db 0FFh
+ROM:6605 FF                          db 0FFh
+ROM:6606 FF                          db 0FFh
+ROM:6607 FF                          db 0FFh
+ROM:6608 FF                          db 0FFh
+ROM:6609 FF                          db 0FFh
+ROM:660A FF                          db 0FFh
+ROM:660B FF                          db 0FFh
+ROM:660C FF                          db 0FFh
+ROM:660D FF                          db 0FFh
+ROM:660E FF                          db 0FFh
+ROM:660F FF                          db 0FFh
+ROM:6610 FF                          db 0FFh
+ROM:6611 FF                          db 0FFh
+ROM:6612 FF                          db 0FFh
+ROM:6613 FF                          db 0FFh
+ROM:6614 FF                          db 0FFh
+ROM:6615 FF                          db 0FFh
+ROM:6616 FF                          db 0FFh
+ROM:6617 FF                          db 0FFh
+ROM:6618 FF                          db 0FFh
+ROM:6619 FF                          db 0FFh
+ROM:661A FF                          db 0FFh
+ROM:661B FF                          db 0FFh
+ROM:661C FF                          db 0FFh
+ROM:661D FF                          db 0FFh
+ROM:661E FF                          db 0FFh
+ROM:661F FF                          db 0FFh
+ROM:6620 FF                          db 0FFh
+ROM:6621 FF                          db 0FFh
+ROM:6622 FF                          db 0FFh
+ROM:6623 FF                          db 0FFh
+ROM:6624 FF                          db 0FFh
+ROM:6625 FF                          db 0FFh
+ROM:6626 FF                          db 0FFh
+ROM:6627 FF                          db 0FFh
+ROM:6628 FF                          db 0FFh
+ROM:6629 FF                          db 0FFh
+ROM:662A FF                          db 0FFh
+ROM:662B FF                          db 0FFh
+ROM:662C FF                          db 0FFh
+ROM:662D FF                          db 0FFh
+ROM:662E FF                          db 0FFh
+ROM:662F FF                          db 0FFh
+ROM:6630 FF                          db 0FFh
+ROM:6631 FF                          db 0FFh
+ROM:6632 FF                          db 0FFh
+ROM:6633 FF                          db 0FFh
+ROM:6634 FF                          db 0FFh
+ROM:6635 FF                          db 0FFh
+ROM:6636 FF                          db 0FFh
+ROM:6637 FF                          db 0FFh
+ROM:6638 FF                          db 0FFh
+ROM:6639 FF                          db 0FFh
+ROM:663A FF                          db 0FFh
+ROM:663B FF                          db 0FFh
+ROM:663C FF                          db 0FFh
+ROM:663D FF                          db 0FFh
+ROM:663E FF                          db 0FFh
+ROM:663F FF                          db 0FFh
+ROM:6640 FF                          db 0FFh
+ROM:6641 FF                          db 0FFh
+ROM:6642 FF                          db 0FFh
+ROM:6643 FF                          db 0FFh
+ROM:6644 FF                          db 0FFh
+ROM:6645 FF                          db 0FFh
+ROM:6646 FF                          db 0FFh
+ROM:6647 FF                          db 0FFh
+ROM:6648 FF                          db 0FFh
+ROM:6649 FF                          db 0FFh
+ROM:664A FF                          db 0FFh
+ROM:664B FF                          db 0FFh
+ROM:664C FF                          db 0FFh
+ROM:664D FF                          db 0FFh
+ROM:664E FF                          db 0FFh
+ROM:664F FF                          db 0FFh
+ROM:6650 FF                          db 0FFh
+ROM:6651 FF                          db 0FFh
+ROM:6652 FF                          db 0FFh
+ROM:6653 FF                          db 0FFh
+ROM:6654 FF                          db 0FFh
+ROM:6655 FF                          db 0FFh
+ROM:6656 FF                          db 0FFh
+ROM:6657 FF                          db 0FFh
+ROM:6658 FF                          db 0FFh
+ROM:6659 FF                          db 0FFh
+ROM:665A FF                          db 0FFh
+ROM:665B FF                          db 0FFh
+ROM:665C FF                          db 0FFh
+ROM:665D FF                          db 0FFh
+ROM:665E FF                          db 0FFh
+ROM:665F FF                          db 0FFh
+ROM:6660 FF                          db 0FFh
+ROM:6661 FF                          db 0FFh
+ROM:6662 FF                          db 0FFh
+ROM:6663 FF                          db 0FFh
+ROM:6664 FF                          db 0FFh
+ROM:6665 FF                          db 0FFh
+ROM:6666 FF                          db 0FFh
+ROM:6667 FF                          db 0FFh
+ROM:6668 FF                          db 0FFh
+ROM:6669 FF                          db 0FFh
+ROM:666A FF                          db 0FFh
+ROM:666B FF                          db 0FFh
+ROM:666C FF                          db 0FFh
+ROM:666D FF                          db 0FFh
+ROM:666E FF                          db 0FFh
+ROM:666F FF                          db 0FFh
+ROM:6670 FF                          db 0FFh
+ROM:6671 FF                          db 0FFh
+ROM:6672 FF                          db 0FFh
+ROM:6673 FF                          db 0FFh
+ROM:6674 FF                          db 0FFh
+ROM:6675 FF                          db 0FFh
+ROM:6676 FF                          db 0FFh
+ROM:6677 FF                          db 0FFh
+ROM:6678 FF                          db 0FFh
+ROM:6679 FF                          db 0FFh
+ROM:667A FF                          db 0FFh
+ROM:667B FF                          db 0FFh
+ROM:667C FF                          db 0FFh
+ROM:667D FF                          db 0FFh
+ROM:667E FF                          db 0FFh
+ROM:667F FF                          db 0FFh
+ROM:6680 FF                          db 0FFh
+ROM:6681 FF                          db 0FFh
+ROM:6682 FF                          db 0FFh
+ROM:6683 FF                          db 0FFh
+ROM:6684 FF                          db 0FFh
+ROM:6685 FF                          db 0FFh
+ROM:6686 FF                          db 0FFh
+ROM:6687 FF                          db 0FFh
+ROM:6688 FF                          db 0FFh
+ROM:6689 FF                          db 0FFh
+ROM:668A FF                          db 0FFh
+ROM:668B FF                          db 0FFh
+ROM:668C FF                          db 0FFh
+ROM:668D FF                          db 0FFh
+ROM:668E FF                          db 0FFh
+ROM:668F FF                          db 0FFh
+ROM:6690 FF                          db 0FFh
+ROM:6691 FF                          db 0FFh
+ROM:6692 FF                          db 0FFh
+ROM:6693 FF                          db 0FFh
+ROM:6694 FF                          db 0FFh
+ROM:6695 FF                          db 0FFh
+ROM:6696 FF                          db 0FFh
+ROM:6697 FF                          db 0FFh
+ROM:6698 FF                          db 0FFh
+ROM:6699 FF                          db 0FFh
+ROM:669A FF                          db 0FFh
+ROM:669B FF                          db 0FFh
+ROM:669C FF                          db 0FFh
+ROM:669D FF                          db 0FFh
+ROM:669E FF                          db 0FFh
+ROM:669F FF                          db 0FFh
+ROM:66A0 FF                          db 0FFh
+ROM:66A1 FF                          db 0FFh
+ROM:66A2 FF                          db 0FFh
+ROM:66A3 FF                          db 0FFh
+ROM:66A4 FF                          db 0FFh
+ROM:66A5 FF                          db 0FFh
+ROM:66A6 FF                          db 0FFh
+ROM:66A7 FF                          db 0FFh
+ROM:66A8 FF                          db 0FFh
+ROM:66A9 FF                          db 0FFh
+ROM:66AA FF                          db 0FFh
+ROM:66AB FF                          db 0FFh
+ROM:66AC FF                          db 0FFh
+ROM:66AD FF                          db 0FFh
+ROM:66AE FF                          db 0FFh
+ROM:66AF FF                          db 0FFh
+ROM:66B0 FF                          db 0FFh
+ROM:66B1 FF                          db 0FFh
+ROM:66B2 FF                          db 0FFh
+ROM:66B3 FF                          db 0FFh
+ROM:66B4 FF                          db 0FFh
+ROM:66B5 FF                          db 0FFh
+ROM:66B6 FF                          db 0FFh
+ROM:66B7 FF                          db 0FFh
+ROM:66B8 FF                          db 0FFh
+ROM:66B9 FF                          db 0FFh
+ROM:66BA FF                          db 0FFh
+ROM:66BB FF                          db 0FFh
+ROM:66BC FF                          db 0FFh
+ROM:66BD FF                          db 0FFh
+ROM:66BE FF                          db 0FFh
+ROM:66BF FF                          db 0FFh
+ROM:66C0 FF                          db 0FFh
+ROM:66C1 FF                          db 0FFh
+ROM:66C2 FF                          db 0FFh
+ROM:66C3 FF                          db 0FFh
+ROM:66C4 FF                          db 0FFh
+ROM:66C5 FF                          db 0FFh
+ROM:66C6 FF                          db 0FFh
+ROM:66C7 FF                          db 0FFh
+ROM:66C8 FF                          db 0FFh
+ROM:66C9 FF                          db 0FFh
+ROM:66CA FF                          db 0FFh
+ROM:66CB FF                          db 0FFh
+ROM:66CC FF                          db 0FFh
+ROM:66CD FF                          db 0FFh
+ROM:66CE FF                          db 0FFh
+ROM:66CF FF                          db 0FFh
+ROM:66D0 FF                          db 0FFh
+ROM:66D1 FF                          db 0FFh
+ROM:66D2 FF                          db 0FFh
+ROM:66D3 FF                          db 0FFh
+ROM:66D4 FF                          db 0FFh
+ROM:66D5 FF                          db 0FFh
+ROM:66D6 FF                          db 0FFh
+ROM:66D7 FF                          db 0FFh
+ROM:66D8 FF                          db 0FFh
+ROM:66D9 FF                          db 0FFh
+ROM:66DA FF                          db 0FFh
+ROM:66DB FF                          db 0FFh
+ROM:66DC FF                          db 0FFh
+ROM:66DD FF                          db 0FFh
+ROM:66DE FF                          db 0FFh
+ROM:66DF FF                          db 0FFh
+ROM:66E0 FF                          db 0FFh
+ROM:66E1 FF                          db 0FFh
+ROM:66E2 FF                          db 0FFh
+ROM:66E3 FF                          db 0FFh
+ROM:66E4 FF                          db 0FFh
+ROM:66E5 FF                          db 0FFh
+ROM:66E6 FF                          db 0FFh
+ROM:66E7 FF                          db 0FFh
+ROM:66E8 FF                          db 0FFh
+ROM:66E9 FF                          db 0FFh
+ROM:66EA FF                          db 0FFh
+ROM:66EB FF                          db 0FFh
+ROM:66EC FF                          db 0FFh
+ROM:66ED FF                          db 0FFh
+ROM:66EE FF                          db 0FFh
+ROM:66EF FF                          db 0FFh
+ROM:66F0 FF                          db 0FFh
+ROM:66F1 FF                          db 0FFh
+ROM:66F2 FF                          db 0FFh
+ROM:66F3 FF                          db 0FFh
+ROM:66F4 FF                          db 0FFh
+ROM:66F5 FF                          db 0FFh
+ROM:66F6 FF                          db 0FFh
+ROM:66F7 FF                          db 0FFh
+ROM:66F8 FF                          db 0FFh
+ROM:66F9 FF                          db 0FFh
+ROM:66FA FF                          db 0FFh
+ROM:66FB FF                          db 0FFh
+ROM:66FC FF                          db 0FFh
+ROM:66FD FF                          db 0FFh
+ROM:66FE FF                          db 0FFh
+ROM:66FF FF                          db 0FFh
+ROM:6700 FF                          db 0FFh
+ROM:6701 FF                          db 0FFh
+ROM:6702 FF                          db 0FFh
+ROM:6703 FF                          db 0FFh
+ROM:6704 FF                          db 0FFh
+ROM:6705 FF                          db 0FFh
+ROM:6706 FF                          db 0FFh
+ROM:6707 FF                          db 0FFh
+ROM:6708 FF                          db 0FFh
+ROM:6709 FF                          db 0FFh
+ROM:670A FF                          db 0FFh
+ROM:670B FF                          db 0FFh
+ROM:670C FF                          db 0FFh
+ROM:670D FF                          db 0FFh
+ROM:670E FF                          db 0FFh
+ROM:670F FF                          db 0FFh
+ROM:6710 FF                          db 0FFh
+ROM:6711 FF                          db 0FFh
+ROM:6712 FF                          db 0FFh
+ROM:6713 FF                          db 0FFh
+ROM:6714 FF                          db 0FFh
+ROM:6715 FF                          db 0FFh
+ROM:6716 FF                          db 0FFh
+ROM:6717 FF                          db 0FFh
+ROM:6718 FF                          db 0FFh
+ROM:6719 FF                          db 0FFh
+ROM:671A FF                          db 0FFh
+ROM:671B FF                          db 0FFh
+ROM:671C FF                          db 0FFh
+ROM:671D FF                          db 0FFh
+ROM:671E FF                          db 0FFh
+ROM:671F FF                          db 0FFh
+ROM:6720 FF                          db 0FFh
+ROM:6721 FF                          db 0FFh
+ROM:6722 FF                          db 0FFh
+ROM:6723 FF                          db 0FFh
+ROM:6724 FF                          db 0FFh
+ROM:6725 FF                          db 0FFh
+ROM:6726 FF                          db 0FFh
+ROM:6727 FF                          db 0FFh
+ROM:6728 FF                          db 0FFh
+ROM:6729 FF                          db 0FFh
+ROM:672A FF                          db 0FFh
+ROM:672B FF                          db 0FFh
+ROM:672C FF                          db 0FFh
+ROM:672D FF                          db 0FFh
+ROM:672E FF                          db 0FFh
+ROM:672F FF                          db 0FFh
+ROM:6730 FF                          db 0FFh
+ROM:6731 FF                          db 0FFh
+ROM:6732 FF                          db 0FFh
+ROM:6733 FF                          db 0FFh
+ROM:6734 FF                          db 0FFh
+ROM:6735 FF                          db 0FFh
+ROM:6736 FF                          db 0FFh
+ROM:6737 FF                          db 0FFh
+ROM:6738 FF                          db 0FFh
+ROM:6739 FF                          db 0FFh
+ROM:673A FF                          db 0FFh
+ROM:673B FF                          db 0FFh
+ROM:673C FF                          db 0FFh
+ROM:673D FF                          db 0FFh
+ROM:673E FF                          db 0FFh
+ROM:673F FF                          db 0FFh
+ROM:6740 FF                          db 0FFh
+ROM:6741 FF                          db 0FFh
+ROM:6742 FF                          db 0FFh
+ROM:6743 FF                          db 0FFh
+ROM:6744 FF                          db 0FFh
+ROM:6745 FF                          db 0FFh
+ROM:6746 FF                          db 0FFh
+ROM:6747 FF                          db 0FFh
+ROM:6748 FF                          db 0FFh
+ROM:6749 FF                          db 0FFh
+ROM:674A FF                          db 0FFh
+ROM:674B FF                          db 0FFh
+ROM:674C FF                          db 0FFh
+ROM:674D FF                          db 0FFh
+ROM:674E FF                          db 0FFh
+ROM:674F FF                          db 0FFh
+ROM:6750 FF                          db 0FFh
+ROM:6751 FF                          db 0FFh
+ROM:6752 FF                          db 0FFh
+ROM:6753 FF                          db 0FFh
+ROM:6754 FF                          db 0FFh
+ROM:6755 FF                          db 0FFh
+ROM:6756 FF                          db 0FFh
+ROM:6757 FF                          db 0FFh
+ROM:6758 FF                          db 0FFh
+ROM:6759 FF                          db 0FFh
+ROM:675A FF                          db 0FFh
+ROM:675B FF                          db 0FFh
+ROM:675C FF                          db 0FFh
+ROM:675D FF                          db 0FFh
+ROM:675E FF                          db 0FFh
+ROM:675F FF                          db 0FFh
+ROM:6760 FF                          db 0FFh
+ROM:6761 FF                          db 0FFh
+ROM:6762 FF                          db 0FFh
+ROM:6763 FF                          db 0FFh
+ROM:6764 FF                          db 0FFh
+ROM:6765 FF                          db 0FFh
+ROM:6766 FF                          db 0FFh
+ROM:6767 FF                          db 0FFh
+ROM:6768 FF                          db 0FFh
+ROM:6769 FF                          db 0FFh
+ROM:676A FF                          db 0FFh
+ROM:676B FF                          db 0FFh
+ROM:676C FF                          db 0FFh
+ROM:676D FF                          db 0FFh
+ROM:676E FF                          db 0FFh
+ROM:676F FF                          db 0FFh
+ROM:6770 FF                          db 0FFh
+ROM:6771 FF                          db 0FFh
+ROM:6772 FF                          db 0FFh
+ROM:6773 FF                          db 0FFh
+ROM:6774 FF                          db 0FFh
+ROM:6775 FF                          db 0FFh
+ROM:6776 FF                          db 0FFh
+ROM:6777 FF                          db 0FFh
+ROM:6778 FF                          db 0FFh
+ROM:6779 FF                          db 0FFh
+ROM:677A FF                          db 0FFh
+ROM:677B FF                          db 0FFh
+ROM:677C FF                          db 0FFh
+ROM:677D FF                          db 0FFh
+ROM:677E FF                          db 0FFh
+ROM:677F FF                          db 0FFh
+ROM:6780 FF                          db 0FFh
+ROM:6781 FF                          db 0FFh
+ROM:6782 FF                          db 0FFh
+ROM:6783 FF                          db 0FFh
+ROM:6784 FF                          db 0FFh
+ROM:6785 FF                          db 0FFh
+ROM:6786 FF                          db 0FFh
+ROM:6787 FF                          db 0FFh
+ROM:6788 FF                          db 0FFh
+ROM:6789 FF                          db 0FFh
+ROM:678A FF                          db 0FFh
+ROM:678B FF                          db 0FFh
+ROM:678C FF                          db 0FFh
+ROM:678D FF                          db 0FFh
+ROM:678E FF                          db 0FFh
+ROM:678F FF                          db 0FFh
+ROM:6790 FF                          db 0FFh
+ROM:6791 FF                          db 0FFh
+ROM:6792 FF                          db 0FFh
+ROM:6793 FF                          db 0FFh
+ROM:6794 FF                          db 0FFh
+ROM:6795 FF                          db 0FFh
+ROM:6796 FF                          db 0FFh
+ROM:6797 FF                          db 0FFh
+ROM:6798 FF                          db 0FFh
+ROM:6799 FF                          db 0FFh
+ROM:679A FF                          db 0FFh
+ROM:679B FF                          db 0FFh
+ROM:679C FF                          db 0FFh
+ROM:679D FF                          db 0FFh
+ROM:679E FF                          db 0FFh
+ROM:679F FF                          db 0FFh
+ROM:67A0 FF                          db 0FFh
+ROM:67A1 FF                          db 0FFh
+ROM:67A2 FF                          db 0FFh
+ROM:67A3 FF                          db 0FFh
+ROM:67A4 FF                          db 0FFh
+ROM:67A5 FF                          db 0FFh
+ROM:67A6 FF                          db 0FFh
+ROM:67A7 FF                          db 0FFh
+ROM:67A8 FF                          db 0FFh
+ROM:67A9 FF                          db 0FFh
+ROM:67AA FF                          db 0FFh
+ROM:67AB FF                          db 0FFh
+ROM:67AC FF                          db 0FFh
+ROM:67AD FF                          db 0FFh
+ROM:67AE FF                          db 0FFh
+ROM:67AF FF                          db 0FFh
+ROM:67B0 FF                          db 0FFh
+ROM:67B1 FF                          db 0FFh
+ROM:67B2 FF                          db 0FFh
+ROM:67B3 FF                          db 0FFh
+ROM:67B4 FF                          db 0FFh
+ROM:67B5 FF                          db 0FFh
+ROM:67B6 FF                          db 0FFh
+ROM:67B7 FF                          db 0FFh
+ROM:67B8 FF                          db 0FFh
+ROM:67B9 FF                          db 0FFh
+ROM:67BA FF                          db 0FFh
+ROM:67BB FF                          db 0FFh
+ROM:67BC FF                          db 0FFh
+ROM:67BD FF                          db 0FFh
+ROM:67BE FF                          db 0FFh
+ROM:67BF FF                          db 0FFh
+ROM:67C0 FF                          db 0FFh
+ROM:67C1 FF                          db 0FFh
+ROM:67C2 FF                          db 0FFh
+ROM:67C3 FF                          db 0FFh
+ROM:67C4 FF                          db 0FFh
+ROM:67C5 FF                          db 0FFh
+ROM:67C6 FF                          db 0FFh
+ROM:67C7 FF                          db 0FFh
+ROM:67C8 FF                          db 0FFh
+ROM:67C9 FF                          db 0FFh
+ROM:67CA FF                          db 0FFh
+ROM:67CB FF                          db 0FFh
+ROM:67CC FF                          db 0FFh
+ROM:67CD FF                          db 0FFh
+ROM:67CE FF                          db 0FFh
+ROM:67CF FF                          db 0FFh
+ROM:67D0 FF                          db 0FFh
+ROM:67D1 FF                          db 0FFh
+ROM:67D2 FF                          db 0FFh
+ROM:67D3 FF                          db 0FFh
+ROM:67D4 FF                          db 0FFh
+ROM:67D5 FF                          db 0FFh
+ROM:67D6 FF                          db 0FFh
+ROM:67D7 FF                          db 0FFh
+ROM:67D8 FF                          db 0FFh
+ROM:67D9 FF                          db 0FFh
+ROM:67DA FF                          db 0FFh
+ROM:67DB FF                          db 0FFh
+ROM:67DC FF                          db 0FFh
+ROM:67DD FF                          db 0FFh
+ROM:67DE FF                          db 0FFh
+ROM:67DF FF                          db 0FFh
+ROM:67E0 FF                          db 0FFh
+ROM:67E1 FF                          db 0FFh
+ROM:67E2 FF                          db 0FFh
+ROM:67E3 FF                          db 0FFh
+ROM:67E4 FF                          db 0FFh
+ROM:67E5 FF                          db 0FFh
+ROM:67E6 FF                          db 0FFh
+ROM:67E7 FF                          db 0FFh
+ROM:67E8 FF                          db 0FFh
+ROM:67E9 FF                          db 0FFh
+ROM:67EA FF                          db 0FFh
+ROM:67EB FF                          db 0FFh
+ROM:67EC FF                          db 0FFh
+ROM:67ED FF                          db 0FFh
+ROM:67EE FF                          db 0FFh
+ROM:67EF FF                          db 0FFh
+ROM:67F0 FF                          db 0FFh
+ROM:67F1 FF                          db 0FFh
+ROM:67F2 FF                          db 0FFh
+ROM:67F3 FF                          db 0FFh
+ROM:67F4 FF                          db 0FFh
+ROM:67F5 FF                          db 0FFh
+ROM:67F6 FF                          db 0FFh
+ROM:67F7 FF                          db 0FFh
+ROM:67F8 FF                          db 0FFh
+ROM:67F9 FF                          db 0FFh
+ROM:67FA FF                          db 0FFh
+ROM:67FB FF                          db 0FFh
+ROM:67FC FF                          db 0FFh
+ROM:67FD FF                          db 0FFh
+ROM:67FE FF                          db 0FFh
+ROM:67FF FF                          db 0FFh
