@@ -1,0 +1,2 @@
+Load BINary snapshot into emulator.  (MAME, VZEM, WinDSEVZ200, or JVZ200)
+Reboot.
