@@ -1,0 +1,51 @@
+Disk format:
+
+Reading:
+Port 0x10 is written to, with Drive 1 or 2 active. The stepper motor is controlled by sequencing bits 0-3. Bit is kept high.
+
+Bit 0 - 3 : stepper motor
+Bit 4 : Drive 1 Active (1=active)
+Bit 5 : Write Data
+Bit 6 : Write Request. Enable? (0=Active)
+Bit 7 : Drive 2 Active (1=active)
+
+As long as the Drive active bit is high, the disk spins (85rpm). This means the entire track passes over the read head continuously every 700ms.
+
+Example Startup sequence (step in to ensure at Track 0:)
+Port Write: Addr 0010, value: 61 = 01100001 - no drive selected, write disabled.
+Port Write: Addr 0010, value: 71 = 01110001 - Drive 1 selected. Step 1
+Port Write: Addr 0010, value: 79 = 01111001 - Step 2
+Port Write: Addr 0010, value: 78 = 01111000 - Step 3
+Port Write: Addr 0010, value: 7C = 01111100 - Step 4
+Port Write: Addr 0010, value: 74 = 01110100 - Step 5
+Port Write: Addr 0010, value: 76 = 01110110 - Step 6
+Port Write: Addr 0010, value: 72 = 01110010 - Step 7
+Port Write: Addr 0010, value: 73 = 01110011 - Step 8
+
+The emulated hardware tracks stepper motor movement by looking for sequences on bit 0 - 3: 1,9,8 = Step in, 8,9,1 = Step 8.
+
+Port 0x12 Bit 7 (0x80) is stobed every time a bit is received. The data is shifted into a register which is read on port 0x11.
+
+The emulated hardware simply toggles 0x12 between 0x80 and 0x00, ie every time the emulated software checks, it sees a new bit available. The location in the disk image file is incremented by 1 each time. value provided on port 0x11 is referenced by this value /8.
+
+The emualted hardware keeps track of the head movements to emualte the track position. The location in the file is therefore. TrackNo * TrackLength + (LocationOnTrack / 8)
+
+
+Writing:
+Init - Track 0:
+0011 <- Drive 1, Write Enable, bit = 1
+Bits:
+101001100110011001011001100110011010011001100110010110011001100110100110011001100101100110011001100110011001100110011010101010101010010101011001010101100110101001100101011001100101011001100110011001100110
+Bytes in blank disk image:
+0x 80 80 80 80 80 80 00 FE E7 18 C3 00 00 00 80 80
+= Bits:
+10000000 10000000 10000000 10000000 10000000 10000000 00000000 11111110 11100111 00011000 11000011 00000000 00000000 00000000 10000000 10000000
+101001100110011001011001100110011010011001100110010110011001100110100110011001100101100110011001100110011001100110011010101010101010010101011001010101100110101001100101011001100101011001100110011001100110
+ignore first '1', assuming '01','10' = 1, '00','11'= 0:
+01001100110011001011001100110011010011001100110010110011001100110100110011001100101100110011001100110011001100110011010101010101010010101011001010101100110101001100101011001100101011001100110011001100110
+1 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 0 1 1 1 0 0 1 1 1 0 0 0 1 1 0 0 0 1 1 0 0 0 0 1 1 0 0 0 0 0 0 0 0 0 0 0 ?
+=10000000 10000000 10000000 10000000 10000000 10000000 00000000 00111111 1011100111000110001100001100000000000?
+^This works for the first few bytes. Note bytes are written out MSB first...
+
+10 10 01 10 01 10 01 10 01 01 10 01 10 01 10 01 10 10 01 10 01 10 01 10 01 01 10 01 10 01 10 01 10 10 01 10 01 10 01 10 01 01 10 01 10 01 10 01 10 01 10 01 10 01 10 01 10 01 10 10 10 10 10 10 10 10 01 01 01 01 10 01 01 01 01 10 01 10 10 10 01 10 01 01 01 10 01 10 01 01 01 10 01 10 01 10 01 10 01 10 01 10
+ 

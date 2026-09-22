@@ -1,0 +1,8 @@
+FB. 5/2/2022. Sam Trudeau.
+
+Simple arduino uno tool to prove VZ DOS cartridge is able to read data from disc drive. 
+It outputs track 0, sector 0 continuously. 
+Connect LED pin on arduino to RD DATA on cartridge, ground on arduino to ground on cartridge, 
+supply 5V power to the cartridge, power everything and type DIR. 
+It should display a single entry. Disc drives should not be connected during the test.
+

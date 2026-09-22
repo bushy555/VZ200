@@ -1,0 +1,32 @@
+Now working on the cassette to snapshot hardware piece. If the user can load a physical cassette into the VZ's memory, this will convert it to a .VZ snapshot
+The CLOAD routine in ROM is located at 3656h. At the very end it has this bit of code to autoexecute if the filetype is F1 (binary)
+
+36C4  3A D2 7A    LD A,(7AD2h)
+36C7  FE F1       CP F1h
+36C9  20 04       JR NZ,+04h
+36CB  2A 1E 78    LD HL,(781Eh)
+36CE  E9          LD PC,HL
+
+The method i'm using to bypass this is to copy the 110 bytes of rom code into ram, then bypass the autoexecute feature. The destination RAM is the start of the MODE(1) screen memory, which is a convenient place to temporarily steal up to 1.5k
+
+Step 1:
+Copy memory from 3656h to 36C3h (13910 to 14019)
+FOR N=0 TO 109:B=PEEK(13910+N):POKE 29184+N,B:NEXT
+
+Step 2: 
+Blank the call to 358Ch to check for filename with NOPs
+FOR N=10 TO 12:POKE 29184+N,0:NEXT 
+
+Step 3:
+Add a JP 1A19h instruction at offset 110 (C3, 19, 1A) to return to the command interpreter
+POKE 29184+110,195:POKE 29184+111,25:POKE 29184+112,26
+
+Step 4: 
+Call the routine copied to RAM. This will display the WAITING: message
+POKE 30862,0:POKE 30863,114:X=USR(0) 
+
+after loading completes control is returned to the command line. Basic start/end pointers are set according to the program loaded (30884/5, 30969/70)
+At this point the routine can be CSAVEd. The snapshot conversion utility will take over at this po?int and write the contents of memory into snapshot format on the sd card. 
+A hardware kit isn't strictly needed as the memory can be dumped to a wav file and converted, but this makes the process simpler. I'll go through my cassette collection and convert anything not already imaged. 
+Another option is to export to a brand new clean WAV file, if for whatever reason you want to sit through a CLOAD  ??
+I sometimes do, because those screeching sounds take me to a happy place ??
