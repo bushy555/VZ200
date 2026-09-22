@@ -1,0 +1,24 @@
+1.7 to 1.8 patch. Single byte change at offset $1226 in the eprom ($5226 in memory). 
+FE 0F change to FE 10 (cp 0Fh => cp 10h). The DIR command was not listing all files.
+
+====================================================================
+
+
+
+VZ Facebook search:
+
+V1.8 - Now supports opening of Long file names			(BG)
+I'm making a support thread for the SD Loader			(BG)
+I finally got some time and burnt V1.5 and updated VZDOS     	(GV)
+
+====================================================================
+Format Ultra 16Gb micro sd card.
+Use hex program "HxD".
+Load sd card physical drive
+Go to top / offset 0.
+zero out etire Sector 0 of the physical disk to wipe partitions.
+Save drive.
+Format normally. FAT32. select Default sector allocation.
+Should work fine using SD loader DOS v1.8
+====================================================================
+

@@ -1,0 +1,7 @@
+SD Loader v2.31
+---------------
+Added a seek command. Calling Seek with the number of sectors to advance in DE. 0=go back to the start of the file. Any other number will skip further into the file. calling seek twice with DE=10, will skip 20 sectors etc. This will let you seek up to 32mbytes into a DAT file per call. It could be a little faster but overall, it's not too bad. Maybe 1.5 seconds to seek 32mbytes into a file.
+I might modify it later for an 32bit absolute sector in a file.
+The call is located at 0x5F15
+
+-Ben. 22 May 2023.

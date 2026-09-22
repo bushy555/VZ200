@@ -1,0 +1,59 @@
+
+https://bennvenn.myshopify.com/products/vz300-sd-loader?_pos=1&_sid=bd7c6a586&_ss=r&variant=31028143456359
+
+VZ300 SD loader pre-order - Now Including 3d printed Enclosure
+
+Regular price $40.00
+Tax included.
+Share Share on Facebook Tweet Tweet on Twitter Pin it Pin on Pinterest
+
+ Video of it in use - Note: Old video - A lot has been added since.
+
+These are pre-orders. Parts and boards are being sourced from China, USA, UK and Australia and delays do happen waiting for everything to arrive. Price in USD
+
+We use PayPal so in the event that it all goes horribly wrong,  you'll be guaranteed to get your money back. If you'd rather wait for them to arrive before ordering, no problem. 
+
+Give your VZ200/300 or equivalent a new lease on life with this SD card loader. Load .VZ snapshots instantly onto your system, supports both Binary and Basic files.
+
+Includes 128kbytes of onboard sram to Max out your VZ system.  
+
+System, Monitor, cables, desk, etc not included. Just the SD loader card. 
+
+Tested on VZ200, VZ300. Should also be compatible with all it's clones (LASER200, Salora Fellow, Seltron200, Smart-Alex Jr, TexetTX8000A LASER310 etc...) You could probably get it running on similar systems with some changes to the FPGA code and Firmware.
+The Hardware:
+
+The hardware has been finalised. Here is the breakdown:
+
+Port 55decimal: RAMmap. Set this to 0 for VZ200 compatibility (Expanded RAM is mapped from $9000-$FFFF or set to 1 for VZ300 compatibility (Mapped from $B800-$FFFF. 
+
+Port 56decimal: SPI port CFG for SD interface.
+
+Port 57decimal: SPI port Data for SD interface.
+
+Port 58decimal:
+
+Bit0 = EPROM(0) or SRAM(1) mapped to DOS ROM AREA (Note, SRAM write is enabled even when EPROM is selected. This means you can code a loop to read and write from the DOS ROM area to copy itself into ram before switching to SRAM)
+
+Bit1 = SRAM BankLow - DOS ROM SRAM bank 0 or 1 ($4000-$67FF)
+
+Bit2 = SRAM BankHiigh - SRAM Bank 0 or 1 (Expanded RAM up to $FFFF)
+
+Bit3 = on board LED if fitted. (If you mod your VZ's ROM /CS line, you can use this signal to disable the original ROM and map in SRAM allowing you to load BASIC rom's from SD card. This hasn't been implemented yet... Email me if you think it could be handy
+The Firmware:
+
+Upon power up the SD card will be initialised, FAT32 will be initialised. If VZDOS.VZ is found on the root directory, it will be copied to $4000 and executed. This allows the latest firmwares to be launched without reflashing the EPROM. BASIC is loaded by default.
+
+If holding Space on power up, you will enter my Command Line Interface. Type HELP for a list of commands.
+
+The firmware was designed around a SDHC class card being present. This means 2gb or greater. I didn't have any smaller cards here to test when developing so I didn't support smaller than 2gb. Tested up to 64GB SDXC.
+
+V1.7: Overwrite Support added, break and reuse cluster chains. Added new CLI commands (FILL, COPY). Partitioned SD's now supported. Directories Supported
+
+ 
+
+EPROM Binary - Burnt to EPROM
+VZDOS.VZ - auto booted from SD card
+
+ 
+
+CPLD Configuration File - Current as of V1.7

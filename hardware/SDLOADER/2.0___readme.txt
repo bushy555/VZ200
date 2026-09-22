@@ -1,0 +1,7 @@
+SD Loader v2.0
+---------------
+VZDOS.VZ    _v2.0 SD			: v2.0 of the VZDOS boot loader specially for copying on to a memory card.
+VZDOS.VZ    _v2.0 SD autoruns TES2.DAT	: This version was modded by Ben to automatically run any video file called 'TES2.DAT'
+                                          that is located in the root directory of a memory card for the SD Card reader/loader.
+
+
