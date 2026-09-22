@@ -1,0 +1,32 @@
+Robotics and the VZ
+By Ben Hobson and Dave Maunder.
+Written November, 1992.
+
+In the last few months we have been experimenting with computer controlled vehicles. Not much is required in the form of electronics. The major difficulty is the constructing of a suitable vehicle. One way we built a vehicle was out of Technical Lego using cogs to gear down the drive to tank like tread. The other way is to convert an old remote controlled car. These come in two types. One is controlled via a four way cable. The other is radio controlled. Either will do as long as you can change polarity to the motors with a double pole relay. In one of the prototypes, a radio controlled car was used. The transmitter was missing and as such the control circuitry was built into the actual car, with a twelve way cable running to the computer and power supply. As the circuit is so simple, construction details are left up to the individual.
+
+The circuit is a modification of a circuit which appeared in the UBORNE book, "Practical things to do with a microcomputer". The original circuit did not have the capacitors and resisitors, as it was designed for a BBC or similiar computer which obviously has the 5volt supply entirely separate from the data lines. As such it did not work on the VZ. The resistors simply provide a current difference sufficient to turn on the transistors. The diodes and capacitors absorb any spikes produced by the switching of the replays. Without them, fast switching will at certain times hang the VZ. The single pole relay is the power on/off relay. It turns on or off power to the motors. This is necessary because the motor relays only reverse the polarity of the motors and such do not turn the motors off. In the circuit diagram the relays are represented by a little blob with a line either side. The blob is the common connection.
+   The bumper switches are two normally open micro switches. They are there to sense if your robot has hit anything. Connect them together via a stripof cardboard or tin to form a semi circular shape. This way any object in hittnig the bumper will activate either or both switches. Two bumper circuits are shown. It is up to you which one to use if any. Two bumpers can be used, one at the front and one at the back.
+   Motors can be anything at all... Cassette player motors appropriately geared are ideal. Just make sure they rotate at the dame speed or the vehicle will veer to one side. The power supply can be either battery or a plug pack transformer. Just don't try and use the VZ. If for some reason the motors stall, they will place an excessive load on the VZ's power supply and may damage it. Besides that it is doubtful if enough current can be supplied anyway. The VZ's regulator can only supply one amp and most of this ised up by memory expansions, disk controllers etc. To use the printer interface for the vehicle a small modification is necessary. A 5volt supply must be available at the centronics plug. Open up your printer interface and position it so the edge connector is forward and the PCB tracks are uppermost. Solder a wire to pin 4 of the edge connector. This can be located by counting to the fourth pin from the left on the row of pins closest to the VZ side of the interface. To double check, the pin behind should be connected to PIN 4 also. Although in older interfaces this may not be so. Now wind the wire around the cable, being sure to loop it throught he straining clamp and connect it to a spare pin on the centronics plug. Centronics plugs have the pin numbers labelled to avoid confusion. In most cases PIN 36 is not used but you should check your printer manual to be sure. If pin 36 is used by the printer the 5v will disturb operation of the printer. However 99% of printers stick to the industrial standard layout and according to that PIN 36 is not used. Reassemble the interface and check that 5v is available between PIN 36 (or your choice of pin) and PIN 16. If all is well you can build your vehicle.
+
+The centronics pins and their functions are as follows 
+PIN 2 thru 9 - Data lines 0 thru 7
+PIN 11	     - Busy / Ready
+PIN 16       - Ground
+PIN 26       - 5 volt
+
+Writing software is easily achieved from BASIC. A simple OUT statement turns the data lines on or off. To calculate these values place a binary 1 in the appropriate data line number that corresponds to the relay you want turned on and convert this to decimal. Then type something like OUT 14,64. The port you send it to depends on your interface but try 12, 13, 14, 15.
+
+To test your bumper you simply type
+
+A=INP(0) : IF A = 24 THEN GOSUB 1000 ELSE GOTO 20
+
+The value for A can be discovered by the simple program.
+
+10 A=INP(0)
+20 PRINT A
+30 GOTO 10
+
+Press the bumper switches a few times and observe what the resulting number is.
+That is all except for a sample progra,. It can be expanded to however you wish but each program depends on the individual vehicle.
+
+
