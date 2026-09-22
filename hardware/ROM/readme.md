@@ -1,22 +1,32 @@
 All specific GA003/GA004/GA008 ROM stuff for the VZ.
+
 Be it diagrams, circuit fixes & replacements, firmware. v1.0 , v1.1, 1.2, 2.0 or our own hacked 2.1's.
+
 Might also include SD Loader stuff.
 
 Various stuff in here collected from over numerous years posted on our "VZ/Laser Fans" facebok group.
-Acknowledgement and credits go to Geronimus Vanden for the complete disassembly & circuitry for the GA003 and GA004 with photos, Rhys Weatherly (see his github) for circuirty & diagrams & dead-rom test, and SK Leung for his work in the rom area.  
+
+Acknowledgement and credits go to Geronimus Vanden for the complete disassembly & circuitry for the GA003 and GA004 with photos, Rhys 
+Weatherly (see his github) for circuirty & diagrams & dead-rom test, and SK Leung for his work in the rom area.  
 
 
 p.GA003 and GA004 reverse engineering - Geronimus Vanden
+
 Hack a Day article : 	https://hackaday.com/2014/04/02/reverse-engineering-programmable-logic/
 
 Rhys Weatherly: 
+
 Restoration info: https://github.com/rweather/vz200-restoration
+
 Redrawn schematic: https://github.com/rweather/vz200-restoration/blob/main/schematics/VZ200/PDF/VZ200.pdf
+
 Dead VZ200 ROM TEST : https://github.com/rweather/vz200-restoration/tree/main/src/deadtest
 
 
 Dave Collins ROM disassembly:
+
 This is the complete, annotated listing for the VZ200 V2.0 BASIC ROM
+
 https://github.com/lindoran/VZ200-Level-II-BASIC-Disasembly
 
 
