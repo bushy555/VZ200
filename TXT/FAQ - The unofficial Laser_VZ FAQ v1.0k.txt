@@ -1,4 +1,4 @@
-
+see: [to do]
 
 ===
 
@@ -29,7 +29,7 @@ Presenting the Unofficial:
 
 
 
-Laser200/210/310 & VZ200/300 FAQ v1.0k			as at: 18/Sep/2026.
+Laser200/210/310 & VZ200/300 FAQ v1.0j			as at: 10/Jan/2026.
 =======================================
 
 https://www.vz200.org								- Laser // VZ website.
@@ -4034,9 +4034,12 @@ https://github.com/zonared/vz-doom						[djm] [vz] VZ DOOM
 
 
 
-v. Dave collins ROM disassembly
---------------------------------
-
+v. Dave collins Level II disassembly - This is the complete, annotated listing for the VZ200 V2.0 BASIC ROM
+------------------------------------
+https://github.com/lindoran/VZ200-Level-II-BASIC-Disasembly
+https://github.com/lindoran/vz-doom	(Modified from original)
+https://github.com/lindoran/RC39-Backplane-System-for-VZ200
+https://github.com/lindoran/vz2wav-decompile
 
 
 
@@ -6654,18 +6657,18 @@ d. Sound mods !
 (N) Development		[djm  to finish]
 ===============
 0. Persons involved in early development
-      a. Video Technology Staff
+a. Video Technology Staff
 Not too much is known about the original development of the Laser series of computers.
 One of the first David Ahl reviews shows an engineer working at a Laser 200 within Video Technology.
 In the early to mid 2000's, a black and white photo was found of three Video Tech engineers holding a Laser 200. 
 Unfortunately this photo was not ever kept.
 
 
-      b. Wolfgang Maschke
+b. Wolfgang Maschke
 A German fellow that started the German VZ200 fan club, and kept a large software repositry of German made VZ200 software.
 
 
-      c. Greg Dubios & Trisha McNamara
+c. Greg Dubios & Trisha McNamara
 Jason Oakley's interview with Greg:  https://bluebilby.com/dubois-mcnamara/
 
 "I had many years of fun playing with the VZ machines. I built a network of 5 machines connected on a 100-metre cable. 
@@ -6673,21 +6676,56 @@ I wrote a networking program where each machine could access the drives on a Mod
 All machines could read/write/print to the Model III."
 
 
-      d. Gerhard Wolf		
+d. Gerhard Wolf		
 Gerhard wrote many of the Laser technical books (BASIC, DOS disassembly, ROM disassembly)
 
 
-      f. Peng Xinmin
+f. Peng Xinmin
 A Chinese gentleman that wrote the Chinese Laser technical bible manual.
 
 
-      g. Larry Taylor
-      h. Leslie Milburn
-      i. Guy Thomason
-      j. Jason Oakley
-      k. W Obrist
-      l. Russell Harrison
+g. Larry Taylor
+Larry wrote a number of childrens games and sold/distributed them through a few
+VZ clubs though mostly via VSoftwareZ. His most notable effort was the design
+and coding of mixed text with mode(1) graphics as used in his adveture game
+'Escape River'
 
+[to do]
+h. Leslie Milburn
+
+
+i. Guy Thomason
+
+
+j. Jason Oakley
+
+
+k. W Obrist
+
+
+l. Russell Harrison
+
+
+m. Mr Bob Kitch, Mr Bruce Kitch.
+
+
+n. Mr Joe Leon.
+
+
+o. D. Newsome.
+
+
+p. Harry Huggins
+
+
+q. Gavin williamson
+
+
+r. Scott le Brun
+
+
+s. John D'Alton
+      
 
 
 
@@ -8189,6 +8227,9 @@ missing #	VZ300 g3	Facebook market place				18k	08/25
 
 v??????		Laser500  	Altinu Aletienun 11/3/26    2388000664
 
+				
+
+
 v000029 	Salora Manager
 v000582		Salora Fellow	Google
 v001979		Laser210	FB						8k.
@@ -8235,14 +8276,14 @@ v022857		Laser500	eBay.				France
 v022903		Laser500	Google.				Italy.
 v023164		Laser210	eBay.				Italy.			06/2025. 
 v023825         Laser200        Brian Mora         		Aus.		4k. Base plate: © 1982.
-v024662		VZ200 	 	Google				Germany		4k. NTSC
+v024662  	VZ200		Bill Loguidice 			USA	NTSC	4k    
 v025039 	VZ200		Ebay via John Layt german 	Germany		4k. 	16/9/2026
 v025446		VZ200		ebay. 				Germany		4k.	'VZ200 Farb Computer'. German sticker on base.
 v025937		VZ200		Frank Doege
 v026218		VZ200		Thomas OderausVkommt		Norway.			23/3/25
 v026983		VZ200		Ben Beazley			Aus.
 v027688		VZ200		Ian Salmon
-v027967		VZ200		ebay				Aus.		8k. DSE.
+v027967		VZ200		Cameron Kaiser			USA.	NTSC	4k.     29/9/26. ROM v2.0   confirmed 4k ram.  ~32nd week 1983.
 v028300  	VZ200		Stephen Mullens			Aus.		8k. DSE.
 v028531		VZ200		Alan Hanson	Oct83.		Aus.		8k. DSE.
 v028779		VZ200		Darryn Hancock			Aus.		8k. DSE.
@@ -8283,7 +8324,7 @@ v041843		VZ200		Craig Whitmore			New Zealand.
 v042042		Laser200	Tommy Oversen's.  		Norway. 
 v042307		VZ200		Craig Whitmore			Aus.
 v044268		VZ200		Brian Mora			Aus
-v044427 	VZ200 		Matheus Geraldini Dos Santos
+v044427 	VZ200 		Matheus Geraldini  via X				25/5/2023
 v045043		VZ200 		Guy Thomason			Aus
 v045046		VZ200		James Diffendaffer. 		USA PAL. 	4k.  Factory colour disable switch.
 v045053		VZ200		Manuel Carvalho			Aus.		8k.	10/2025.
@@ -8370,6 +8411,7 @@ v077897		VZ200		Andrew Laird			Aus
 v077912		VZ200		Andrew Laird			Aus
 v077979		VZ200		Ian Pople
 v078111		vz200		Ben Grimmet			Aus
+v078451		VZ200		Cameron Kaiser			USA	NTSC	4k
 v078693		VZ200		James Diffendaffer. 		USA 		4k.	NTSC. 
 v081034		DSE TypeWrite	Google
 v085976		Laser200	Christophe Pousset
@@ -8504,6 +8546,7 @@ v204761		VZ300 g2	ACMs via Dave Everett		Aus. 		18k.	26/7/2025
 v204853		VZ300 g?	Ebay (advised by Andrew)	Aus.		18k.	27/2/2026
 v204891  	VZ300 g3     	Google/The Liberator				18k.
 v205250		VZ300 g2	Jason Oakley.			Aus. 		18k.
+v205384   	VZ300 g3	Martin Dixie   			Aus.	PAL.	18k. 	27/9/2026
 v?20682?	VZ300 g2	Ian Salmon. 					18k.
 v208601		VZ300 g2	Brendan Murphy.			Aus. 		18k.
 v209294		VZ300 g2	Kris Garrein. 					18k.
