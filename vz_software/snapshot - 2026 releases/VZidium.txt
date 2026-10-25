@@ -1,0 +1,8 @@
+VZIDIUM -  (Brendan Murphy)
+
+VZIDIUM is an Uridium tribute that I vibe coded this week. 
+It features speedy bi-directional parallax scrolling in 64x32 semigraphics, speech synthesis and multiple levels!
+
+Tested on real hardware, requiring 32k of RAM. 
+
+If you're already tired of AI games on vintage micros, I waited 40 years for this! ??

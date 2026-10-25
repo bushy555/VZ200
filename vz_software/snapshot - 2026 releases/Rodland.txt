@@ -1,0 +1,11 @@
+Rodland for the VZ300 and BennVenn SD drive.		Brendan Murphy. Oct 2026
+
+
+Rodland for the VZ300!
+Simultaneous two player action for your VeeZed.
+Requires BennVenn 128k RAM expansion and SD loader, and supports dual joystick and/or no joystick play.
+Zip in the files section
+
+
+Place VZ and DAT files in the same folder on your SD card.
+

@@ -1,0 +1,4 @@
+Boulder Dash for the VZ300! 
+Requires 16kb RAM expansion.
+Supports JS20 joystick or keyboard.
+Tested on VZ300 and loaded from BennVenn SD drive.

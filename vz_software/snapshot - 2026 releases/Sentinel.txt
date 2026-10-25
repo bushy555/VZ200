@@ -1,0 +1,5 @@
+The Sentinel, for the VZ300!
+BennVenn 128k RAM expansion required. 
+Loads from SD
+Supports JS20 joystick or keyboard.
+Zip added to the files section of the group

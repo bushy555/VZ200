@@ -1,0 +1,40 @@
+STUNT CAR RACER - VZ300 version		Brendan murphy. Oct 2026
+===============================
+
+Original game (C) Geoff Crammond 1988/9; ZX Spectrum version by Pete Cooke.
+This is a conversion of the ZX Spectrum game to the Dick Smith VZ300. The
+original Spectrum game code (physics, tracks, opponents, rules, menus) runs
+unchanged; only the screen, sound, keyboard and joystick routines are new.
+Needs: VZ300, BennVenn 128K RAM expansion, BennVenn SD loader.
+File: STUNTCAR.VZ (30,500 bytes) - load and run it from the SD loader.
+
+
+Controls (keyboard)
+S accelerate X brake / reverse
+O steer left P steer right
+M or SPACE fire (boost while accelerating, select in menus)
+SHIFT+SPACE pause: then Q = quit race, S = sound on/off, RETURN = resume
+Joystick 1 or 2 work as well (up = accelerate, down = brake, fire = boost).
+Notes
+Load/Save: there is no tape. Save keeps the season in memory and Load
+brings it back, for as long as the VZ stays switched on.
+Memory use
+$4000-$67FF DOS RAM bank 0: renderer, buffers, lookup tables (built at
+start-up), screen back buffer at $5B00
+$4000-$67FF DOS RAM bank 1: start-up, title screen and music, menus, text
+$7000-$77FF video RAM
+$7800-$B7FF internal RAM: original game
+$B800-$FFFF expansion bank 0: original game (with VZ driver code in the
+spaces left by replaced Spectrum routines)
+$B800-$FFFF expansion bank 1: bonnet art and boost flame graphics
+The file is compressed (ZX0); the loader unpacks it into the banks above.
+
+
+--
+
+Stunt Car Racer for the VZ300!
+Requires BennVenn 128k RAM expansion.
+Bah! Unfortunately Claude reset my workspace overnight. I was having it work on speeding up the renderer but it lost everything, then spent the last 10% of my weekly allowance disassembling this *.VZ and getting it back. I may revisit this next week when I get more Claudes. Or maybe not!
+It runs, it plays! Corners with the opponent car can get choppy, but on the straights the VZ is actually meeting the original Spectrum code framerate cap.
+Engine sound on the VZ is a challenge. It makes it when it can, usually on the straights  
+VZ in the files section. No descriptive zip unfortunately because of the reset workspace.
