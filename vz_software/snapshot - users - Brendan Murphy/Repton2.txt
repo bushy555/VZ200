@@ -1,0 +1,9 @@
+Repton 2 for the VZ300!		Brendan Murphy. Oct 2026.
+========================
+Requires BennVenn 128k RAM expansion. 
+
+About 38.7KB stays resident, with the expansion's spare 16.8 KB bank and 8 KB DOS-area page only used while loading.
+Repton 2 is an enormous interconnected adventure, with progress requiring exploration, planning and backtracking.
+Collect all 4,744 pieces of earth, 1,634 diamonds, 42 puzzle pieces and 16 crowns, and kill all 18 monsters. 
+Zip added to the files section.
+

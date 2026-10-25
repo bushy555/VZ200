@@ -1,0 +1,14 @@
+VZELDA: The Lost Princess.    (Brendan Murphy)
+
+A Zelda-style dungeon adventure for the VZ300, vibe-coded entirely in Z80 assembly.
+A dragon guards the Master Key to the princess’s prison. Fight through 12 rooms, find the bow, torch and magic wand, slay the dragon and set her free.
+
+Features
+12 rooms, with smooth eight-way scrolling in the larger ones
+Torch-lit dark rooms where a flickering pool of light follows you
+Sword, bow and magic wand
+Five monster types and a three-phase dragon boss
+Keys, secret walls, switches, crystal seals, traps and treasure
+Joystick or keyboard control
+34kb required
+Tested on a VZ300

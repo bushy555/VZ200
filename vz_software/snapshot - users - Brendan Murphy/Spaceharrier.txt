@@ -1,0 +1,4 @@
+Space Harrier for the VZ300!
+Converted from Kazuhiro Furuhata's 1988 Sharp MZ-700 type-in version (Space Harrier (C) SEGA 1985).
+Requires BennVenn 128kb RAM expansion. Runs from SD. 
+Supports joystick or keyboard.
