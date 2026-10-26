@@ -1,4 +1,4 @@
-STUNT CAR RACER - VZ300 version		Brendan murphy. Oct 2026
+STUNT CAR RACER - VZ300 version.  v1.1	Brendan murphy. Oct 2026
 ===============================
 
 Original game (C) Geoff Crammond 1988/9; ZX Spectrum version by Pete Cooke.
@@ -38,3 +38,13 @@ Bah! Unfortunately Claude reset my workspace overnight. I was having it work on 
 It runs, it plays! Corners with the opponent car can get choppy, but on the straights the VZ is actually meeting the original Spectrum code framerate cap.
 Engine sound on the VZ is a challenge. It makes it when it can, usually on the straights  
 VZ in the files section. No descriptive zip unfortunately because of the reset workspace.
+
+
+
+
+
+Stunt Car Racer has been updated. 
+With a revised renderer it is now up to 12% faster in the choppy bits, and it is hitting the framerate cap more of the time. 
+Engine sound has been adjusted to match the Spectrum source i.e. limited.
+The resultant larger file now requires a DAT file, to be placed in the same folder on your SD card as the .VZ
+

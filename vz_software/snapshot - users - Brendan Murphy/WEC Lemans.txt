@@ -1,0 +1,4 @@
+WEC Lemans for the VZ!
+SD drive & 128k required. 
+Unfortunately the VZ just doesn't do engine sounds. Brm brm!
+Place the .VZ and .DAT files in the same folder on your SD card. 
