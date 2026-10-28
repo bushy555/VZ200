@@ -1,0 +1,57 @@
+Tau Ceti for the VZ!
+
+I've barely even tested or tweaked this one, because I don't know how to play. But I always wanted to.
+But I know you type LAUNCH in game to whizz around and shoot. 
+I might revisit this one after a playthrough
+TAU CETI - VZ300 version
+========================
+Original game (C) 1985 CRL Group PLC, designed and programmed by Pete Cooke.
+This is a conversion of the ZX Spectrum game to the Dick Smith VZ300: the
+original Spectrum game code (3D engine, cities, robots, reactor, rods puzzle,
+console commands, demo) runs unchanged; the screen, keyboard, joystick and
+sound routines are new VZ code.
+Needs:  VZ300, BennVenn 128K RAM expansion, BennVenn SD loader.
+File:   TAUCETI.VZ (single file, 30.9K - no .DAT files needed). Run it from SD.
+Title screen: SPACE, RETURN or joystick fire starts a game; left alone it
+runs the demo (SPACE or fire in the demo starts a game).
+Keys (as the Spectrum; KEYS at the console shows / redefines them)
+  O / P   turn left / right          S / X   accelerate / decelerate
+  N       fire laser / select        V       alter view (fwd/left/rear/right)
+  M       fire missile               F       fire flare
+  A       fire AMM                   H / G   increase / decrease height
+  J       jump (hyperspace)          L       land
+  R       status page on / off       I       infra-red on / off
+  SHIFT+SPACE = BREAK (pause in flight, leave the notepad)
+Joystick (either port): left / right turn, up / down accelerate / decelerate,
+  fire = laser / select, arm button = missile.
+Console (when docked): type a command and press RETURN - HELP lists them
+  (LAUNCH, MAP, RODS, REACTOR, LOOK, WAIT, STATUS, EQUIP, NAME, PAD, NEWPAD,
+  SAVE, LOAD, KEYS, QUIT, SCORE, PAUSE, SIGHTS ON/OFF, CLS).
+  SHIFT+0 or CTRL+M deletes.  SAVE / LOAD keep one saved game in the
+  expansion RAM until the VZ is switched off (there is no tape saving).
+Screen
+  Flight / docked view: mode(1) 128x64. 3D view top left (sky blue, ink
+  yellow), HUD on the right: compass strip with gauge markers, clock and view
+  direction, city and status, weapon counts (M A F, I = infra-red on, M turns
+  red on a missile lock), scanner, and bars for Height Shield Fuel Laser
+  Velocity. The message panel shows the last three lines below.
+  Hangar interiors keep their dithered textures (walls red/blue, floor
+  yellow/green, the lander yellow); the flare-lit and infra-red ground stays
+  a dithered checker.
+  Pages (HELP, STATUS, EQUIP, KEYS, MAP, RODS, reactor core, notepad) switch
+  to a full-screen mode(0) page: text as text, pictures in semigraphics. On
+  the planetary map the city names are shown as text labels. When a page uses
+  its own bottom row (map menu, keys list) the console line appears there for
+  about three seconds after it changes.
+Timing: the 3D view runs at about 80% of the Spectrum's frame rate (the PAL
+VZ300 holds the interrupt for most of the field-sync period). A tap of a
+one-shot key (fire, view, missile, flare, AMM, jump, land, status, infra-red)
+is held until the game has read it, so short presses are not missed; turning,
+speed and height keys respond to the keyboard as it is. As on the Spectrum,
+STATUS and INFRA-RED have a short repeat delay after each toggle (counted in
+game frames, so slightly longer in real time on the VZ).
+Fixed from the original: the message queue could be interrupted half way
+through queueing a message and stall (the demo could hang on it).
+Memory: game code at $7800-$FFFF (internal RAM + expansion bank 0), the
+console code and city data relocated into DOS RAM bank 0, the VZ display
+driver in DOS RAM bank 1, title / page renderer in expansion bank 1. 
