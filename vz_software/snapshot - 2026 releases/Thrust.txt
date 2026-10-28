@@ -1,0 +1,3 @@
+Thrust for the VZ!
+This one should load on a 34kb machine.
+I'll save a copy in the files section
