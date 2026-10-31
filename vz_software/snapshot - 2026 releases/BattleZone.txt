@@ -1,3 +1,15 @@
-Battlezone for the VZ!
-You might even load this onto a 16k machine. 
-Lightly tested. I'll put a copy in the files section.
+BATTLEZONE for the VZ300
+Quicksilva’s 1984 Spectrum classic, converted to the Dick Smith VZ300 and rebuilt from the ground up. Bill Witts’ original game logic runs unchanged underneath: tanks, supertanks, missiles, the saucer, the radar and the scoring. Everything you see and hear is new Z80 code. You get solid, shaded 3D tanks that catch the light as they turn, and explosions that throw sparks, burning chunks and smoke. Purple mountains and green hills scroll at different speeds as you turn, and the background moves on its own: a lava-spitting volcano, a radio mast with a blinking beacon, distant artillery and shooting stars. The title plays a three-voice military march, with bugle jingles during the game. There’s a demo mode and a hall of fame.
+Tech specs
+Machine: VZ300 (Z80, 3.5 MHz) with a BennVenn 128K RAM expansion and the BennVenn SD loader
+File: one BATTLEZ.VZ, 25.7 KB, loaded at $7B00–$DF56. No extra data files. It holds four compressed blocks that unpack across main RAM and both expansion banks.
+Display: mode(1), 128×64 pixels in 4 colours. Everything is drawn into a back buffer and copied to the screen each frame.
+3D renderer: written from scratch, replacing the Spectrum’s line drawer. Objects are drawn back to front, with lines clipped to the screen. Tanks, supertanks, missiles, the saucer, cubes and pyramids are filled face by face, and each face is shaded by which way it points (lit top, lit side, shadowed side, dark tracks). Ground objects cast shadows.
+Background: two scrolling mountain layers (a purple distant range with a moon and stars, and green near hills with a volcano), a scrolling horizon strip, and 28 pieces of ground detail (pebbles, grass, rocks and craters) that move with the world.
+Effects: up to 48 particles on screen with gravity and ember trails, fireballs, a shock ring, muzzle flash, smoke columns, and the background animations.
+Sound (through the VZ speaker): a three-voice music player with drums for the title march, four jingles (game start, extra tank, game over, new high score) and eight sound effects, including the cannon shot, the enemy’s cannon and explosions.
+Speed: about 6.4 frames per second in ARCADE pace, a little quicker than the Spectrum. CLASSIC pace matches the Spectrum; press C on the title to switch.
+Screens: title, hall of fame, CONTROLS and ORDERS pages, demo mode, GAME OVER panel and high-score name entry.
+Controls: the original two-track keyboard layout, or a joystick in either port.
+Tested and running on real VZ300 hardware with the BennVenn 128K and SD loader.
+Original game © 1984 Quicksilva, Spectrum program by Bill Witts. VZ300 version 2026.
