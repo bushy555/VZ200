@@ -1,0 +1,45 @@
+BILBIES! for the Dick Smith VZ300
+I asked an AI to port Lemmings to the VZ300. It wouldn’t copy Lemmings, so I had it make an original one for the VZ instead: the same kind of puzzle, with everything else new.
+The story
+Out past the last fence post, where the red dirt runs to the sky, the bilbies have lost their way home. Their burrows are scattered right across the country: under the plains, through the gullies, down the old goldfields shafts, past the homestead and out to the beach. These little marsupials have no sense of direction whatsoever, and once they start walking, they don’t stop.
+That’s where you come in. Give each one the right job at the right moment (dig, build, bash, mine, climb, float, block, or, sorry mate, blow up) and lead as many as you can down to safety. There are 24 big levels, from a gentle first dig to a nine-minute trek with forty bilbies.
+What’s in it
+24 original levels in four ratings: MILD (out in the scrub), TRICKY (under the ground), TOUGH (night falls) and WILD (the big country).
+8 skills: climber, floater, bomber, blocker, builder, basher, miner and digger.
+Big maps, each four screens across and nearly two down, with smooth scrolling in every direction and a minimap you can jump around with.
+Up to 40 bilbies at once, fully animated: 8 frames for walking, 16 for building, 32 for bashing, 24 for mining and more.
+Australiana everywhere: 50 hand-drawn pictures of scenery, including:
+big set pieces: a station homestead, a country pub with iron-lace verandahs, a shearing shed, Wave Rock, Uluru on the horizon, a goldfields poppet head, a lighthouse, a paddle steamer, a road train and a camel string;
+a harbour beach with the flags out, and the Opera House and Harbour Bridge across the water;
+smaller things: gum trees, grass trees, roos, emus, galahs, a croc, windpumps, water tanks and the outback dunny.
+Faint sky, star, mist and cave textures behind the action, so the scenery never gets in the way of the bilbies.
+An animated title screen with a three-voice beeper arrangement of Grieg’s “In the Hall of the Mountain King”, plus original jingles and sound effects.
+An attract mode that plays five levels by itself, a trainer that opens every level, a level menu with a picture of each map, and a briefing for every level.
+Keyboard or joystick (either port).
+Tech specs
+Machine: Dick Smith VZ300 with the BennVenn SD loader and 128K RAM expansion. It needs both 10K SRAM banks at $4000–$67FF.
+Display: mode(1), 128×64 in 4 colours. A 128×44 scrolling playfield sits above a status line, a 12-button skill panel and the minimap.
+File: one file, BILBIES.VZ (23K). It loads low at $8000, copies the levels into the second SRAM bank, then unpacks the program in place. Nothing runs from video RAM.
+Code: 100% Z80 assembly. The game logic runs at 12.5 ticks a second and the screen redraws 25 times a second.
+Levels: each level is stored as a short, compressed description in one SRAM bank and built when you start it, taking 1–2 seconds while the briefing is up. The full-size level picture goes into the other SRAM bank.
+Sound: everything comes through the VZ’s 1-bit speaker, and the title music plays three voices at once.
+Testing: played on real VZ300 hardware. Every level has also been played through to a win by script in an emulator of the VZ300 and BennVenn.
+Controls
+Key/Does
+Q A O P / joystick
+Move the cursor; push an edge to scroll
+SPACE / M / FIRE
+Give the selected skill to a bilby
+1–8
+Pick a skill
+Z / X
+Previous / next skill
+, and .
+Release rate down / up
+H
+Pause
+N N
+Nuke
+CTRL+Q
+Give up
+On the title screen: FIRE plays, T switches the trainer, K the music and S the sound effects.
