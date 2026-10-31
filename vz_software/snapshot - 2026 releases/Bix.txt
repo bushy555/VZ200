@@ -1,0 +1,29 @@
+BIX THE BILBY - THE STAR DIGGER
+Dick Smith VZ300 · 2026 - ViBED by BPM
+The VZ has a new hero.
+Bix is a golden bilby who goes after the stars that fall into the red earth. He can dig into any patch of soft ground, tunnel freely where enemies can’t reach him, collect the buried stars, and burst back out with a launch that clears anything above.
+Bix
+He’s a small golden bilby with tall red-lined ears, a long red-tipped snout and a striped tail. When he’s left alone he blinks, twitches an ear, and eventually starts sniffing and pawing at the ground. His ears stream back when he jumps and fly up when he falls, and he cheers when he reaches the goal.
+The locals
+Bull ants: march back and forth and turn around at the edge of a ledge.
+Magpies: patrol the sky and swoop down at Bix.
+Drop-bears: wait in the treetops, drop when Bix walks underneath, then chase him.
+Cane toads: hop towards him.
+Witchetty grubs and rock worms: pop up out of the ground without warning.
+Cave bats, glow frogs and crystal beetles: live in the caverns.
+You beat most enemies by stomping them or bursting up into them from underground.
+The bosses
+King Cane: a giant cane toad. Every time he lands, a shockwave runs through the ground, so Bix needs to be in the air or dug in.
+The Geode Golem: a rock giant with a crystal back that can’t be hurt from above. Bix has to tunnel under him and burst up.
+Rust-o-Tron: a flying factory robot that drops hot bolts. It can only be hit while it’s landed with its hatch open.
+Thunderhawk: a storm bird that dives at Bix and stuns itself when it hits the ground.
+The Magma Dragon: the final boss. It shakes the crater, then takes to the air, and needs eight hits.
+The worlds
+The game has 15 stages across five worlds:
+Gumleaf Gully: a dusk forest with log rides across the billabong.
+Crystal Caverns: glowing caves, an underground river and falling stalactites.
+Clockwork Works: conveyor belts, crusher pistons and slag pits.
+Skyward Isles: floating islands with updrafts and a Wattle Wings double jump.
+Molten Peaks: lava rivers, heat vents and a mountain of ash to dig through.
+Each world has an outward stage, a stage called “The Way Back” heading home, and a boss.
+It runs at 25 frames a second with smooth one-pixel scrolling, four colours and music. You can play Story mode for the high-score table, or Time Attack for your best time on any stage. If nobody’s playing, the game runs a demo by itself.
