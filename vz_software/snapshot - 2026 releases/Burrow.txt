@@ -1,0 +1,2 @@
+First attempt using Claude to code a VZ game. A Digger like game with increasing difficulty
+Ben Grimmett.
