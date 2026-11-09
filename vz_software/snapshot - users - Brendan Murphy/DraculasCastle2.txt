@@ -1,0 +1,91 @@
+DRACULA'S CASTLE II — THE CASTLE AWAKENS
+ViBED by BPM · 2026 · for the Dick Smith VZ300 · v1.0.1
+Playtested on real hardware: a Dick Smith VZ300 with the BennVenn SD loader and 128K expansion.
+In 1984 you walked into Dracula's Castle with ten silver stakes, stumbled through five vaults of a crude BASIC maze, and died. Forty-odd years on, the castle has woken again.
+Dracula's Castle II is the game that 1984 maze wanted to be: a first-person gothic RPG in the spirit of Bard's Tale and Dungeon Master, squeezed into a 1980s Australian home computer. Explore six hand-built areas in smooth step-by-step 3D, from the moonlit hedge-maze grounds through the Great Hall, a haunted library, dripping dungeons and a clockwork tower, to the Count's own black-marble chambers. Fight twelve animated monsters on a separate battle screen, talk to ghosts and prisoners, buy supplies through cell bars, uncover secret passages, ring the bell that must never be rung… and face Dracula himself. He remembers you.
+Hidden somewhere in the Great Hall is a brass plaque reading THE FORGOTTEN MAZE — 1984. Step through it, and the screen drops back to the original game's green text mode, crude maze and all, for a faithful (and fatal) trip down memory lane.
+FEATURES
+6 explorable areas, each 16×16 cells, with its own wall textures, decorations, floor and ceiling, battle backdrop and music
+12 monsters, each with 3 frames of animation: bat, skeleton, ghost, gargoyle, grell, zombie, slime, Ghoul King, knight, Bat Lord, vampire bride and Count Dracula (the grell, zombie and slime come from the 1984 original)
+5 bosses plus scripted ambushes, with cutscenes in the 3D view: skeletons rise from bone piles and the gargoyle wakes on its plinth
+Turn-based battles: attack (with critical hits), FIRE magic, items, defend, run; silver weapons and holy water hurt the undead more
+16 experience levels, 11 item types, 2 merchants, 6 save points (stone angels), 4 secret passages, 17 treasure chests, NPCs with multi-page dialogue
+Automap tuned for a real CRT (solid colour tiles and a yellow arrow showing which way you face), status/inventory screen, save & continue
+Title screen with lightning and thunder, an attract mode with story pages, a location tour and the "Groovy Ghoulies" monster gallery
+14 pieces of three-voice music plus 22 sound effects; N toggles the music anywhere
+The Forgotten Maze 1984 easter egg, with a safe return to your saved progress
+TECH SPECS
+Machine
+Dick Smith VZ300 (Z80A @ 3.55 MHz)
+Required
+BennVenn SD loader with 128K RAM expansion
+Display
+Mode 1, 128 × 64, 4 colours. Both colour sets are used, and the CSS set switches for boss fights and effects. Mode 0 text for the 1984 easter egg
+Code
+100% hand-written Z80 assembly, about 7,000 lines, built with custom Python tools (assembler, art generators, map compiler and LZ compressor)
+Program
+DRACULA2.VZ: 17.0 KB, loads at $8000
+Data
+38 .DAT files (about 113 KB) loaded from the SD card on demand through the BennVenn DOS, the same way 13 Ghosts does
+RAM used
+About 39 KB at its peak: 30.2 KB of main RAM ($7B00–$F9FF) plus 8.5 KB of the expansion's banked SRAM (bank 3), on top of the VZ's 2 KB video RAM. The other ~113 KB of game data stays on the SD card until it's needed (see the breakdown below)
+Memory
+Area walls and battle backdrops sit in SRAM bank 3. Decorations, monster frames and each area's pack (map, events, texts, song) sit in upper RAM. The DOS workspace and BASIC system area are never touched
+Renderer
+First-person view built from pre-rendered, byte-aligned wall faces and masked side sprites, with occlusion culling, distance fog via dithered colour ramps, and mirrored right-hand walls
+Video
+Every screen update is copied to video RAM during vertical sync, so there's no VZ "snow"
+Sound
+Software 3-voice pulse synth on the 1-bit speaker, about 16.8 kHz sample rate, synced to the frame. Music uses half amplitude so sound effects stand out. Includes an LFSR noise channel for drums
+Compression
+LZ-style with optimal parsing; maps and assets decompressed on the fly
+Controls
+Keyboard (W A S D or I J K L to move, SPACE or RETURN to act) or joystick
+Saves
+Checksummed save slot in expansion SRAM
+Testing
+Developed in a custom headless VZ300 emulator with scripted playthroughs from start to THE END, then playtested on a real VZ300 with a BennVenn SD + 128K. Fixes from the hardware testing: SD file loading, a quieter speaker mix, the music toggle, battle sprites and a clearer automap
+Version
+1.0.1 (November 2026)
+RAM BREAKDOWN
+WhereWhatBytes
+$7000–$77FF
+Video RAM (screen)
+2,048
+$7B00–$7FFF
+Mirror table, current map, opened doors, explored map, event flags
+1,280
+$8000–$C268
+The program (DRACULA2.VZ: code, text, music, maps)
+17,002
+$C800–$E3FF
+Current area's decorations and objects, or monster frames during battles
+7,168
+$E400–$E9FF
+Current area pack: map, events, exits, texts and song
+1,536
+$EA00–$EDFF
+Stack
+1,024
+$EE00–$EF8B
+Game variables
+396
+$F000–$F7FF
+Back buffer (each frame is drawn here, then copied to the screen)
+2,048
+$F800–$F9FF
+SD sector buffer
+512
+Bank 3 $4000–$591F
+Current area's wall faces and backgrounds (up to 6,424)
+6,424
+Bank 3 $5C00–$61BF
+Battle backdrop
+1,472
+Bank 3 $6400–
+Saved game
+817
+Total
+˜ 41 KB, including video RAM
+The BASIC system area ($7800–$7AFF) and the BennVenn DOS's own workspace ($FA00–$FFFF and SRAM bank 1) are never touched, so file loading through the DOS stays reliable.
+Requires a VZ300 with the BennVenn SD loader and 128K expansion. Copy DRACULA2.VZ and all DC2*.DAT files to the root of the SD card and run DRACULA2.VZ.
