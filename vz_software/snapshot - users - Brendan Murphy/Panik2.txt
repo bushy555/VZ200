@@ -1,0 +1,33 @@
+PANIK 2 – "Dig Deeper!"
+**The VZ200/VZ300 digging classic PANIK gets a sequel, decades later.**
+The aliens are back on the space station, and you've still only got a shovel. Dig a hole in the girder in front of you, wait for an alien to blunder in, then bash it down through the floor before it climbs out. It's the original's dig, trap and bash, with the same keys and the same green station, and a lot more around it:
+- **Three kinds of alien.** Grubs die from a one-floor drop, horned Brutes need two floors, and Kings need three. Line up holes above each other for long drops; every extra floor doubles the points.
+- **Squash combos.** Drop an alien onto another and flatten it for 1,000.
+- **Angry aliens.** An alien you leave in a hole climbs out, wrecks the hole and comes after you faster.
+- **Oxygen.** The air runs down all the time. When it's low the bar turns red, it beeps and the music speeds up. Air you have left at the end of a stage pays a bonus.
+- **Pick-ups:** oxygen tanks, speed boots, a one-hit power drill, a freeze that stops every alien dead, and gems worth 500, 1,000 and 2,000.
+- **20 stages:** 16 new stages across four worlds (Space Station, Moon Base, Mars Mines and the Mothership), with undiggable steel girders in the later ones. After each world comes a **GEM DIG** bonus round: dig up the buried gems before the air runs out.
+- A **coffee break** cartoon, an ending, and a faster lap 2.
+- **Presentation:**
+  - a big Mode 1 title screen where the digger replays the original's dig-and-bash intro
+  - a full attract cycle (how to play, the aliens, the pick-ups, a computer-played demo)
+  - a Hall of Fame with initials
+  - all-new two-voice music and 18 sound effects
+VIBED BY BPM 2026. Free, with full source on GitHub.
+## Tech specs
+| | |
+|---|---|
+| Machine | Dick Smith VZ300 (VZ200 compatible), PAL |
+| Needs | BennVenn SD loader with 128K RAM expansion |
+| File | `PANIK2.VZ`: a single 22,168-byte type F1 binary that loads at $8000 and runs at $8000 |
+| Memory | Code and data $8000–$D67F. The 10K SRAM window at $4000–$67FF, left mapped in by the SD DOS, holds 6.9 KB of pre-shifted, pre-masked sprites. The expansion RAM up to $FFFF holds a 2 KB clean playfield, the stage tables, mask tables and a 2 KB background buffer. There is no bank switching, and the DOS isn't needed once the game is loaded. The game tests the SRAM at start-up and says so if it isn't there. |
+| Display | Mode 1, 128×64, 4 colours. The Space Station and Mars Mines worlds use the CSS0 palette (green, yellow, blue, red), as the original did. Moon Base and the Mothership use CSS1 (buff, cyan, magenta, orange). |
+| Frame rate | 50 fps, locked to field sync, interrupts off |
+| Sprites | 36 sprite images (8×8), each pre-shifted to 4 positions. Positions and shift frames are worked out during the display. In vblank, sprites are drawn with POP from (mask, data) pairs and erased with LDI, both unrolled. |
+| No snow | Video RAM is written only in vblank. Everything else is drawn into a background buffer and copied across under a per-frame budget. In a 32,000-frame soak test, the busiest frame finished 3 scanlines before the picture starts. |
+| Sound | 1-bit speaker. Two-voice pin-pulse engine at about 28 kHz, 13 tunes, 18 effects, three modes (music+FX / FX / off). |
+| Controls | Keyboard (Q A M , + SPACE or Z, the original's keys) or either joystick on the VZ joystick interface |
+| Content | 20 stages, 4 worlds with their own girders and backdrops, 3×5 custom font, 5-entry high-score table |
+| Source | About 7,200 lines of Z80 (sjasmplus) plus about 1,000 lines of Python generators for the graphics, stages, title art and music |
+| Testing | Headless VZ300 emulator with a snow detector and vblank timing check, and an automated soak test through every stage and gem dig, the intermission, the ending and into lap 2 |
+**Load:** copy `PANIK2.VZ` to the SD card and run it from the BennVenn loader. SPACE or fire starts the game, and keys 1–4 on the title screen pick a world. P pauses (X quits while paused) and S changes the sound mode. See less

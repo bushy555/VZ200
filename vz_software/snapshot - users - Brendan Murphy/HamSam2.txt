@@ -1,0 +1,98 @@
+# HAMBURGER SAM II — THE BURGER RUSH
+### for the Dick Smith VZ300 / VZ200
+***"Order up!"***
+**VIBED BY BPM 2026**
+Sam's back behind the grill, and this time the whole town wants a burger. The little green
+kitchen from the 1984 VZ game is back, with its girders, ladders, buns and patties, and
+it's grown into eight kitchens.
+Run the girders and climb the ladders. Stomp across every bun, patty, cheese slice and lettuce leaf
+until it sags and drops, and cascade them floor by floor onto the plates below. Build every burger to
+clear the kitchen. Mr Hot Dog, Mr Egg and Mr Pickle are still on your tail, and now
+**Mr Chilli** joins them: fast, red and too hot to handle. Shake pepper in their faces, drop a patty
+on their heads for a **SPLAT**, or wait until they're standing on an ingredient and give them a ride
+all the way down for big bonus points.
+| | |
+|---|---|
+| ![Sam's Diner](screenshots/gameplay/game_01_sams_diner.png) | ![Night Grill](screenshots/gameplay/game_04_night_grill.png) |
+| ![Burger Palace](screenshots/gameplay/game_08_burger_palace.png) | ![Order Up!](screenshots/gameplay/game_10_order_up.png) |
+| ![Title](screenshots/info/info_01_title.png) | ![Meet the Menu](screenshots/info/info_05_meet_the_menu.png) |
+## Features
+- **Eight kitchens**, each with its own girder gaps, ladders and ingredients:
+  1. Sam's Diner
+  2. Cheese Factory
+  3. Pickle Pantry
+  4. Night Grill
+  5. Salad Bar (tomato joins the menu)
+  6. Fry-Up Factory
+  7. Midnight Feast
+  8. Burger Palace
+  The Night Grill and the Midnight Feast are night-shift kitchens in the second colour set.
+- **Sagging ingredients:** every slice droops under Sam's feet, segment by segment, before it falls.
+  - Falling food knocks down whatever is below it, floor by floor.
+  - Anything caught underneath is squashed.
+  - Chasers riding a falling ingredient score 500, 1000, 2000 and then 4000 points for each extra floor they ride.
+- **Four chasers:** Mr Hot Dog, Mr Egg, Mr Pickle and the new **Mr Chilli**. At every ladder and
+  junction they turn towards Sam.
+- **Goodies:** the original's coffee (+1 pepper), fries, ice cream, and the **golden spatula**,
+  which stuns the whole gang.
+- **ORDER UP!** is a bonus round after every second kitchen. Catch the falling layers on Sam's plate
+  in burger order to fill orders. It gets faster with every order.
+- **Lap 2:** serve all eight kitchens for the ending. Then the chasers come back faster and shake off pepper sooner.
+- **Classic 1984:** press **C** on the title or menu for a recreation of the original kitchen.
+- **Presentation:**
+  - a big rounded "bun" logo and a title chase
+  - BURGER UP! pop-ups, sparkles, score pop-ups and a +1 cook fanfare
+  - Sam tumbling off the girders when he's caught
+  - riveted girders with a dotted underside, and contrast-coloured ladder rungs
+  - salt and pepper specks that shake-shake-shake and drift across each other behind every information screen
+- **Two-voice beeper music:**
+  - tunes for the title, the kitchens, the information screens, the bonus round and the ending
+  - jingles for starting, clearing a kitchen, losing a cook, game over, an extra cook, goodies, finished burgers, high scores and orders
+  - 16 sound effects
+- **Attract sequence:** title chase, How to Cook, Controls, Meet the Menu, Goodies, a computer-played demo, then the Top Ten Cooks.
+- **Top Ten Cooks** with 5-letter names.
+## Tech specs
+| | |
+|---|---|
+| **Machine** | Dick Smith VZ300 or VZ200, Z80A at 3.5 MHz |
+| **Needs** | The BennVenn SD loader with 128K: main RAM up to $FFFF, plus the cartridge's SRAM. Will not run on an unexpanded machine |
+| **File** | `HAMSAM2.VZ`, 23.4 KB binary. Loads at $8000–$DB44 from SD and autostarts. No other files needed |
+| **Display** | Genuine Mode 1 throughout (6847 CG2: 128 × 64, 4 colours). Both colour sets are used: CSS0 for most kitchens and screens, CSS1 for the two night kitchens |
+| **Frame rate** | 50 fps, synced to field sync. Interrupts stay off. Every screen write is queued and committed in the vertical blank, so there's no snow |
+| **Sprites** | 46 masked sprites, pre-shifted at start-up into the cartridge's SRAM. Sprites that haven't moved, with nothing changing near them, are left alone and cost almost nothing. The chasers move in two alternating halves, so no more than two step on any frame |
+| **Background** | Ingredients, goodies, the pepper cloud, sparkles and pop-ups are painted into a 2 KB background buffer and repaired from a clean copy of the kitchen, so they use no sprite time |
+| **Chasers** | Decide at each ladder or junction whether to head towards Sam. The demo is played by a breadth-first path-finder over each kitchen's floor and ladder graph |
+| **Kitchens** | 8 kitchens + Classic 1984, checked when the game is built so that every ingredient, ladder and spawn point can be reached |
+| **Sound** | Two-voice beeper engine: 5 tunes, 9 jingles and 16 sound effects (tones, warbles and noise). Sound effects play over the bass line, so the tune keeps going. S cycles music + effects, effects only, and off |
+| **Controls** | Keyboard (the 1984 original's keys) or joystick 1 or 2, detected automatically and read to suit the VZ joystick interface |
+| **High scores** | Top Ten with 5-letter names, the sound setting, the Classic unlock and the furthest kitchen reached, kept in SRAM bank 3 with a signature and checksum. They survive reloading the game, but not power-off |
+| **Exit** | Reset (the game overwrites the loader's DOS while it runs) |
+| **Source** | About 8,400 lines of Z80 assembly (sjasmplus-compatible), plus about 2,000 lines of Python tools. The tools draw the logo, sprites and kitchens, write the music, check the levels and run the emulator tests |
+## RAM used
+| Range | Contents | Size |
+|---|---|---|
+| $4000–$5A9F, SRAM bank 1 | 46 pre-shifted sprites, built at start-up | 6.7 KB |
+| $6740–$67BF, SRAM bank 3 | Top Ten, options, Classic unlock, furthest kitchen | 128 bytes |
+| $7000–$77FF | video RAM | 2 KB |
+| $7800–$7B28 | variables | 0.8 KB |
+| $7C00–$7DFF | VRAM commit queue, path-finding queue, kept-sprite tables | 0.5 KB |
+| $7E00–$7F3F | kitchen floor and ladder graph, demo path distances | 0.3 KB |
+| $7F40–$7FFF | stack (deepest use measured: 44 bytes) | 0.2 KB |
+| $8000–$DB44 | code, music, kitchens, font, title picture. The sprite sources at the end are copied away and reused at start-up | 22.8 KB |
+| $EE00–$EF6F | draw and erase lists | 0.4 KB |
+| $F000–$F7FF | clean kitchen backdrop (girders, ladders, plates) | 2 KB |
+| $F800–$FFFF | background buffer | 2 KB |
+## To play
+Copy `release/HAMSAM2.VZ` to the SD card, run it from the BennVenn loader, press fire on the title
+and pick from the menu.
+| Action | Keys |
+|---|---|
+| Walk | M left, `,` right, or the joystick |
+| Climb | Q up, A down, or the joystick |
+| Pepper | SPACE, SHIFT or fire |
+| Pause (X quits while paused) | P |
+| Sound: music + effects / effects only / off | S |
+| Unlock Classic 1984 | C on the title or menu |
+More pictures: [gameplay](screenshots/gameplay/) · [attract sequence](screenshots/attract/) · [all screens](screenshots/info/)
+*Hamburger Sam II is a fan-made sequel to the 1984 VZ game Hamburger Sam. It contains none of the
+original's code or graphics.*
