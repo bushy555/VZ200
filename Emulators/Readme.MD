@@ -31,7 +31,15 @@ VZ / Laser EMULATORS v1.3						as at June/2026.
 	(16) Emulator 				- Richard Chandler			Windows. ?
 	(17) FPGA Laser 210 clone	- Jesus Arias (2025). 			FPGA : Alhambra-II.
 	(18) Laser310 Browser VZEM	- Guy Thomason 				Browser		https://www.compumuseum.com/emularity.html?machine=laser310
-	(19) Apple Ios with VZEM DOS.
+	(19) Ios / Apple.										iOS:	VZEM on RetroArch
+	(20) Laser310 emulator (Made in Russia)					Windows XRIP
+	(21) Seltron 200 emulator
+	(22) VZ browser emu + SD Loader	- Craig Whitmore			Browser	
+	(23) VZ browser emu + SD Loader	- David Collins				Java
+	(24) Andrew Laird's emu. 									Unreleased.
+	(25) Dominic's VZ200/VZ300 emu	- Dominc Skelton			Amiga. 	Unreleased.
+
+
 
 
 (1) VZEM   -  FAQ - Guy Thomason's VZEM Emulator v.2.2
@@ -781,4 +789,31 @@ Run VZEM
 Games, Graphics and even 1-bit music will play correctly.
 
 There may be other methods, but the above has proven to work correctly.
+
+
+
+(20) Laser310 emulator (Made in Russia)
+URL	: https://github.com/xrip/laser310 (made in Russia)
+
+
+
+(21) Seltron 200 emulator
+URL	: https://github.com/PZsolt27/Seltrix seltrix
+
+
+(22) VZ browser emu + SD Loader
+Craig Whitmore
+https://share.gemini.google/neflxoXJivxZ
+
+
+(23) VZ browser emu + SD Loader
+DAVID COLLINS
+
+Available at : www.github.com/lindoran
+
+
+(24) Andrew Laird's emu. Unreleased.
+
+
+(25) Dominic's VZ200/VZ300 emulator for Amiga. Unreleased.
 
