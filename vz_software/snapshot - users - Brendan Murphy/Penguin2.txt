@@ -1,0 +1,44 @@
+PENGUIN 2 – "Ice Age Rampage" (v1.1)
+Out now for the Dick Smith VZ300 / VZ200: the classic VZ game PENGUIN gets a sequel, decades later.
+Your penguin is back on the ice, and the monsters have brought friends. As in the original, you push blocks of ice to send them sliding and crush anything in their path. A block that can't move crumbles. The sequel adds a lot more around that:
+Eggs. Monsters hatch out of the ice, and the egg blocks flash at the start of each stage so you can smash them first.
+Chain crushes. One block flattening several monsters scores up to 6,400.
+Wall shake. Push the border wall to stun every monster touching it.
+Crystals. Line up the three crystal blocks for 10,000.
+Goodies in the ice: fish, freeze snowflakes, speed skates and extra hearts.
+Four monster types: wobbling Blobs, ice-munching Chompers, fast Flitters and Wisps that float through ice.
+20 stages: 16 new stages across four worlds, plus a GOLD RUSH bonus round in the original game's green palette after each world.
+A dancing intermission, an ending, and a faster lap 2.
+Presentation:
+a big Mode 1 title screen with aurora, snowfall and an animated scene
+a full attract cycle (how to play, monster line-up, goodies, computer-played demo)
+a Hall of Fame with initials
+all-new two-voice music and 16 sound effects
+TECH SPECS
+Machine
+Dick Smith VZ300 (VZ200 compatible), PAL
+Needs
+BennVenn SD loader with 128K RAM expansion
+File
+PENGUIN2.VZ: a single 20,352-byte type F1 binary that loads at $8000 and runs at $8000
+Memory
+Code and data $8000–$CF7F. The 128K card's RAM up to $FFFF holds 8.2 KB of pre-shifted, pre-masked sprites, mask tables and a 2 KB background buffer. No bank switching, and the DOS isn't needed once loaded.
+Display
+Mode 1, 128×64, 4 colours. Play is in the CSS1 palette (snow white, ice cyan, magenta, orange); Gold Rush uses CSS0 green.
+Frame rate
+50 fps, locked to field sync, interrupts off
+Sprites
+44 sprite images (4 big 12×12, the rest 8×7), each pre-shifted to 4 positions. Drawn from (mask, data) pairs with POP at about 36 T-states a byte.
+No snow
+Video RAM is written only in vblank. Everything else is drawn into a background buffer and copied across under a per-frame budget.
+Sound
+1-bit speaker. Two-voice pin-pulse engine at about 28 kHz, 14 tunes, 16 effects, three modes (music+FX / FX / off).
+Controls
+Keyboard (Q A M , + SPACE, the original's keys) or either joystick on the VZ joystick interface, detected automatically
+Content
+20 stages, 16 tile graphics, 3×5 custom font, 5-entry high-score table
+Source
+About 6,800 lines of Z80 (sjasmplus) plus Python generators for the graphics, stages, title art and music
+Testing
+Headless VZ300 emulator with a snow detector and vblank timing check, and an automated soak test through every stage
+Load: copy PENGUIN2.VZ to the SD card and run it from the BennVenn loader. SPACE or fire starts the game, and keys 1–4 on the title screen pick a world. P pauses and S changes the sound mode.

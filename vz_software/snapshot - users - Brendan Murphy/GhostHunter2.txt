@@ -1,0 +1,43 @@
+
+GHOST HUNTER 2 - The Boo-quel ????
+For the Dick Smith VZ300 · ViBED by BPM 2026
+Just in time for Halloween, the VZ gets the extravagant, mischievous Ghost Hunter sequel it always deserved!
+The 1980s classic by Dubois & McNamara is back, and this time the ghosts have personalities:
+GRUMBLE chases you and gets crosser as the maze empties.
+SNEAKY cuts you off up ahead.
+DIZZY wanders about… mostly.
+PEEKABOO fades away until only his eyes are left.
+Gobble pellets, grab a power pill and watch the whole screen flip as the hunted become the hunter. Chain your ghost-chomps for 200, 400, 800 and 1600 points. Eat all four in one go for a PERFECT, and the star appears that turns you into a flaming-capped super hunter.
+Grab the power-ups along the way:
+SPEED: zoom off and leave a trail.
+FREEZE: put the ghosts on ice.
+DECOY: leave a dummy for them to chase.
+DOUBLE: twice the points.
+SHIELD: shrug off one hit.
+There are Halloween treasures too: candy, pumpkins, potions, skulls, gems and crowns.
+You’ll get through six hand-built mazes with tunnels and teleporters, the frantic GHOST BUFFET and PELLET PANIC bonus rounds, and two cheeky intermissions. Meanwhile the difficulty climbs from friendly to delightfully chaotic.
+It all wraps up in a proper arcade presentation: an animated graveyard title screen with lightning and thunder, a meet-the-ghosts screen, a power-up guide, a live demo, and a Hall of Fame with initials entry.
+Happy haunting!
+TECH SPECS
+Hardware and loading
+Machine: Dick Smith VZ300 (VZ200 compatible) with BennVenn SD loader and 128K RAM expansion. It needs RAM all the way up to $FFFF.
+File: GHOST2.VZ, 18.6 KB, a machine-code (type F1) file that loads and runs at $8000.
+Display
+Graphics: Mode 1 (128×64, 4 colours) throughout, using both colour palettes to switch for power mode, lightning and flashes.
+Rendering: flicker-free sprites drawn during the screen’s blanking period from a clean background copy. Sprites are pre-shifted for smooth one-pixel movement, and there are particle effects.
+Timing: 50 fps, locked to the screen’s field-sync signal. There’s no ROM, no interrupts and no memory-banking.
+Sound
+Two-channel beeper music and effects, played in each frame’s spare time so gameplay never stalls.
+Title theme plus jingles, a ghost siren, and about a dozen effects.
+Game content
+Six mazes (21×11 cells), with walls drawn at run time in five styles.
+Two bonus rounds and two intermissions.
+An AI-driven demo using the real game engine.
+A five-entry high-score table with initials (kept until power-off).
+Controls
+Keyboard: Q/A/M/, (same as the original).
+Joystick: either stick on the VZ joystick interface.
+P pauses, S toggles sound, SPACE or fire starts.
+Development
+Source: Z80 assembly (sjasmplus) with Python asset tools.
+Credits: original game by Dubois & McNamara; sequel ViBED by BPM 2026.

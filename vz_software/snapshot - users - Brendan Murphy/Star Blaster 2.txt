@@ -1,0 +1,86 @@
+STAR BLASTER II – "The Enermy Returns"
+
+Out now for the Dick Smith VZ300 / VZ200: the 1984 VZ cockpit shooter STAR BLASTER gets a sequel.
+You're back in the cockpit with the crosshair, the starfield and the FRT TRP TNK FHT tally. Energy is still your life: it drains all the time, every shot costs some, and every hit costs more. But the Enermy now surrounds you:
+360° space with a radar. Scan left, right, up and down. The radar strip in the dashboard shows every contact around the full circle.
+Twin laser bolts from the cockpit corners, a crosshair that turns red on target, and combo chains worth ×2, ×3, ×4.
+Scaled sprites. Ships grow from specks to full size as they close in, at up to 8 sizes each.
+Eight sectors, each with its own twist: the Outer Rim, the Rock Belt, the Minefield, the Invasion (stop the troop carriers before they land), Nebula X (cloaked fighters in the alternate palette), Ace Squadron, the Gauntlet, and the Enermy Mothership. That boss has four turrets to knock out before you can hit its core.
+A dithered dashboard bezel that does the talking: it flashes when you're hit and blinks on the side a threat is coming from.
+Hyperspace warp-ins with star streaks and a fanfare, a refuelling tally after each sector, supply pods, NOVA smart bombs, and a faster lap 2 after the mission is complete.
+Presentation:
+a Mode 1 title where the logo letters fly in and an Enermy fighter gets blasted
+an attract cycle (mission briefing, fleet gallery, controls, a computer-played demo)
+a Hall of Fame with initials
+a trainer mode
+all-new two-voice beeper music and 14 sound effects
+VIBED BY BPM 2026.
+TECH SPECS
+Machine
+Dick Smith VZ300 (VZ200 compatible), PAL
+Needs
+BennVenn SD loader with 128K RAM. Without the expansion RAM and SRAM bank it shows NEEDS BENNVENN SD + 128K RAM and stops.
+File
+STARBLS2.VZ: a single 20,950-byte type F1 file. It loads at $8000–$D1BD and runs at $8000.
+Memory
+Uses all 64K plus one 10K SRAM bank (port $37 = 3, written once). See the RAM map below. No ROM calls, and the DOS isn't needed once loaded.
+Display
+Mode 1, 128×64, 4 colours. Play is in CSS0 (green, yellow, blue, red); Nebula X switches to CSS1.
+Frame rate
+25 game-logic steps a second, locked to field sync, interrupts off. The picture updates at 25 fps (every 2nd field), about 22 fps on average in the busiest play; late frames are caught up so the game speed never changes.
+Sprites
+10 ship and object types (including the planet and the mothership) at up to 8 distance sizes each. Only one pixel phase is stored in the file; the other three shifts and the masks (14.5 KB) are generated at start-up. Clipped, masked POP blitter at about 38 T-states a byte.
+No snow
+Everything is drawn into a back buffer, and the changed byte spans are recorded per row. Before each vblank the game generates a straight-line copy routine (an LDI chain) for those spans, then runs it as field sync starts, within a 12,288 T-state budget.
+Sound
+1-bit speaker. Two-voice pin-pulse engine, 9 tunes, 14 effects, three modes (music+FX / FX / off).
+Controls
+Keyboard (M , Q A + Z/SPACE, the original's keys), or either joystick on the VZ joystick interface, detected automatically
+Content
+8 sectors plus the mothership, a 360° radar, a 3×5 custom font, and a 5-entry high-score table with initials
+Source
+About 6,700 lines of Z80 (sjasmplus) plus Python generators for the sprites, logo, font and music
+Testing
+Headless VZ300 emulator with a snow detector and DOS-bank and system-area write counters. A 30,000-frame autoplay soak runs two full laps with 0 snow, 0 DOS-bank writes and 0 system-area writes. Not yet run on real hardware.
+RAM MAP
+RangeUseSize
+$4000–$67FF
+SRAM bank 3: sprite library, part 1 (pre-shifted, masked)
+10 KB
+$7000–$77FF
+video RAM (written only in vertical blank)
+2 KB
+$7800–$7AE7
+system area, untouched
+
+$7AE8–$7BFF
+engine variables
+0.3 KB
+$7C00–$7CFF
+per-row dirty-span tables
+256 bytes
+$7D00–$7DFF
+game variables
+256 bytes
+$7E00–$7FFE
+stack
+0.5 KB
+$8000–$D1BD
+code, data, music, font, logo, sprite images (the .VZ)
+20.4 KB
+$D700–$E853
+sprite library, part 2
+4.3 KB
+$E900–$ECFF
+objects, stars, particles
+1 KB
+$ED00–$EFFF
+generated VRAM-copy code (rebuilt every frame)
+0.8 KB
+$F000–$F7FF
+BASE picture (cockpit, dashboard, bezel)
+2 KB
+$F800–$FFFF
+back buffer ?? video RAM OR $8800)
+2 KB
+Load: copy STARBLS2.VZ to the SD card and run it from the BennVenn loader. SPACE or fire starts the game, and keys 1–5 on the title screen pick the skill level. N fires a NOVA, P pauses and S changes the sound mode.

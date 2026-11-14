@@ -1,0 +1,95 @@
+# VZ FLIGHT SIMULATOR
+
+**An FS1-style wireframe flight sim for the Dick Smith VZ300**
+**VIBED BY BPM 2026**
+![title](screenshots/01-title.png)
+It's an unofficial fan tribute to **Dick Smith, aviator**. The VZ200 and VZ300 were sold
+by Dick Smith Electronics, and several missions recreate moments from his record flights:
+the 1982-83 solo helicopter flight around the world, the 1987 solo helicopter crossing to
+the North Pole, and the 1988-89 first solo helicopter double crossing of both poles. It
+isn't endorsed by him.
+VZ FLIGHT puts a real-time 3D wireframe cockpit on an 8-bit home computer from 1983, in the
+spirit of subLOGIC's original Flight Simulator. Take off, climb, bank, and land by eye, with
+a horizon, a scrolling ground grid and solid landmarks rendered and redrawn every field.
+## Four locales, fourteen flights
+- **Sydney** — take off from Bankstown and fly the circuit (First Solo); thread the
+  helicopter under the Harbour Bridge and set down at Darling Harbour (Harbour Homecoming);
+  a scenic lap past the Opera House and Sydney Tower (Harbour Scenic); Free Flight.
+- **Mid-Pacific** — find a cargo ship by its bearing arrow and land the helicopter on its
+  deck before the fuel runs out (Ship Deck Refuel); a low pass over the water; Free Flight.
+- **Red Centre** — circle Uluru without overflying it; hop across to Kata Tjuta's domes;
+  land on a dirt outback strip; Free Flight.
+- **North Pole** — a one-tank helicopter flight to the Pole over ice and pressure ridges
+  (Top of the World); a ski-plane landing beside the Pole marker (Pole to Pole); Free Flight.
+Missions are strings of gates — fly through within the marked height band — ending in a
+landing. The top line of the view shows the next gate, a bearing arrow and the distance.
+Crashing isn't the end: you restart from the last gate you passed, with a 15-second time
+penalty per crash.
+## Features
+- **Real-time wireframe 3D**: rotation, clipping and perspective projection on every solid
+  object and the ground grid, 4 to 6 times a second, with a tear-free double-buffered flip
+  timed to the field sync.
+- **Two aircraft**: a light plane (pitch, roll, throttle, stall, wheel brakes) and a
+  helicopter (collective and cyclic, hover-capable), each with its own flight model.
+- **Distance-scaled detail**: far-off buildings and landmarks swap to simplified shapes as
+  you close in, so nearby objects stay in full detail without slowing the frame rate down.
+- **A full attract sequence**: an orbiting title plane under the VZ FLIGHT logo, three Dick
+  Smith tribute pages, a controls page, the locale list, then an autopilot demo flight —
+  press SPACE or fire at any time to jump to the menu.
+- **Menus, briefings, results**: pick a locale and flight, read the mission brief, then fly;
+  results show your time, a rating and whether it's a new best.
+- **Four views**: ahead, left, right and behind, plus a zoomable map view.
+- **Three-voice beeper music** for the title and menus, with sparse, radio-chatter-style
+  beeps and a crash sound in flight.
+- **Forgiving by design**: crashes cost 15 seconds, not the flight; every mission restarts
+  you at your last gate, not the start.
+## Controls
+| Key | Plane | Helicopter |
+|---|---|---|
+| Q / A | nose up / down | slow down / fly forward |
+| M / , | bank left / right | turn left / right |
+| W / S | throttle | collective (up / down) |
+| SPACE | wheel brakes | |
+| 1 2 3 4 | look ahead, left, right, behind | |
+| 5 | map view (press again to zoom out) | |
+| P | pause (R restart, RETURN quit to the menu) | |
+| R | restart the flight | |
+Joystick 1 works too: stick to fly, fire for throttle up, second fire for throttle down.
+## Tech specs
+| | |
+|---|---|
+| Machine | Dick Smith VZ300 (Z80A at 3.5469 MHz) |
+| Expansion | BennVenn SD Loader with 128 KB SRAM, for the SD loading and the extra linear RAM the game is mapped into — it makes no banked SRAM or mapper writes |
+| Display | Mode 1, 128 x 64, 4 colours, colour composite |
+| Frame rate | 8 to 12 PAL fields per rendered frame (about 4 to 6 frames a second), field-sync locked via an IM2 interrupt |
+| Rendering | Double-buffered 128 x 48 px 3D viewport (the top 16 rows are the HUD, drawn straight to the live screen), horizon and ground fill, Sutherland-Hodgman-style frustum clipping with bisection on each edge, table-based perspective projection |
+| Speed-up | Vertex rotation is applied once per shape into a per-frame table rather than once per vertex; distant shapes swap to simplified, fewer-vertex versions; the ground grid is 6 + 6 lines |
+| Math | Fixed-point Q15 and Q8.8 arithmetic; quarter-square multiply and sin/cos lookup tables |
+| Flight model | Separate pitch/roll/yaw/throttle/stall physics for the plane and a collective/cyclic model for the helicopter, plus shared ground-contact and crash handling |
+| Sound | One-bit speaker; three-voice music player for the title and menus, single-note effects and a crash sound in flight |
+| Loading | One file, loaded once at the start; nothing further is read from the SD card while flying |
+| Code | About 5,500 lines of hand-written Z80 assembly (engine, physics, front end), plus Python tools that generate the shape, locale, mission, font, logo, map and music data and assemble the build |
+## RAM used
+| Address | Size | Use |
+|---|---|---|
+| `$7000-$77FF` | 2 KB | Video RAM (mode 1 screen) |
+| `$7800-$7FFF` | 2 KB | Free, below the load point |
+| `$8000-$E829` | 26.6 KB | Resident: boot/ISR, maths, flight and helicopter physics, 3D pipeline, front end and attract sequence (code), plus every locale's shapes, missions, font, logo, map image, marquee text and music (data) |
+| `$E900-$EEFF` | 1.5 KB | Double-buffered 3D viewport, 128 x 48 px at 2 bits/pixel |
+| `$EF00-$F08F` | 400 B | Per-frame vertex-transform table (the v0.3 speed-up) |
+| `$F090-$F2BB` | about 560 B | Flight, camera, matrix, goal/mission and best-times working variables |
+| `$F300-$F3FF` | 256 B | IM2 interrupt vector table |
+| `$F400-$F5FF` | 512 B | Interrupt stub, and the stack (grows down from `$F600`) |
+| `$F600-$FFFF` | about 2.5 KB | Free, left to the BennVenn DOS once the game has loaded |
+The whole game — engine, physics, every locale and mission, art, fonts and music — fits in
+about 29.5 KB from `$8000` to `$F600`, plus the 2 KB video RAM: well inside the VZ300's address space, with no bank switching. It needs the BennVenn SD Loader's RAM to physically be there at those addresses and to load the file from the SD card, but never switches banks
+once running.
+## On the SD card
+One file, about 26 KB:
+- `VZFLIGHT.VZ`: everything — loader, engine, every locale, mission, and all the art and
+  music. It loads at `$8000`.
+Run `VZFLIGHT.VZ` from the BennVenn SD loader.
+## Facts used
+The tribute pages and briefings were checked against the Australian Aviation Hall of Fame entry, the Wikipedia article on Dick Smith, and Australian Geographic's "On this day" piece on the 1983 round-the-world flight.
+---
+VZ FLIGHT SIMULATOR. VIBED BY BPM 2026.
