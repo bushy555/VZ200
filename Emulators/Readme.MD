@@ -792,24 +792,29 @@ There may be other methods, but the above has proven to work correctly.
 
 
 
+
 (20) Laser310 emulator (Made in Russia)
-URL	: https://github.com/xrip/laser310 (made in Russia)
+	URL	: https://github.com/xrip/laser310 (made in Russia)
+
 
 
 
 (21) Seltron 200 emulator
-URL	: https://github.com/PZsolt27/Seltrix seltrix
+	URL	: https://github.com/PZsolt27/Seltrix seltrix
+
 
 
 (22) VZ browser emu + SD Loader
-Craig Whitmore
-https://share.gemini.google/neflxoXJivxZ
+	By Craig Whitmore
+	https://share.gemini.google/neflxoXJivxZ
+
 
 
 (23) VZ browser emu + SD Loader
-DAVID COLLINS
+	By David Collins
 
-Available at : www.github.com/lindoran
+	Available at : www.github.com/lindoran
+
 
 
 (24) Andrew Laird's emu. Unreleased.
