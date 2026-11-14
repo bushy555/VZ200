@@ -1,0 +1,105 @@
+TIGER GATE
+A martial arts adventure for the Dick Smith VZ300 VIBED BY BPM 2026
+TIGER GATE
+Kurokage's raiders have burned the dojo at Three Pines and dragged old Master Hoshi up the mountain to the fortress beyond the Tiger Gate. Ren, his last student, ties on his master's red sash and follows: alone and barehanded.
+TIGER GATE is a cinematic duelling game in the spirit of Karateka. You don't win by mashing buttons. You win by reading your opponent: watch the wind-up, keep your distance, and strike as he commits. Six stages climb the mountain road, each with its own scenery, entrance, opponent and way of fighting, and the story plays out in illustrated scenes between them.
+THE ROAD TO THE FORTRESS
+The Rope Bridge. A waterfall thunders below as the straw-hatted Bridge Keepers bar the way. Learn your spacing: kicks reach one step further than fists.
+The Outer Court. Cherry blossom drifts past the stone lanterns. Three horned-helmet guards come at you in turn. Hit them as they wind up.
+The Lantern Hall. The Lantern Monk kneels in silence until you come close. He guards and counters, so make him move first.
+The Cliff Path. Boulders crash down wherever a green shadow falls. Then the hooded Cliff Scout arrives with a flying kick and fights hit-and-run.
+The Inner Gate. Torches and banners under a red moon. Two guards, then the Gate Oni with his slow, crushing blows, all back to back.
+The Tiger Throne. At sunset on the summit, Kurokage himself. He feints, he flurries, and he gets faster as he weakens. Wait for the real blow.
+FEATURES
+Layered parallax scenery in all four mode 1 colours. Sky, sun and mountains scroll at a quarter speed behind full-speed walls, railings and pillars, over a perspective floor whose lines converge and slide as you run: planks, tiles, floorboards, cliff rock, flagstones and a chequered throne terrace.
+Animated details: a waterfall, flickering stone lanterns, swaying hanging lanterns, torches, waving banners, drifting petals, leaves and embers.
+Expressive fighters with Karateka-style stances, wind-ups, punches and kicks at three heights, guards, bows, recoil, knock-downs and falls. Every opponent has a different silhouette (straw hat, horned helmet, monk's robe, hood, oni mask, crested helmet and cape), and blue outlines keep them readable against any background.
+Opponents that think differently: spacing, evasion, guarding, counter-punching, hit-and-run, heavy telegraphed blows, feints and changes of rhythm.
+Clean hits feel heavy: hit pauses, knock-back, a full-screen flash on counters and knockouts, gongs, swishes, blocks, thuds and footsteps on the beeper.
+Three-voice title and ending themes (bass, melody and harmony mixed on the one-bit speaker), with sparse, suspenseful single-note music during play.
+The full release: custom logo and font, illustrated title screen, a four-picture opening story, stage cards that show your next opponent while the stage loads, story scenes at the turning points, results screens, an ending with a cast roll and credits, an attract-mode demo duel and the Hall of Masters high-score table with name entry.
+Forgiving by design: a 12-pip health bar that slowly recovers while you stay unhit, instant retry of the current duel, every stage a checkpoint, and a start-from-stage option for every stage you have reached. Easy, Normal and Hard; music and effects toggle separately.
+Explore between bouts: run back to the left to take in the scenery, then run on.
+Scoring: points for every opponent, doubled for a clean duel (no hits taken), plus a bonus for clearing a stage without a retry.
+CONTROLS
+HighMidLow
+Punch
+Q
+A
+Z
+Kick
+W
+S
+X
+M and comma step back and forward in a duel, and run left and right between bouts. N guards, B bows, SPACE switches stance. The joystick is detected automatically: fire punches, the arm button kicks, both together guard, and up or down aims high or low. On the title, D sets the difficulty, M and E toggle music and effects, and S picks the start stage.
+TECH SPECS
+Machine
+Dick Smith VZ300 (Z80A at 3.5469 MHz)
+Expansion
+BennVenn SD Loader with 128 KB SRAM
+Display
+Mode 1, 128 x 64, 4 colours, colour composite; CSS palette flip for hit flashes
+Frame rate
+25 game ticks a second, locked to field sync; no interrupts
+Rendering
+32-row fight band composed off-screen and copied in the vertical blank with unrolled LDI; top layers redrawn only when they move
+Parallax
+Far layer at 1/4 speed, mid layer at full speed, mid-layer blue keyed through to the far layer by lookup tables
+Floor
+4 precomputed perspective phases per stage, 128 x 14 px
+Fighters
+32 x 24 px masked sprites, 21 poses each; Ren plus 6 opponent types = 147 frames (+5 mirrored running frames)
+Scenery per stage
+far 208 x 32 px, mid 448 x 24 px, floor 4 x 128 x 14 px, up to 7 animated regions
+Sound
+One-bit speaker. Three-voice player at 214 T-states a sample (about 16.6 kHz) for themes; pulse-timed effects and noise for combat
+Loading
+Each stage's scenery, opponent frames, AI levels, script, scene and music from SD between stages, in under a second
+Data files
+Header, number and XOR checksum on every file; a missing or damaged file shows its name, with retry or back to title
+Saving
+High scores and stage unlocks last for the session (SD writes not used)
+Code
+About 1,700 lines of Z80 assembly; art, music and data generated by Python tools
+RAM USED
+AddressSizeUse
+$7000-$77FF
+2 KB
+Video RAM (mode 1 screen)
+$7800-$7FFF
+2 KB
+Game variables, high-score table and stack
+$8000-$BE7F
+15.6 KB
+Resident: launcher, engine, sound and effects (about 7 KB code), text (1.7 KB), jingles (0.9 KB), font, lookup tables (0.75 KB), Ren's frames (4.9 KB)
+$C800-$E7FF
+8 KB
+Current stage pack (scenery, floor, animations, AI, script, scene, music)
+$C800-$EFFF
+10 KB
+Front pack on the title (title picture, four story pictures, high-score art, title theme)
+$E800-$EE5F
+1.6 KB
+Composited top rows and the 48-byte-wide fight band
+$F7F0 down
+about 2.5 KB
+DOS stack, during loads only
+$F800-$F9FF
+0.5 KB
+SD sector buffer
+$FA00-$FFFF
+1.5 KB
+Left to the BennVenn DOS
+SRAM bank B $4000-$5FFB
+8 KB
+The stage's two opponent frame sets (mapper port $37 = 3)
+Of the 36 KB from $7000 to $FFFF, only $BE80-$C7FF (2.4 KB) is spare. The game also uses 8 KB of the BennVenn's SRAM, about 44 KB in all.
+ON THE SD CARD
+15 files, 128 KB in all, kept together in one folder:
+TIGRGATE.VZ: the launcher and engine. It loads at $8000.
+TGFRONT.DAT: the title screen and story pictures.
+TGFOES1.DAT to TGFOES6.DAT: each stage's opponents.
+TGSTAGE1.DAT to TGSTAGE6.DAT: each stage's scenery and logic.
+TGEND.DAT: the ending.
+Run TIGRGATE.VZ from the SD loader.
+TIGER GATE. VIBED BY BPM 2026.

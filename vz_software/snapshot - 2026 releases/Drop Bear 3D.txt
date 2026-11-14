@@ -1,0 +1,77 @@
+DROPBEAR 3D
+
+The outback bites back, at sixteen frames a second, on a 1985 home computer.
+Drop bears have overrun the station. Armed with a blaster and a jar of Vegemite, you head out past the homestead, through the bush and a gum tree maze, down an old mine, across a misty billabong and up the ridge to Yowie's Lair. Nine connected areas, ten kinds of creature and three bosses stand between you and your ute.
+DROPBEAR 3D is a full first-person shooter for the Dick Smith VZ300, with textured walls, creatures that explode into bouncing chunks, furniture to dodge, keys, switches, secret walls, an automap and a three-channel title tune from a one-bit speaker. It's all Z80 machine code, running on a 3.5 MHz CPU with a 128x64 screen.
+It is forgiving by design. There's no instant death: if you go down, you start again at the door you came in by, with full health and everything you'd collected.
+Vibed by BPM, 2026.
+FEATURES
+Nine connected areas in six themes: station, bush, hedge maze, mine, swamp, ridge and lair. Each has its own textures and colour scheme, and each area remembers what you've beaten and opened.
+Ten creatures, each with its own behaviour:
+Drop bears.
+Fruit bats and magpies that swoop at eye level.
+Cane toads that hop in bursts.
+Slow, hard-biting snakes.
+Quick huntsman spiders and dingoes.
+Three bosses:
+Big Fella.
+The Bunyip, which lunges in bursts.
+The Yowie, who gets faster as it gets hurt.
+Satisfying deaths: beaten creatures burst into chunky pieces that fly, fall and bounce off the floor. Bosses go up with a screen flash.
+Furniture:
+Oil drums, mine carts, shrubs, termite mounds and stumps block your way.
+Lamps, reeds and bones just set the scene.
+Puzzles:
+Keys open padlocked doors, and lever switches open barred gates.
+Cracked walls hide secrets, with 20 opals to find.
+A map scroll unlocks the automap in the mazes.
+Arcade attract loop:
+A dripping, doom-metal title logo and a tense three-channel beeper tune.
+A self-deprecating gallery of the locals, each with its own fanfare.
+An AI demo that plays a different area each time round.
+TECH SPECS
+Machine
+Dick Smith VZ300: Z80A at 3.54 MHz, BennVenn SD loader with 128K RAM expansion
+Display
+Mode 1: 128x64 pixels, 4 colours, with both colour sets used (green/yellow/blue/red and buff/cyan/magenta/orange)
+Engine
+32-column textured raycaster with DDA ray stepping, log-domain distance-to-height tables, and compiled wall scalers for 49 wall heights
+Frame rate
+About 16 frames a second (median), dipping to about 14 in the busiest rooms
+Sprites
+Depth-buffered, scaled and mirrored, drawn by unrolled code; frames are stored across two RAM banks
+Objects
+32 per area: creatures, pickups and furniture. View-cone culling keeps off-screen objects almost free
+Particles
+32 chunky 2x2 pieces with gravity and floor bounce
+Sound
+Three-channel interleaved-pulse music engine running at about 26.9 kHz on the one-bit speaker, plus in-game sound effects
+Content
+9 areas, 6 themes, 10 creature types (including 3 bosses), 5 pickup types, 8 furniture types, 20 opals
+Controls
+Keyboard (W/S walk, A/D turn, Q/E strafe, SPACE fire, M map) or joystick
+File
+DROPBEAR.VZ, 26,593 bytes, self-unpacking. It loads at $8000–$E7C8 and checks for both RAM banks before it starts
+Memory
+Uses nearly all of the expansion. See the memory map below
+Toolchain
+A custom Z80 assembler and cycle-counting simulator written in Python. A bot played the whole game through in the simulator, checking every area, boss and opal; engine timings were checked against a real VZ300
+MEMORY MAP
+WhereWhat
+$7800–$79FF
+Object list and particles
+$7A00–$7FFF
+Bank-copy routine and some sprites
+$8100–$F7FF
+Engine, compiled scalers, sprites, text, world and game code
+$F800–$FFFF
+Work areas and the view buffer
+SRAM bank 1 ($4000–$67FF)
+Active wall textures and sprites
+SRAM bank 3 ($4000–$67FF)
+More sprites, switched in as each one is drawn
+High bank ($B800–$FFFF)
+Saved state for every area, texture library, title logo, music and gallery text
+RUNNING IT
+Copy release/DROPBEAR.VZ to the BennVenn SD card and run it. Leave it alone on the title to watch the attract loop, or press fire to play. The game needs the 128K expansion; without it, the game says so instead of crashing.
+

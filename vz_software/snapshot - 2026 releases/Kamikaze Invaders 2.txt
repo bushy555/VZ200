@@ -1,0 +1,122 @@
+KAMIKAZE INVADERS 2 — THE MOTHERSHIP STRIKES BACK
+FOR THE DICK SMITH VZ300 / VZ200
+"Here they come again!" VIBED BY BPM 2026
+The mothership is back, and this time it isn't leaving until the ground is scorched. The kamikazes from the VZ200 original still pour out and stack four-deep in their columns between the rails. Squeeze in a fifth and the bottom one drops out, screams down and blows an electric blast across the ground. The bomb still tumbles down the centre lane, and you still have to stop it.
+Now there are four sectors and sixteen motherships, and they get nastier as you go. Armoured kamikazes take two hits, zigzags weave as they dive, and sparkers leave a blast twice as wide. The columns don't clear between motherships, so the pressure keeps building. Shoot kamikazes in flight to knock loose capsules: twin shot, rapid fire, a shield, or a NOVA that pops everything on screen. When a mothership has emptied its hold, its hatch swings open. BREACH the pulsing core before it escapes and it's worth 2000.
+FEATURES
+The original's game, kept:
+A mothership slides along the top. The number in its centre box counts the kamikazes it still carries.
+It fills 10 columns, 5 on each side of the centre lane, 4 to a column.
+Each mothership drops a bomb down the centre lane.
+Scoring: 10 for a kamikaze in a column, 30 for one diving, 500 for the bomb.
+Ships: you have three.
+Controls: M and , move, SPACE or SHIFT fire, CTRL+BREAK quits, as the original.
+Columns that remember. Kamikazes left in the columns stay through all four motherships of a sector.
+Shots stop at a column's bottom kamikaze, so the centre lane and any empty columns are your only way through to the ones flying in.
+A full column's bottom kamikaze flashes a warning when it's about to be pushed out.
+Later motherships make the columns drop kamikazes on their own.
+Four kamikaze types:
+Grunt
+Armour: two hits, and it cracks after the first. It arrives from the third mothership, as in the original.
+Zigzag: weaves as it dives.
+Sparker: its ground blast is twice as wide.
+BREACH! Each empty mothership opens its hatch for about 7 seconds. Hit the core four times for 2000 (more hits on later laps), or it escapes. A closed hull just deflects your shots.
+Capsules, knocked loose by kamikazes shot in flight:
+T twin shot
+R rapid fire
+S shield, which survives one blast
+N nova, which clears the screen
+Extras: a 500-point bonus for every 10 hits in a row, extra ships at 10,000 and then every 20,000, and from sector 3 the bombs take two hits. Sector 4 drops two of them per mothership.
+Four sectors, each with its own colours and rails:
+Each mothership carries more kamikazes than the last (30 rising to 60), releases them faster and brings in new types.
+Outer Rim
+Ion Storm
+Red Nebula
+The Hive
+Sector clear: 500 for every empty column, then the survivors are blown away.
+KAMIKAZE RAIN follows every sector: 30 kamikazes rain down in the other colour set, 100 each, and 10,000 for all 30.
+Ending and lap 2: clear The Hive for a 10,000 completion bonus, then lap 2 comes back faster and meaner.
+Presentation:
+a drop-shadowed logo with a big red 2, a ringed moon and a cratered planet
+big kamikazes bobbing on the title, and blinds wipes between screens
+a mothership that moves a pixel at a time with its cargo count live in the box
+kamikazes that wiggle their legs in the columns, and electric bolts crackling across the ground
+particle bursts, score pop-ups, palette flashes, sector and mothership cards, and HUD calls (BREACH! FIRE!, BOMB! SHOOT!)
+Two-voice beeper music:
+tunes for the title, in-game, the breach alarm, the bonus round, the info screens and the ending
+jingles for starting, clearing a mothership, clearing a sector, losing a ship, game over, the Top Ten and explosions
+17 sound effects
+Attract sequence: title, How to Play, The Enemy, Capsules, a computer-played demo, then the Top Ten.
+Top Ten, entered the original's way: move a box over the letter grid (A–Z . SPC DEL END) and press fire. Names are 5 letters.
+TECH SPECS
+Machine
+Dick Smith VZ300 or VZ200, Z80A at 3.5 MHz
+Needs
+The BennVenn SD loader with 128K: main RAM up to $FFFF. Will not run on an unexpanded machine
+File
+KAMI2.VZ, 17.1 KB binary. Loads at $8000–$C47F from SD and autostarts. No other files needed
+Display
+Genuine Mode 1 throughout (6847 CG2: 128 × 64, 4 colours). Both colour sets are used: CSS0 for Outer Rim and Red Nebula, CSS1 for Ion Storm and The Hive. Each bonus round uses the other set
+Frame rate
+50 fps, synced to field sync, with interrupts off. Every screen write is queued and committed in the vertical blank, so there's no snow. Emulator soak: more than 99.98% of 120,000 frames finished drawing inside vblank
+Sprites
+29 masked sprites, pre-shifted 4 ways at start-up, drawn with POP. Space (colour 2) is transparent, so stars show through. Sprites partly past the right edge are drawn clipped
+Background
+The mothership (pre-shifted, so it moves a pixel at a time), the column stacks, ground blasts and text are painted into a 2 KB background buffer. They're repaired from a clean copy of the playfield, so they use no sprite time
+Demo
+An AI that shoots the bomb, the lowest diver or the core first, catches capsules and steps away from blasts. It also drives the emulator soak tests
+Sound
+Two-voice beeper engine: 6 tunes, 7 jingles and 17 sound effects (sweeps, warbles and noise). Sound effects play over the bass line, so the tune keeps going. S cycles music + effects, effects only, and off
+Controls
+Keyboard (the original's keys) or either joystick. Every joystick port is read and combined to suit the VZ joystick interface
+High scores
+Top Ten with 5-letter names, kept in RAM until power-off
+Exit
+Reset (the game overwrites the loader's DOS work area while it runs)
+Source
+About 6,800 lines of Z80 assembly (sjasmplus), plus about 1,000 lines of Python tools. The tools draw the font, sprites, mothership and title picture, write the music, and run the emulator soak and media capture
+RAM USED
+RangeContentsSize
+$7000–$77FF
+video RAM
+2 KB
+$7800–$7B81
+variables, draw and erase lists
+0.9 KB
+$7C00–$7C7F
+VRAM commit queue
+128 bytes
+$7C80–$7FFF
+stack (from $7FFE down)
+0.9 KB
+$8000–$C47F
+code, data, music, font, title picture
+17.1 KB
+$C480–$D43F
+sprite table and pre-shifted, pre-masked sprites, built at start-up
+3.9 KB
+$E800–$EFFF
+clean playfield (stars, rails, ground)
+2 KB
+$F600–$F7FF
+mask tables
+0.5 KB
+$F800–$FFFF
+background buffer
+2 KB
+TO PLAY
+Copy release/KAMI2.VZ to the SD card, run it from the BennVenn loader and press fire on the title. Keys 1–4 on the title start at that sector.
+ActionKeys
+Move
+M left, , right, or the joystick
+Fire
+SPACE, SHIFT or fire
+Pause (X quits while paused)
+P
+Quit the game
+CTRL + BREAK
+Sound: music + effects / effects only / off
+S
+Name entry
+M , Q A move the box, SPACE or RETURN picks
+Kamikaze Invaders 2 is a fan-made sequel to the VZ200 game Kamikaze Invaders, published by Dick Smith Electronics. It contains none of the original's code or graphics.

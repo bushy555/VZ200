@@ -1,0 +1,79 @@
+VZ-DECK 0.9 ??
+A boot-time file browser, launcher and music player for the Dick Smith VZ300 / VZ200 with the BennVenn SD loader + 128K
+VIBED BY BPM 2026
+????????????????????
+WHAT IT IS
+Switch on your VZ and VZ-DECK comes up instead of BASIC. It's a full-screen file browser for your SD card in the spirit of XTree Gold: go through your folders, see every file's size and date, and press RETURN to run a game. Your games can live in folders of their own, with all their DAT files beside them.
+It's also a music player! MIDI and MOD files play straight from the card through the VZ's 1-bit speaker, as three square-wave voices plus drums, with live visualisers. Plug-in players add ProTracker 3, AY register dumps, Scream Tracker 3, FastTracker 2 and SN76489 VGM music.
+????????????????????
+?? THE BROWSER
+• Folders first, then files in name order, with size and date
+• Colour icons: yellow folder, red .VZ, cyan .DAT, magenta music
+• The bottom line shows the highlighted .VZ file's own title, type and load address
+• Up to 250 entries per folder, page up / page down, held keys repeat
+• Keyboard or joystick 1
+• Going back out of a folder leaves the cursor on the folder you came from
+• B drops to BASIC, C to the DOS command line
+• Hold B or SPACE at power-on to skip VZ-DECK
+????????????????????
+?? MUSIC FORMATS
+• MIDI (.MID) – any size. Up to about 24K loads whole; bigger files stream from the card
+• MOD (.MOD) – 15 and 31-instrument ProTracker modules, any length
+• PT3 (.PT3) – ProTracker 3 / Vortex Tracker II, up to about 17K
+• PSG (.PSG) – AY register dumps, any size, streamed
+• S3M (.S3M) – Scream Tracker 3, up to 32 channels, streamed
+• XM (.XM) – FastTracker 2, 32 channels heard, streamed
+• VGM (.VGM) – SN76489 music (Master System, Game Gear, BBC Micro, ColecoVision...), streamed
+Drums (kick, snare and hat) are picked from MIDI drum notes, MOD/S3M/XM instrument names, or AY / SN76489 noise.
+????????????????????
+?? VISUALISERS (press V)
+• Bars – a level bar and the current note for each voice
+• Scope – three scrolling waveform strips
+• Piano roll – notes scroll up over a C2–C7 keyboard
+• Tracker view (MOD, PT3, S3M, XM) – the notes of each row as it plays
+• Live chip registers (PSG: AY, VGM: SN76489)
+• Visuals off – draws nothing, so the music gets all of the VZ's time
+While playing: V view, T theme, SPACE pause, RETURN or fire to stop
+????????????????????
+?? SOUND OUTPUTS (press O in the browser)
+• Speaker – the VZ's own speaker
+• Cassette port – into headphones or an amplifier
+• Speaker + cassette – both at once
+• Printer port – data bits 0 and 5 (not yet tested on real hardware)
+????????????????????
+?? COLOUR THEMES (press T)
+Light green, dark green, light red (the VZ's orange screen) and dark red. Works in the browser and every player, and the screen goes back to normal green when you leave for BASIC, the DOS or a game.
+????????????????????
+?? PLUG-INS
+Any file called PLAYxxx.VZ in the root folder plays files ending in .xxx, so new formats can be added without changing VZ-DECK. The plug-ins share the browser's sound output, colour theme and last chosen view.
+????????????????????
+?? TECH SPECS
+• Needs: VZ300 or VZ200 with the BennVenn SD loader + 128K, VZDOS 2.32 (included)
+• All Z80 assembly, running at 3.5469 MHz
+• Sound engine: three square-wave voices, pulse width as volume, mixed in software on the 1-bit output. 188 T-states per pass for MIDI/MOD; the plug-ins lock to the 50 Hz video frame
+• Screen: 32 x 16 text with semigraphics, no graphics mode needed
+• Card access through VZDOS's own routines
+File sizes:
+• SHELL.VZ – 8,611 bytes (browser + MIDI/MOD player + views)
+• PLAYPT3.VZ – 4,684 bytes
+• PLAYPSG.VZ – 3,644 bytes
+• PLAYS3M.VZ – 5,130 bytes
+• PLAYXM.VZ – 5,369 bytes
+• PLAYVGM.VZ – 4,605 bytes
+• VZDOS.VZ – 8,092 bytes (VZDOS 2.32 with the boot patch)
+Memory map:
+• $4000–$5FFF – VZDOS
+• $6000–$67FF – player code (MIDI/MOD engine and views)
+• $7000–$71FF – screen
+• $7C00–$7FDF – variables and plug-in hand-over block
+• $8000–$99A0 – VZ-DECK browser and player (about 6.5K)
+• $9A00–$F7FF – folder list, music buffers, or a plug-in at $A000
+• $F800–$FFFF – DOS buffers and stack
+Streamed formats (S3M, XM, VGM) can read files up to 255 card clusters long (about 1 MB on a card with 4K clusters).
+????????????????????
+?? INSTALLING
+Copy everything in the SD folder to the ROOT of your SD card (keep a copy of your original VZDOS.VZ first) and switch on. To go back to the normal loader, put your original VZDOS.VZ back.
+????????????????????
+?? CREDITS
+VZDOS and the SD loader are by Ben Grimmett (BennVenn). The included VZDOS.VZ is his version 2.32 with only a one-jump boot patch, shared with his kind permission.
+VZ-DECK: VIBED BY BPM 2026
